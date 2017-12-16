@@ -67,30 +67,14 @@
 
         <script>
             var map;
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-
-                } else {
-                    alert("Geolocation is not supported by this browser.");
-                }
-            }
-
-
-            function showPosition(position) {
-                lat_1 = position.coords.latitude;
-                lng_1 = position.coords.longitude;
-                console.log(lat_1,lng_1);
-                initMap();
-            }
-
+           
             var infowindow;
             var directionsService;
             var emergency_marker = [];
 
             function initMap() {
-                getLocation();
-                var currlocation = {lat: lat_1, lng: lng_1};
+                $('#button_reload').hide();
+                //getLocation();
 
                 map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 15,
@@ -189,7 +173,8 @@
 
                     var infoEmergency = new google.maps.InfoWindow({
                         content: '<p>Emergency!!!</p>'+
-                        '<button onclick="removeMarker('+i+')">remove '+i+'</button>'
+                        '<button onclick="removeMarker('+i+')">remove</button>'+
+                        '<button onclick="setDestination('+i+')">set destination</button>'
                     });
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
@@ -310,8 +295,11 @@
                     ],
                     center: {lat: hospital.location.lat, lng: hospital.location.long}
                 });
+                var trafficLayer = new google.maps.TrafficLayer();
+                trafficLayer.setMap(map);
                 directionsDisplay.setMap(map);
                 calculateAndDisplayRoute(directionsService, directionsDisplay, hospital, emergency);
+                $('#button_reload').show();
             }
 
             function calculateAndDisplayRoute(directionsService, directionsDisplay,hospital,emergency) {
@@ -344,7 +332,7 @@
 
 
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBymq4YRMhZoMwnPUd2SfyzQQLEvUtafkM&libraries=places&callback=getLocation"
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBymq4YRMhZoMwnPUd2SfyzQQLEvUtafkM&libraries=places&callback=initMap"
                 async defer></script>
     </body>
 </html>
