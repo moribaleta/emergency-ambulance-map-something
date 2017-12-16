@@ -1,0 +1,114 @@
+hospital_data = [
+    {
+        'name':'Garcia General Hospital',
+        'location':{
+            'lat':14.651058,
+            'long':121.110961,
+            'address': '49 Bayan-bayanan Ave. cor. T. Bugallon St. Marikina Heights, 1800, Marikina, Metro Manila, Philippines'
+        },
+        'contact':'(02) 941 5511'
+    },
+    {
+        'name':'Marikina Valley Medical Center',
+        'location':{
+            'lat':14.6348282,
+            'long':121.1016983,
+            'address': '300 Shoe Ave, Sto. Nino, Marikina, 1800 Metro Manila'
+        },
+        'contact':'(02) 682 2222'
+    },
+    {
+        'name':'Amang Rodriguez Memorial Medical Center',
+        'location':{
+            'lat':14.6358837,
+            'long':121.0982344,
+            'address': 'Sumulong Highway Sto. Nino, Marikina, 1800 Metro Manila'
+        },
+        'contact': '(02) 941 5854'
+
+    },
+    {
+        'name':'St. Victoria Hospital',
+        'location':{
+            'lat':14.642167,
+            'long':121.094607,
+            'address': 'Sumulong Highway Sto. Nino, Marikina, 1800 Metro Manila'
+        },
+        'contact': '(02) 942 2022'
+
+    },
+    {
+        'name':'Manila Doctors Hospital',
+        'location':{
+            'lat':14.6358837,
+            'long':121.0982344,
+            'address': 'Blue Wave Strip Mall Marquinton Place, 22 Sumulong Highway Corner G. Fernando Ave, Sto. Nino, Marikina, 1800 Metro Manila'
+        },
+        'contact': '(02) 369 3976'
+
+    },
+    {
+        'name':'SDS Medical Center',
+        'location':{
+            'lat':14.642167,
+            'long':121.094607,
+            'address': '61 Katipunan St, Marikina, 1800 Metro Manila'
+        },
+        'contact': '(02) 933 1405'
+    },
+    {
+        'name':'San Ramon Hospital',
+        'location':{
+            'lat':14.6442231,
+            'long':121.1159294,
+            'address': '108 General Ordoñez Ave, Marikina, 1811 Metro Manila'
+        },
+        'contact': '(02) 941 8632'
+    },
+    {
+        'name':'Immaculate Concepcion Hospital',
+        'location':{
+            'lat':14.6382493,
+            'long':121.1069677,
+            'address': '195 Katipunan St, Marikina, 1800 Metro Manila'
+        },
+        'contact': '(02) 941 9362'
+    },
+    {
+        'name':'St. John The Baptist Hospital',
+        'location':{
+            'lat':14.6246366,
+            'long':121.0974502,
+            'address': 'Marikina, 1800 Metro Manila'
+        },
+        'contact': '(02) 682 9093'
+    },
+    {
+        'name':'Salve Regina General Hospital, Inc',
+        'location':{
+            'lat':14.6199527,
+            'long':121.0941437,
+            'address': 'Marikina-Infanta Hwy, Pasig, 1800 Metro Manila'
+        },
+        'contact': '(02) 477 4832'
+    },
+    {
+        'name':'St. Vincent General Hospital',
+        'location':{
+            'lat':14.651133,
+            'long':121.1079946,
+            'address': '35 Bayan-Bayanan Ave, Marikina, 1800 Metro Manila'
+        },
+        'contact': '(02) 369 7231'
+    },
+    {
+        'name':'St. Anthony Medical Center',
+        'location':{
+            'lat':14.6241441,
+            'long':121.0996035,
+            'address': '32 Santa Ana Ext., Marikina, 1801 Metro Manila'
+        },
+        'contact': '(02) 369 7231'
+    },
+
+]

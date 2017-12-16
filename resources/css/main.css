@@ -1,0 +1,31 @@
+#navbar{
+    margin-bottom: 0px;
+    border-radius: unset;
+    background: #CC5653!important;
+    border: none;
+    color: white;
+}
+
+.navbar-brand,.navbar-inverse .navbar-nav>li>a{
+    color: white!important;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+    background: #9d413e!important;
+    border: none;
+    color: white;
+}
+
+#button_reload{
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    right: 0;
+    height: 64px;
+    width: 64px;
+    border-radius: 100%;
+    border:none;
+    margin: 20px;
+    background: #CC5653;
+    color: white;
+}

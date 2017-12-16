@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <title>HOME</title>
+    <link rel="stylesheet" href="resources/css/main.css">
+    <script src="resources/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Medical Emergency Response Services </h1>
+    <div id="div_table">
+        <p v-if="active.col!=null&&active.row!=null">{{active.row}} ,{{active.col}}</p>
+        <table id="grid_table" class="grid_table">
+            <tbody class="grid_data_table">
+
+                <tr class="grid_data_row" v-for="row in table_data.rows">
+                    <td class="grid_data_col" v-for="col in table_data.cols" v-on:click="setActive(col,row)" >
+                        <div class="grid_data" v-if="col!=active.col&&row!=active.row"></div>
+                        <div class="grid_data grid_data_active" v-if="col==active.col&&row==active.row"></div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="resources/js/main.js"></script>
+</body>
+
+</html>
