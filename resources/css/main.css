@@ -29,3 +29,15 @@
     background: #CC5653;
     color: white;
 }
+
+body{
+    margin: 0;
+    text-align: center;
+    background: #CC5653;
+}
+
+.image-background{
+    width: auto;
+    height: 100%;
+    border: none;
+}
