@@ -42,10 +42,16 @@
                         <li><a href="#">Page 3</a></li> 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <div id="warnings-panel"></div>
                     </ul>
                 </div>
+                <div class="progress" id="progressDirection">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        please wait...
+                    </div>
+                </div>
+
             </div>
         </nav>
 
@@ -53,7 +59,7 @@
 
 
         <div id="map"></div>   
-
+        <!-- Modal -->
 
         <button id="button_reload" onclick="initMap()">back</button>
 
@@ -67,13 +73,14 @@
 
         <script>
             var map;
-           
+
             var infowindow;
             var directionsService;
             var emergency_marker = [];
 
             function initMap() {
                 $('#button_reload').hide();
+                $("#progressDirection").hide();
                 //getLocation();
 
                 map = new google.maps.Map(document.getElementById('map'), {
@@ -225,8 +232,6 @@
                 emergency_marker.splice(position,1);
                 initMap();*/
                 var nearestHospital = getNearestHospital(emergency_marker[position]);
-
-
             }
             var min = null;
             function getNearestHospital(emergency_location){
@@ -234,11 +239,12 @@
                 var optimal_hospital = null;
                 min = 10000;
                 //console.log("emergency "+emergency_location.lat+" , "+emergency_location.longitude);
-                
+
                 var s = JSON.stringify(emergency_location);
                 var emergency = JSON.parse(s);
                 console.log("emergency %o",emergency);
-                for(var i = 0; i<hospital_list.length; i++){
+                getDistance(hospital_list,emergency);
+                /* for(var i = 0; i<hospital_list.length; i++){
                     var cost = costFunction(hospital_list[i],emergency);
 
                     if(cost<min){
@@ -247,8 +253,10 @@
                     }
                 }
                 if(confirm("best place "+optimal_hospital.name+" do you want to proceed?")){
-                    directMap(optimal_hospital,emergency);
-                }
+                    //directMap(optimal_hospital,emergency);
+                    console.log("winner %o",optimal_hospital);
+                    calculateAndDisplayRoute(optimal_hospital,emergency);
+                }*/
             }
 
             function costFunction(hospital, emergency) {
@@ -264,8 +272,52 @@
 
             }
 
-           
+            function getDistance(hospital,emergency){
+                var hospital_coords = "";
+                for( var i = 0; i<hospital.length; i++){
+                    console.log("hospital: %o",hospital[i]);
+                    hospital_coords += hospital[i].location.lat+","+hospital[i].location.long;
+                    if(i<hospital.length-1){
+                        hospital_coords+="|";
+                    }
+                }
+                console.log("url: "+hospital_coords);
+                $("#progressDirection").show();
+                $.ajax({/*
+                    url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins="+hospital.location.lat+","+hospital.location.long+
+                    "&destinations="+emergency.lat+","+emergency.lng+"&key=AIzaSyBymq4YRMhZoMwnPUd2SfyzQQLEvUtafkM",*/
+
+                    url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins="+hospital_coords+
+                    "&destinations="+emergency.lat+","+emergency.lng+"&key=AIzaSyBymq4YRMhZoMwnPUd2SfyzQQLEvUtafkM",
+                    cache: false,
+                    async: true,
+                    success: function(data){
+                        //console.log("google distance api %o",data);
+                        $("#progressDirection").hide();
+                        var min = 10000;
+                        var winner = 0;
+                        for(var i =0; i<data.rows.length;i++){
+                            var distance = data.rows[i].elements[0].distance.text;
+                            distance = Number(distance.split(" ")[0]);
+                            if(distance<min&&hospital[i].available){
+                                min = distance;
+                                winner = i;
+                            }
+                        }
+                        var optimal_hospital = hospital[winner];
+
+                        if(confirm("best place "+optimal_hospital.name+" do you want to proceed?")){
+                            //directMap(optimal_hospital,emergency);
+                            console.log("winner %o",optimal_hospital);
+                            calculateAndDisplayRoute(optimal_hospital,emergency);
+                        }
+                    }
+                });
+            }
+
+
             //--------------------------------------------------------------set map
+            /*
             function directMap(hospital,emergency) {
                 var directionsService = new google.maps.DirectionsService;
                 var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -328,6 +380,112 @@
                         }
                     });
                 }
+            }
+*/
+            function calculateAndDisplayRoute(hospital,emergency) {
+                $('#button_reload').show();
+                var directionsService = new google.maps.DirectionsService;
+                var directionsDisplay = new google.maps.DirectionsRenderer;
+                var stepDisplay = new google.maps.InfoWindow;
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    disableDefaultUI: true,
+                    styles: [
+                        {
+                            featureType: 'all',
+                            stylers: [
+                                { saturation: -80 }
+                            ]
+                        },{
+                            featureType: 'road.arterial',
+                            elementType: 'geometry',
+                            stylers: [
+                                { hue: '#00ffee' },
+                                { saturation: 50 }
+                            ]
+                        },{
+                            featureType: 'poi.business',
+                            elementType: 'labels',
+                            stylers: [
+                                { visibility: 'off' }
+                            ]
+                        }
+                    ],
+                    center: {lat: hospital.location.lat, lng: hospital.location.long}
+                });
+
+                var trafficLayer = new google.maps.TrafficLayer();
+                trafficLayer.setMap(map);
+                directionsDisplay.setMap(map);
+
+
+                var markerArray = [];
+
+                // First, remove any existing markers from the map.
+
+                for (var i = 0; i < markerArray.length; i++) {
+                    markerArray[i].setMap(null);
+                }
+
+                // Retrieve the start and end locations and create a DirectionsRequest using
+                // WALKING directions.
+                directionsService.route({
+                    origin: { lat: hospital.location.lat, lng: hospital.location.long },
+                    destination: {lat: emergency.lat, lng: emergency.lng },
+                    travelMode: 'DRIVING',
+                }, function(response, status) {
+                    // Route the directions and pass the response to a function to create
+                    // markers for each step.
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                        showSteps(response, markerArray, stepDisplay, map);
+                        /* var leg = response.routes[0].legs[0];
+                        makeMarker(leg.start_location, icons.start, "title", map);
+                        makeMarker(leg.end_location, icons.end, 'title', map);*/
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            }
+
+            function makeMarker(position, icon, title, map) {
+                new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    icon: icon,
+                    title: title
+                });
+            }
+
+            function showSteps(directionResult, markerArray, stepDisplay, map) {
+                // For each step, place a marker, and add the text to the marker's infowindow.
+                // Also attach the marker to an array so we can keep track of it and remove it
+                // when calculating new routes.
+                var leg = directionResult.routes[0].legs[0];
+                makeMarker(leg.start_location, 'resources/images/hospital_32.png', "hospital", map);
+                makeMarker(leg.end_location, 'resources/images/emergency_32.png', 'emergency', map);
+                var myRoute = directionResult.routes[0].legs[0];
+                for (var i = 0; i < myRoute.steps.length; i++) {
+                    var marker = markerArray[i] = markerArray[i] || new google.maps.Marker;
+                    marker.setMap(map);
+                    if(i==0){
+                        marker.setIcon('resources/images/hospital_32.png');
+                    }else{
+                        marker.setIcon('resources/images/ambulance_32.png');
+                    }
+                    marker.setPosition(myRoute.steps[i].start_location);
+                    attachInstructionText(
+                        stepDisplay, marker, myRoute.steps[i].instructions, map);
+                }
+            }
+
+            function attachInstructionText(stepDisplay, marker, text, map) {
+                google.maps.event.addListener(marker, 'click', function() {
+                    // Open an info window when the marker is clicked on, containing the text
+                    // of the step.
+                    stepDisplay.setContent(text);
+                    stepDisplay.open(map, marker);
+                });
             }
 
 

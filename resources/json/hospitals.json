@@ -6,6 +6,7 @@ hospital_data = [
             'long':121.110961,
             'address': '49 Bayan-bayanan Ave. cor. T. Bugallon St. Marikina Heights, 1800, Marikina, Metro Manila, Philippines'
         },
+        'available': true,
         'contact':'(02) 941 5511'
     },
     {
@@ -15,6 +16,7 @@ hospital_data = [
             'long':121.1016983,
             'address': '300 Shoe Ave, Sto. Nino, Marikina, 1800 Metro Manila'
         },
+        'available': true,
         'contact':'(02) 682 2222'
     },
     {
@@ -24,6 +26,7 @@ hospital_data = [
             'long':121.0982344,
             'address': 'Sumulong Highway Sto. Nino, Marikina, 1800 Metro Manila'
         },
+        'available': false,
         'contact': '(02) 941 5854'
 
     },
@@ -32,18 +35,20 @@ hospital_data = [
         'location':{
             'lat':14.642167,
             'long':121.094607,
-            'address': 'Sumulong Highway Sto. Nino, Marikina, 1800 Metro Manila'
+            'address': '444 JP Rizal, Sto Nino, Marikina, 1800 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 942 2022'
 
     },
     {
         'name':'Manila Doctors Hospital',
         'location':{
-            'lat':14.6358837,
-            'long':121.0982344,
+            'lat':14.6355424,
+            'long':121.0990439,
             'address': 'Blue Wave Strip Mall Marquinton Place, 22 Sumulong Highway Corner G. Fernando Ave, Sto. Nino, Marikina, 1800 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 369 3976'
 
     },
@@ -54,6 +59,7 @@ hospital_data = [
             'long':121.094607,
             'address': '61 Katipunan St, Marikina, 1800 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 933 1405'
     },
     {
@@ -63,6 +69,7 @@ hospital_data = [
             'long':121.1159294,
             'address': '108 General Ordoñez Ave, Marikina, 1811 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 941 8632'
     },
     {
@@ -72,6 +79,7 @@ hospital_data = [
             'long':121.1069677,
             'address': '195 Katipunan St, Marikina, 1800 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 941 9362'
     },
     {
@@ -81,6 +89,7 @@ hospital_data = [
             'long':121.0974502,
             'address': 'Marikina, 1800 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 682 9093'
     },
     {
@@ -90,6 +99,7 @@ hospital_data = [
             'long':121.0941437,
             'address': 'Marikina-Infanta Hwy, Pasig, 1800 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 477 4832'
     },
     {
@@ -99,6 +109,7 @@ hospital_data = [
             'long':121.1079946,
             'address': '35 Bayan-Bayanan Ave, Marikina, 1800 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 369 7231'
     },
     {
@@ -108,6 +119,7 @@ hospital_data = [
             'long':121.0996035,
             'address': '32 Santa Ana Ext., Marikina, 1801 Metro Manila'
         },
+        'available': true,
         'contact': '(02) 369 7231'
     },
 
