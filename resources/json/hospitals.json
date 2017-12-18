@@ -41,7 +41,7 @@ hospital_data = [
         'contact': '(02) 942 2022'
 
     },
-    {
+   /* {
         'name':'Manila Doctors Hospital',
         'location':{
             'lat':14.6355424,
@@ -51,7 +51,7 @@ hospital_data = [
         'available': true,
         'contact': '(02) 369 3976'
 
-    },
+    },*/
     {
         'name':'SDS Medical Center',
         'location':{

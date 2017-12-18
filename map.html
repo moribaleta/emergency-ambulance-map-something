@@ -135,7 +135,11 @@
 
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
-                            infoWindow.setContent(hostpital_list[i].name);
+                            var available = "<p class='danger'>no available emergency ambulance<p>";
+                            if(hostpital_list[i].available){
+                                available = "<p class='success'>available emergency ambulance<p>";    
+                            }
+                            infoWindow.setContent(hostpital_list[i].name+"<br>"+available);
                             infoWindow.open(map, marker);
                         }
                     })(marker, i));

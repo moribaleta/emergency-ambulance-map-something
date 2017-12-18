@@ -41,3 +41,11 @@ body{
     height: 100%;
     border: none;
 }
+
+.danger{
+    color: red;
+}
+
+.success{
+    color: green;
+}
