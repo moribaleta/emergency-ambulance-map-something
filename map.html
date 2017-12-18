@@ -311,6 +311,10 @@
                             console.log("winner %o",optimal_hospital);
                             calculateAndDisplayRoute(optimal_hospital,emergency);
                         }
+                    },
+                    error: function (request, status, error) {
+                        $("#progressDirection").hide();
+                        alert(request.responseText);
                     }
                 });
             }
