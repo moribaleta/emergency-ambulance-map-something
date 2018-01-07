@@ -77,6 +77,7 @@
             var infowindow;
             var directionsService;
             var emergency_marker = [];
+            var hostpital_list = hospital_data;
 
             function initMap() {
                 $('#button_reload').hide();
@@ -121,7 +122,7 @@
                 });
 
 
-                var hostpital_list = hospital_data;
+
                 var infoWindow = new google.maps.InfoWindow(), marker, i;
                 for( i = 0; i < hostpital_list.length; i++ ) {
                     var position = new google.maps.LatLng( hostpital_list[i].location.lat,hostpital_list[i].location.long);
@@ -136,8 +137,8 @@
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
                             var available = "<p class='danger'>no available emergency ambulance<p>";
-                            if(hostpital_list[i].available){
-                                available = "<p class='success'>available emergency ambulance<p>";    
+                            if(hostpital_list[i].available>0){
+                                available = "<p class='success'>available emergency ambulance: "+hostpital_list[i].available+"<p>";    
                             }
                             infoWindow.setContent(hostpital_list[i].name+"<br>"+available);
                             infoWindow.open(map, marker);
@@ -173,7 +174,7 @@
 
             function initEmergencyMarkers(){
                 for(var i = 0; i<emergency_marker.length; i++){
-                    console.log("init emergency marker"+emergency_marker[i]);
+                    console.log("init emergency marker %o",emergency_marker[i]);
                     //var position = new google.maps.LatLng( emergency_marker[i].position);
                     var marker = new google.maps.Marker({
                         position: emergency_marker[i],
@@ -181,11 +182,19 @@
                         icon: 'resources/images/emergency_32.png',
                         title: "emergency at: "+i
                     });
+                    var contentMessage = '<p>Emergency!!!</p>'+
+                        '<button onclick="removeMarker('+i+')">remove</button><button onclick="setDestination('+i+')">set destination</button>';
+                    try{
+                        if(emergency_marker[i].onGoing){
+                            contentMessage = '<p>Emergency!!!</p><button onclick="endResponse('+i+')">finished</button>';
+                        }
+                    }catch(err){
 
+                    }
                     var infoEmergency = new google.maps.InfoWindow({
-                        content: '<p>Emergency!!!</p>'+
-                        '<button onclick="removeMarker('+i+')">remove</button>'+
-                        '<button onclick="setDestination('+i+')">set destination</button>'
+                        content: 
+                        contentMessage
+
                     });
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
@@ -204,10 +213,19 @@
                 });
 
                 var index = emergency_marker.length;
+                var contentMessage = '<p>Emergency!!!</p>'+
+                    '<button onclick="removeMarker('+index+')">remove</button><button onclick="setDestination('+index+')">set destination</button>';
+                try{
+                    if(emergency_marker[i].onGoing){
+                        contentMessage = '<p>Emergency!!!</p><button onclick="endResponse('+index+')">finished</button>';
+                    }
+                }catch(err){
+
+                }
                 var infoEmergency = new google.maps.InfoWindow({
-                    content: '<p>Emergency!!!</p>'+
-                    '<button onclick="removeMarker('+index+')">remove</button>'+
-                    '<button onclick="setDestination('+index+')">set destination</button>'
+                    content:
+                    contentMessage
+
                 });
                 infoEmergency.open(map, emergencymarker);
 
@@ -235,10 +253,15 @@
                 /*alert('remove: '+position);
                 emergency_marker.splice(position,1);
                 initMap();*/
-                var nearestHospital = getNearestHospital(emergency_marker[position]);
+                var nearestHospital = getNearestHospital(emergency_marker[position],position);
+            }
+
+            function endResponse(position){
+                var index = emergency_marker[position].hospital_pos;
+                hostpital_list[index].available++;
             }
             var min = null;
-            function getNearestHospital(emergency_location){
+            function getNearestHospital(emergency_location,position){
                 var hospital_list = hospital_data;
                 var optimal_hospital = null;
                 min = 10000;
@@ -247,7 +270,7 @@
                 var s = JSON.stringify(emergency_location);
                 var emergency = JSON.parse(s);
                 console.log("emergency %o",emergency);
-                getDistance(hospital_list,emergency);
+                getDistance(hospital_list,emergency,position);
                 /* for(var i = 0; i<hospital_list.length; i++){
                     var cost = costFunction(hospital_list[i],emergency);
 
@@ -276,7 +299,7 @@
 
             }
 
-            function getDistance(hospital,emergency){
+            function getDistance(hospital,emergency,position){
                 var hospital_coords = "";
                 for( var i = 0; i<hospital.length; i++){
                     console.log("hospital: %o",hospital[i]);
@@ -299,21 +322,32 @@
                         //console.log("google distance api %o",data);
                         $("#progressDirection").hide();
                         var min = 10000;
-                        var winner = 0;
+                        var winner = null;
                         for(var i =0; i<data.rows.length;i++){
                             var distance = data.rows[i].elements[0].distance.text;
                             distance = Number(distance.split(" ")[0]);
-                            if(distance<min&&hospital[i].available){
+                            if(distance<min&&hostpital_list[i].available>0){
                                 min = distance;
                                 winner = i;
                             }
                         }
-                        var optimal_hospital = hospital[winner];
+                        var optimal_hospital = hostpital_list[winner];
+                        if(winner!=null){
+                            //console.log("data %o",data.rows[winner].elements[0].duration.text);
+                            var duration = data.rows[winner].elements[0].duration.text;
+                            if(confirm("best place "+optimal_hospital.name+" do you want to proceed?\nexpected time: "+duration)){
+                                //directMap(optimal_hospital,emergency);
+                                //
+                                emergency_marker[position].hospital_pos = winner;
+                                emergency_marker[position].onGoing = true;
+                                hostpital_list[winner].available--;
+                                console.log("winner %o",optimal_hospital);
+                                console.log(emergency_marker[position]);
+                                calculateAndDisplayRoute(optimal_hospital,emergency);
 
-                        if(confirm("best place "+optimal_hospital.name+" do you want to proceed?")){
-                            //directMap(optimal_hospital,emergency);
-                            console.log("winner %o",optimal_hospital);
-                            calculateAndDisplayRoute(optimal_hospital,emergency);
+                            }
+                        }else{
+                            alert("there are no available emergency response")
                         }
                     },
                     error: function (request, status, error) {
@@ -441,6 +475,8 @@
                     origin: { lat: hospital.location.lat, lng: hospital.location.long },
                     destination: {lat: emergency.lat, lng: emergency.lng },
                     travelMode: 'DRIVING',
+                    provideRouteAlternatives: true,
+                    /* waypoints: [{location: 'Tañong, Marikina City'}],*/
                 }, function(response, status) {
                     // Route the directions and pass the response to a function to create
                     // markers for each step.
@@ -469,16 +505,20 @@
                 // For each step, place a marker, and add the text to the marker's infowindow.
                 // Also attach the marker to an array so we can keep track of it and remove it
                 // when calculating new routes.
+                /*
                 var leg = directionResult.routes[0].legs[0];
                 makeMarker(leg.start_location, 'resources/images/hospital_32.png', "hospital", map);
-                makeMarker(leg.end_location, 'resources/images/emergency_32.png', 'emergency', map);
+                makeMarker(leg.end_location, 'resources/images/emergency_32.png', 'emergency', map);*/
                 var myRoute = directionResult.routes[0].legs[0];
                 for (var i = 0; i < myRoute.steps.length; i++) {
                     var marker = markerArray[i] = markerArray[i] || new google.maps.Marker;
                     marker.setMap(map);
                     if(i==0){
                         marker.setIcon('resources/images/hospital_32.png');
-                    }else{
+                    }/*else if(i== myRoute.steps.length-1){
+                        marker.setIcon('resources/images/emergency_32.png');
+                    }*/
+                    else{
                         marker.setIcon('resources/images/ambulance_32.png');
                     }
                     marker.setPosition(myRoute.steps[i].start_location);
