@@ -8,10 +8,62 @@
     <body>
         <img class="image-background" src="resources/images/background.png">
         <!--<script src="resources/js/dijkstra.js"></script>-->
+        <script src="resources/json/road_coordinates.json"></script>
         <script>
-            setTimeout(()=>{
+            /* setTimeout(()=>{
                 window.open("map.html","_self");    
-            },2000);
+            },2000);*/
+
+            var road_coord = road_coordinates;
+            console.log("road coordinates %o",road_coord);
+            var arr_road_data = [];
+            for(var i = 0; i<road_coord.length; i++){
+                var curr_road = road_coord[i];
+                var arr_intersection = [];
+                for(var j = 0; j<road_coord.length; j++){
+                    if(j!=i){
+                        console.log("road_coord: "+curr_road.name+" vs "+road_coord[j].name);
+                        for(var k = 0; k<curr_road.coordinates.length; k++){
+                            for(var l = 0; l<road_coord[j].coordinates.length; l++){
+                                console.log("latlng: %o vs %o",curr_road.coordinates[k],road_coord[j].coordinates[l]);
+                                /*var lat_diff = curr_road.coordinates[k].lat - road_coord[j].coordinates[l].lat 
+                                var lng_diff = curr_road.coordinates[k].lng == road_coord[j].coordinates[l].lng */
+                                /*lat_dist = getDistance(curr_road.coordinates[k].lat, road_coord[j].coordinates[l].lat );
+                                lng_dist = getDistance(curr_road.coordinates[k].lng, road_coord[j].coordinates[l].lng);*/
+                                /*if(curr_road.coordinates[k]==road_coord[j].coordinates[l]){*/
+                                var distance = getDistance(
+                                    curr_road.coordinates[k].lat, road_coord[j].coordinates[l].lat,
+                                    curr_road.coordinates[k].lng, road_coord[j].coordinates[l].lng)
+                                distance*=1000;
+                                if(
+                                    distance<1&&distance>-1
+                                ){
+                                    console.log("near enough: "+distance);
+                                    var intersection = {
+                                        street_name: road_coord[j].name,
+                                        coordinates: road_coord[j].coordinates[l]
+                                    }   
+                                    arr_intersection.push(intersection);
+                                }
+                            }
+                        }
+                    }
+                }
+                var road_data = {
+                    street_name: curr_road.name,
+                    intersections: arr_intersection
+                }
+                arr_road_data.push(road_data);
+            }
+            console.log("arr_road_data: %o",arr_road_data);
+
+
+
+            function getDistance(x1,x2,y1,y2){
+                return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
+            }
+
+
             /* var g = new Graph();
 
             g.addVertex('A', {B: 7, C: 8});

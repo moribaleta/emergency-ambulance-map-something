@@ -259,6 +259,9 @@
             function endResponse(position){
                 var index = emergency_marker[position].hospital_pos;
                 hostpital_list[index].available++;
+                console.log(index+"position");
+                emergency_marker[position].onGoing = false;
+                initMap();
             }
             var min = null;
             function getNearestHospital(emergency_location,position){
