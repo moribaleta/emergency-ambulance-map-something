@@ -55,8 +55,8 @@ hospital_data = [
     {
         'name':'SDS Medical Center',
         'location':{
-            'lat':14.642167,
-            'long':121.094607,
+            'lat':14.639573,
+            'long':121.110031,
             'address': '61 Katipunan St, Marikina, 1800 Metro Manila'
         },
         'available': 4,

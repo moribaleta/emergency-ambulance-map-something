@@ -62,7 +62,7 @@
         <!-- Modal -->
 
         <button id="button_reload" onclick="initMap()">back</button>
-
+        <script src="resources/json/road_coordinates.json"></script>
 
 
 
@@ -147,6 +147,34 @@
 
                     map.fitBounds(bounds);
                 }
+
+                for( i = 0; i < road.length; i++ ) {
+                    for(j = 0; j<road[i].coordinates.length; j++){
+                        var intersection = road[i].coordinates[j];
+                        console.log("name: "+road[i].name+" intersection:"+intersection.lat+","+intersection.lng);
+                       // var intersection = road[i].coordinates[j];
+
+                        var position = new google.maps.LatLng( intersection.lat,intersection.lng);
+                        bounds.extend(position);
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            title: road[i].name,
+                        });
+
+                        google.maps.event.addListener(marker, 'click', (function(marker, i,j) {
+                            return function() {
+
+                                infoWindow.setContent(road[i].name+" location: "+road[i].coordinates[j].lat+","+road[i].coordinates[j].lng);
+                                infoWindow.open(map, marker);
+                            }
+                        })(marker, i,j));
+
+                        map.fitBounds(bounds);
+                    }
+                }
+
+
                 var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
                     this.setZoom(14);
                     google.maps.event.removeListener(boundsListener);

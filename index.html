@@ -9,12 +9,51 @@
         <img class="image-background" src="resources/images/background.png">
         <!--<script src="resources/js/dijkstra.js"></script>-->
         <script src="resources/json/road_coordinates.json"></script>
+        <script src="resources/js/jquery-3.0.0.min.js"></script>
+        <script src="resources/json/coordinates.json"></script>
+        <script src="resources/js/xmlparser.js"></script>
+        <!--<script>
+var border = coords;
+console.log("coords: %o",border);
+var strCoord = "";
+
+/*for(var i = 0; i<border.size; i++){
+strCoord += border[i].lat+","+border[i].lng+";";
+}*/
+/*border.forEach(function(entry) {
+strCoord += entry.lat+","+entry.lng+";";
+});*/
+strCoord = border[0].lat+","+border[0].lng+";"+border[1].lat+","+border[1].lng+";";
+
+//strCoord = strCoord.substr(0,strCoord.length-1);
+
+console.log("strCoord: "+strCoord);
+
+var url = "https://traffic.cit.api.here.com/traffic/6.2/flow.xml?app_id=f3VSAA6aVM7Sxpp70kUw&app_code=gNFIMdjE2eWp5d7RaPq0zQ&bbox=14.618014, 121.078055;14.672655, 121.121142";
+console.log("url: "+url)
+jQuery.ajax({
+url: url,
+cache: false,
+async: true,
+success: function(data){
+console.log(data);  
+
+var x2js = new X2JS();
+var xmlText = new XMLSerializer().serializeToString(data);
+var jsonObj = x2js.xml_str2json( xmlText );
+console.log("xml to json: %o",jsonObj);
+
+}
+});
+
+
+</script>-->
         <script>
             /* setTimeout(()=>{
-                window.open("map.html","_self");    
-            },2000);*/
+window.open("map.html","_self");    
+},2000);*/
 
-            var road_coord = road_coordinates;
+            var road_coord = road;
             console.log("road coordinates %o",road_coord);
             var arr_road_data = [];
             for(var i = 0; i<road_coord.length; i++){
@@ -22,27 +61,25 @@
                 var arr_intersection = [];
                 for(var j = 0; j<road_coord.length; j++){
                     if(j!=i){
-                        console.log("road_coord: "+curr_road.name+" vs "+road_coord[j].name);
+                        //console.log("road_coord: "+curr_road.name+" vs "+road_coord[j].name);
                         for(var k = 0; k<curr_road.coordinates.length; k++){
                             for(var l = 0; l<road_coord[j].coordinates.length; l++){
-                                console.log("latlng: %o vs %o",curr_road.coordinates[k],road_coord[j].coordinates[l]);
+                               // console.log("latlng: %o vs %o",curr_road.coordinates[k],road_coord[j].coordinates[l]);
                                 /*var lat_diff = curr_road.coordinates[k].lat - road_coord[j].coordinates[l].lat 
-                                var lng_diff = curr_road.coordinates[k].lng == road_coord[j].coordinates[l].lng */
+var lng_diff = curr_road.coordinates[k].lng == road_coord[j].coordinates[l].lng */
                                 /*lat_dist = getDistance(curr_road.coordinates[k].lat, road_coord[j].coordinates[l].lat );
-                                lng_dist = getDistance(curr_road.coordinates[k].lng, road_coord[j].coordinates[l].lng);*/
+lng_dist = getDistance(curr_road.coordinates[k].lng, road_coord[j].coordinates[l].lng);*/
                                 /*if(curr_road.coordinates[k]==road_coord[j].coordinates[l]){*/
-                                var distance = getDistance(
-                                    curr_road.coordinates[k].lat, road_coord[j].coordinates[l].lat,
-                                    curr_road.coordinates[k].lng, road_coord[j].coordinates[l].lng)
-                                distance*=1000;
                                 if(
-                                    distance<1&&distance>-1
-                                ){
-                                    console.log("near enough: "+distance);
+                                    curr_road.coordinates[k].lat== road_coord[j].coordinates[l].lat&&
+                                    curr_road.coordinates[k].lng== road_coord[j].coordinates[l].lng)
+                                {
+                                   
                                     var intersection = {
                                         street_name: road_coord[j].name,
                                         coordinates: road_coord[j].coordinates[l]
                                     }   
+                                     console.log("match: %o",intersection);
                                     arr_intersection.push(intersection);
                                 }
                             }
@@ -66,17 +103,17 @@
 
             /* var g = new Graph();
 
-            g.addVertex('A', {B: 7, C: 8});
-            g.addVertex('B', {A: 7, F: 2});
-            g.addVertex('C', {A: 8, F: 6, G: 4});
-            g.addVertex('D', {F: 8});
-            g.addVertex('E', {H: 1});
-            g.addVertex('F', {B: 2, C: 6, D: 8, G: 9, H: 3});
-            g.addVertex('G', {C: 4, F: 9});
-            g.addVertex('H', {E: 1, F: 3}); 
+g.addVertex('A', {B: 7, C: 8});
+g.addVertex('B', {A: 7, F: 2});
+g.addVertex('C', {A: 8, F: 6, G: 4});
+g.addVertex('D', {F: 8});
+g.addVertex('E', {H: 1});
+g.addVertex('F', {B: 2, C: 6, D: 8, G: 9, H: 3});
+g.addVertex('G', {C: 4, F: 9});
+g.addVertex('H', {E: 1, F: 3}); 
 
-            // Log test, with the addition of reversing the path and prepending the first node so it's more readable
-            console.log(g.shortestPath('A', 'H').concat(['A']).reverse());*/
+// Log test, with the addition of reversing the path and prepending the first node so it's more readable
+console.log(g.shortestPath('A', 'H').concat(['A']).reverse());*/
         </script>
     </body>
 
