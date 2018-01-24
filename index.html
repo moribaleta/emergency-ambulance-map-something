@@ -7,113 +7,160 @@
 
     <body>
         <img class="image-background" src="resources/images/background.png">
-        <!--<script src="resources/js/dijkstra.js"></script>-->
-        <script src="resources/json/road_coordinates.json"></script>
+        <script src="resources/js/dijkstra.js"></script>
+        <script src="resources/json/road_coordinates2.json"></script>
         <script src="resources/js/jquery-3.0.0.min.js"></script>
         <script src="resources/json/coordinates.json"></script>
         <script src="resources/js/xmlparser.js"></script>
-        <!--<script>
-var border = coords;
-console.log("coords: %o",border);
-var strCoord = "";
-
-/*for(var i = 0; i<border.size; i++){
-strCoord += border[i].lat+","+border[i].lng+";";
-}*/
-/*border.forEach(function(entry) {
-strCoord += entry.lat+","+entry.lng+";";
-});*/
-strCoord = border[0].lat+","+border[0].lng+";"+border[1].lat+","+border[1].lng+";";
-
-//strCoord = strCoord.substr(0,strCoord.length-1);
-
-console.log("strCoord: "+strCoord);
-
-var url = "https://traffic.cit.api.here.com/traffic/6.2/flow.xml?app_id=f3VSAA6aVM7Sxpp70kUw&app_code=gNFIMdjE2eWp5d7RaPq0zQ&bbox=14.618014, 121.078055;14.672655, 121.121142";
-console.log("url: "+url)
-jQuery.ajax({
-url: url,
-cache: false,
-async: true,
-success: function(data){
-console.log(data);  
-
-var x2js = new X2JS();
-var xmlText = new XMLSerializer().serializeToString(data);
-var jsonObj = x2js.xml_str2json( xmlText );
-console.log("xml to json: %o",jsonObj);
-
-}
-});
-
-
-</script>-->
         <script>
-            /* setTimeout(()=>{
-window.open("map.html","_self");    
-},2000);*/
+            var traffic_data;
+            var url = "https://traffic.cit.api.here.com/traffic/6.2/flow.xml?app_id=f3VSAA6aVM7Sxpp70kUw&app_code=gNFIMdjE2eWp5d7RaPq0zQ&bbox=14.618014, 121.078055;14.672655, 121.121142";
+            console.log("url: "+url)
+            jQuery.ajax({
+                url: url,
+                cache: false,
+                async: true,
+                success: function(data){
+                    console.log(data);  
+
+                    var x2js = new X2JS();
+                    var xmlText = new XMLSerializer().serializeToString(data);
+                    var jsonObj = x2js.xml_str2json( xmlText );
+                    console.log("xml to json: %o",jsonObj);
+                    traffic_data = jsonObj;
+                    initRoute();
+                }
+            });
+
+
+        </script>
+        <script>
 
             var road_coord = road;
-            console.log("road coordinates %o",road_coord);
-            var arr_road_data = [];
-            for(var i = 0; i<road_coord.length; i++){
-                var curr_road = road_coord[i];
-                var arr_intersection = [];
-                for(var j = 0; j<road_coord.length; j++){
-                    if(j!=i){
-                        //console.log("road_coord: "+curr_road.name+" vs "+road_coord[j].name);
-                        for(var k = 0; k<curr_road.coordinates.length; k++){
-                            for(var l = 0; l<road_coord[j].coordinates.length; l++){
-                               // console.log("latlng: %o vs %o",curr_road.coordinates[k],road_coord[j].coordinates[l]);
-                                /*var lat_diff = curr_road.coordinates[k].lat - road_coord[j].coordinates[l].lat 
-var lng_diff = curr_road.coordinates[k].lng == road_coord[j].coordinates[l].lng */
-                                /*lat_dist = getDistance(curr_road.coordinates[k].lat, road_coord[j].coordinates[l].lat );
-lng_dist = getDistance(curr_road.coordinates[k].lng, road_coord[j].coordinates[l].lng);*/
-                                /*if(curr_road.coordinates[k]==road_coord[j].coordinates[l]){*/
-                                if(
-                                    curr_road.coordinates[k].lat== road_coord[j].coordinates[l].lat&&
-                                    curr_road.coordinates[k].lng== road_coord[j].coordinates[l].lng)
-                                {
-                                   
-                                    var intersection = {
-                                        street_name: road_coord[j].name,
-                                        coordinates: road_coord[j].coordinates[l]
-                                    }   
-                                     console.log("match: %o",intersection);
-                                    arr_intersection.push(intersection);
-                                }
-                            }
-                        }
-                    }
-                }
-                var road_data = {
-                    street_name: curr_road.name,
-                    intersections: arr_intersection
-                }
-                arr_road_data.push(road_data);
-            }
-            console.log("arr_road_data: %o",arr_road_data);
-
-
 
             function getDistance(x1,x2,y1,y2){
                 return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
             }
 
+            //construction phase 1
 
-            /* var g = new Graph();
+            function initRoute(){
 
-g.addVertex('A', {B: 7, C: 8});
-g.addVertex('B', {A: 7, F: 2});
-g.addVertex('C', {A: 8, F: 6, G: 4});
-g.addVertex('D', {F: 8});
-g.addVertex('E', {H: 1});
-g.addVertex('F', {B: 2, C: 6, D: 8, G: 9, H: 3});
-g.addVertex('G', {C: 4, F: 9});
-g.addVertex('H', {E: 1, F: 3}); 
+                var tree = [];
+                var node_id = 0;
+                for(var i = 0; i< road_coord.length; i++){        
 
-// Log test, with the addition of reversing the path and prepending the first node so it's more readable
-console.log(g.shortestPath('A', 'H').concat(['A']).reverse());*/
+                    for(var j=0; j<road_coord[i].coordinates.length-1; j++){
+                        var vertex = [];
+                        if(j<road_coord.length-1){
+                            var distance = getDistance(
+                                road_coord[i].coordinates[j].lat,road_coord[i].coordinates[j+1].lat,
+                                road_coord[i].coordinates[j].lng,road_coord[i].coordinates[j+1].lng,
+                            );
+                            vertex.push({
+                                node: node_id+1,
+                                distance: distance
+                            });
+                        }
+                        if(j>0){
+                            var distance = getDistance(
+                                road_coord[i].coordinates[j].lat,road_coord[i].coordinates[j-1].lat,
+                                road_coord[i].coordinates[j].lng,road_coord[i].coordinates[j-1].lng,
+                            );                        
+                            vertex.push({
+                                node: node_id-1,
+                                distance: distance
+                            });
+                        }
+
+
+                        var node = {
+                            node_id: node_id,
+                            name: road_coord[i].name,
+                            coordinates: road_coord[i].coordinates[j],
+                            vertex:vertex
+                        }   
+                        tree.push(node);
+                        node_id++;
+                    }            
+                }
+                console.log("road structure %o",tree);
+
+
+                //construction phase 2
+                var tree_temp = tree;
+                var added = [];
+                for(var i = 0; i<tree.length;i++){
+                    for(var j = 0; j<tree_temp.length;j++){
+                        if(i!=j){      
+                            if(tree[i].coordinates.lat == tree_temp[j].coordinates.lat
+                               &&tree[i].coordinates.lng == tree_temp[j].coordinates.lng){
+                                console.log("match: "+i+" vs "+j);
+                                if(!added.includes(j)){
+                                    tree[i].vertex.push(tree_temp[j].vertex[0]);
+                                    added.push(j);
+                                }
+                            }                        
+                        }
+                    }
+                }
+                console.log("added index to be removed: %o",added);
+                /*added.forEach(function(entry) {
+                console.log("remove index: "+entry);
+                tree.splice(entry,1);                
+            });*/
+
+                console.log("road restructure %o",tree);
+
+
+                //dijkstra
+                var g = new Graph();
+                for(var i = 0; i<tree.length;i++){
+                    var vertex = {};
+                    for(var j = 0; j<tree[i].vertex.length; j++){
+                        vertex[""+tree[i].vertex[j].node] = tree[i].vertex[j].distance;
+                    }
+                    console.log(tree[i].node_id+", %o",vertex);
+                    g.addVertex(tree[i].node_id+"",vertex);
+
+                }
+
+
+
+                var path = g.shortestPath('5', '20').concat(['5']).reverse();
+                console.log("path %o",path);
+                var path_data = [];
+                for(var i = 0; i<path.length; i++){
+                    for(var j = 0; j<tree.length;j++){
+                        if(tree[j].node_id == Number.parseInt(path[i])){
+                            console.log(tree[j].name+": %o",tree[j].coordinates);
+                            path_data.push(tree[j]);
+                        }
+                    }
+                }
+                var path_distance = 0;
+                for(var i = 0; i<path_data.length-1;i++){
+                    path_distance += Number.parseFloat(getdistance(
+                        path_data[i].coordinates.lat,path_data[i+1].coordinates.lat,
+                        path_data[i].coordinates.lng,path_data[i+1].coordinates.lng
+                    ));
+                    console.log(path_distance);
+                }
+                console.log("total distance: "+path_distance);
+
+            }
+
+
+            function getdistance(lat1, lat2, lon1, lon2) {
+                var p = 0.017453292519943295;    // Math.PI / 180
+                var c = Math.cos;
+                var a = 0.5 - c((lat2 - lat1) * p)/2 + 
+                    c(lat1 * p) * c(lat2 * p) * 
+                    (1 - c((lon2 - lon1) * p))/2;
+
+                return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+            }
+
         </script>
     </body>
 

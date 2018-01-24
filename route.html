@@ -21,6 +21,11 @@
         <script src="resources/bootstrap/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="resources/css/main.css">
+        <script src="resources/js/dijkstra.js"></script>
+        <script src="resources/json/road_coordinates2.json"></script>
+        <script src="resources/js/jquery-3.0.0.min.js"></script>
+        <script src="resources/json/coordinates.json"></script>
+        <script src="resources/js/xmlparser.js"></script>
     </head>
     <body>
 
@@ -65,7 +70,127 @@
         <script src="resources/json/road_coordinates2.json"></script>
 
 
+    <script>
 
+           var road_coord = road;
+
+            function getDistance(x1,x2,y1,y2){
+                return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
+            }
+
+            //construction phase 1
+            var tree = [];
+            var node_id = 0;
+            for(var i = 0; i< road_coord.length; i++){        
+
+                for(var j=0; j<road_coord[i].coordinates.length-1; j++){
+                    var vertex = [];
+                    if(j<road_coord[i].coordinates.length-2){
+                        var distance = getDistance(
+                            road_coord[i].coordinates[j].lat,road_coord[i].coordinates[j+1].lat,
+                            road_coord[i].coordinates[j].lng,road_coord[i].coordinates[j+1].lng,
+                        );
+                        vertex.push({
+                            node: node_id+1,
+                            distance: distance
+                        });
+                    }
+                    if(j>0){
+                        var distance = getDistance(
+                            road_coord[i].coordinates[j].lat,road_coord[i].coordinates[j-1].lat,
+                            road_coord[i].coordinates[j].lng,road_coord[i].coordinates[j-1].lng,
+                        );                        
+                        vertex.push({
+                            node: node_id-1,
+                            distance: distance
+                        });
+                    }
+
+
+                    var node = {
+                        node_id: node_id,
+                        name: road_coord[i].name,
+                        coordinates: road_coord[i].coordinates[j],
+                        vertex:vertex
+                    }   
+                    tree.push(node);
+                    node_id++;
+                }            
+            }
+            console.log("road structure %o",tree);
+
+
+            //construction phase 2
+            var tree_temp = tree;
+            var added = [];
+            for(var i = 0; i<tree.length;i++){
+                for(var j = 0; j<tree_temp.length;j++){
+                    if(i!=j){      
+                        if(tree[i].coordinates.lat == tree_temp[j].coordinates.lat
+                           &&tree[i].coordinates.lng == tree_temp[j].coordinates.lng){
+                            console.log("match: "+i+" vs "+j);
+                            if(!added.includes(j)){
+                                tree[i].vertex.push(tree_temp[j].vertex[0]);
+                                added.push(j);
+                            }
+                        }                        
+                    }
+                }
+            }
+            console.log("added index to be removed: %o",added);
+            /*added.forEach(function(entry) {
+                console.log("remove index: "+entry);
+                tree.splice(entry,1);                
+            });*/
+
+            console.log("road restructure %o",tree);
+
+
+            //dijkstra
+            var g = new Graph();
+            for(var i = 0; i<tree.length;i++){
+                var vertex = {};
+                for(var j = 0; j<tree[i].vertex.length; j++){
+                    vertex[""+tree[i].vertex[j].node] = tree[i].vertex[j].distance;
+                }
+                console.log(tree[i].node_id+", %o",vertex);
+                g.addVertex(tree[i].node_id+"",vertex);
+
+            }
+
+
+
+            var path = g.shortestPath('5', '20').concat(['5']).reverse();
+            console.log("path %o",path);
+            var path_data = [];
+            for(var i = 0; i<path.length; i++){
+                for(var j = 0; j<tree.length;j++){
+                    if(tree[j].node_id == Number.parseInt(path[i])){
+                        console.log(tree[j].name+": %o",tree[j].coordinates);
+                        path_data.push(tree[j]);
+                    }
+                }
+            }
+            var path_distance = 0;
+            for(var i = 0; i<path_data.length-1;i++){
+                path_distance += Number.parseFloat(getdistance(
+                    path_data[i].coordinates.lat,path_data[i+1].coordinates.lat,
+                    path_data[i].coordinates.lng,path_data[i+1].coordinates.lng
+                ));
+                console.log(path_distance);
+            }
+            console.log("total distance: "+path_distance);
+
+            function getdistance(lat1, lat2, lon1, lon2) {
+                var p = 0.017453292519943295;    // Math.PI / 180
+                var c = Math.cos;
+                var a = 0.5 - c((lat2 - lat1) * p)/2 + 
+                    c(lat1 * p) * c(lat2 * p) * 
+                    (1 - c((lon2 - lon1) * p))/2;
+
+                return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+            }
+        </script>
 
 
 
@@ -124,17 +249,17 @@
 
 
                 var infoWindow = new google.maps.InfoWindow(), marker, i;
-                for( i = 0; i < hostpital_list.length; i++ ) {
-                    var position = new google.maps.LatLng( hostpital_list[i].location.lat,hostpital_list[i].location.long);
+                for( i = 0; i < path_data.length; i++ ) {
+                    var position = new google.maps.LatLng( path_data[i].coordinates.lat,path_data[i].coordinates.lng);
                     bounds.extend(position);
                     marker = new google.maps.Marker({
                         position: position,
                         map: map,
-                        title: hostpital_list[i].name,
-                        icon: 'resources/images/hospital_32.png'
+                        title: path_data[i].name+" position",
+                        icon: 'resources/images/ambulance_32.png'
                     });
 
-                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                  /*  google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
                             var available = "<p class='danger'>no available emergency ambulance<p>";
                             if(hostpital_list[i].available>0){
@@ -143,44 +268,18 @@
                             infoWindow.setContent(hostpital_list[i].name+"<br>"+available);
                             infoWindow.open(map, marker);
                         }
-                    })(marker, i));
+                    })(marker, i));*/
 
                     map.fitBounds(bounds);
                 }
 
-                for( i = 0; i < road.length; i++ ) {
-                    for(j = 0; j<road[i].coordinates.length; j++){
-                        var intersection = road[i].coordinates[j];
-                        console.log("name: "+road[i].name+" intersection:"+intersection.lat+","+intersection.lng);
-                       // var intersection = road[i].coordinates[j];
-
-                        var position = new google.maps.LatLng( intersection.lat,intersection.lng);
-                        bounds.extend(position);
-                        marker = new google.maps.Marker({
-                            position: position,
-                            map: map,
-                            title: road[i].name,
-                            icon: 'resources/images/border-dot-point-25.png'
-                        });
-
-                        google.maps.event.addListener(marker, 'click', (function(marker, i,j) {
-                            return function() {
-
-                                infoWindow.setContent(road[i].name+" location: "+road[i].coordinates[j].lat+","+road[i].coordinates[j].lng);
-                                infoWindow.open(map, marker);
-                            }
-                        })(marker, i,j));
-
-                        map.fitBounds(bounds);
-                    }
-                }
 
 
                 var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
                     this.setZoom(14);
                     google.maps.event.removeListener(boundsListener);
                 });
-                initEmergencyMarkers();
+                //initEmergencyMarkers();
 
                 var lineSymbol = {
                     path: 'M 0,-1 0,1',
