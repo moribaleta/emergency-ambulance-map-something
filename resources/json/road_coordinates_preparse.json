@@ -1,0 +1,3510 @@
+var preparse = [{
+    "node_id": 0,
+    "name": "F. Balagtas",
+    "coordinates": {
+        "lat": 14.657165,
+        "lng": 121.118295
+    },
+    "vertex": [{
+        "node": 1,
+        "distance": 0.002024318650803349
+    }, {
+        "node": 242,
+        "distance": 0.0042542423532271854
+    }]
+}, {
+    "node_id": 1,
+    "name": "F. Balagtas",
+    "coordinates": {
+        "lat": 14.65917,
+        "lng": 121.118574
+    },
+    "vertex": [{
+        "node": 2,
+        "distance": 0.0010219138906998905
+    }, {
+        "node": 0,
+        "distance": 0.002024318650803349
+    }]
+}, {
+    "node_id": 2,
+    "name": "F. Balagtas",
+    "coordinates": {
+        "lat": 14.660182,
+        "lng": 121.118716
+    },
+    "vertex": [{
+        "node": 3,
+        "distance": 0.0011131455430446607
+    }, {
+        "node": 1,
+        "distance": 0.0010219138906998905
+    }]
+}, {
+    "node_id": 3,
+    "name": "F. Balagtas",
+    "coordinates": {
+        "lat": 14.66128,
+        "lng": 121.118533
+    },
+    "vertex": [{
+        "node": 4,
+        "distance": 0.00047532830759409496
+    }, {
+        "node": 2,
+        "distance": 0.0011131455430446607
+    }]
+}, {
+    "node_id": 4,
+    "name": "F. Balagtas",
+    "coordinates": {
+        "lat": 14.661751,
+        "lng": 121.118597
+    },
+    "vertex": [{
+        "node": 5,
+        "distance": 0.00012200409828989446
+    }, {
+        "node": 3,
+        "distance": 0.00047532830759409496
+    }]
+}, {
+    "node_id": 5,
+    "name": "F. Balagtas",
+    "coordinates": {
+        "lat": 14.661864,
+        "lng": 121.118551
+    },
+    "vertex": [{
+        "node": 4,
+        "distance": 0.00012200409828989446
+    }]
+}, {
+    "node_id": 6,
+    "name": "East Drive",
+    "coordinates": {
+        "lat": 14.655618,
+        "lng": 121.122258
+    },
+    "vertex": [{
+        "node": 7,
+        "distance": 0.0006182556105644387
+    }, {
+        "node": 243,
+        "distance": 0.003773304122384573
+    }]
+}, {
+    "node_id": 7,
+    "name": "East Drive",
+    "coordinates": {
+        "lat": 14.65575,
+        "lng": 121.122862
+    },
+    "vertex": [{
+        "node": 8,
+        "distance": 0.0002812578887802845
+    }, {
+        "node": 6,
+        "distance": 0.0006182556105644387
+    }]
+}, {
+    "node_id": 8,
+    "name": "East Drive",
+    "coordinates": {
+        "lat": 14.655809,
+        "lng": 121.123137
+    },
+    "vertex": [{
+        "node": 9,
+        "distance": 0.0008689332540469342
+    }, {
+        "node": 7,
+        "distance": 0.0002812578887802845
+    }]
+}, {
+    "node_id": 9,
+    "name": "East Drive",
+    "coordinates": {
+        "lat": 14.656003,
+        "lng": 121.123984
+    },
+    "vertex": [{
+        "node": 10,
+        "distance": 0.0011972405773307826
+    }, {
+        "node": 8,
+        "distance": 0.0008689332540469342
+    }]
+}, {
+    "node_id": 10,
+    "name": "East Drive",
+    "coordinates": {
+        "lat": 14.656702,
+        "lng": 121.124956
+    },
+    "vertex": [{
+        "node": 11,
+        "distance": 0.002133028363621145
+    }, {
+        "node": 9,
+        "distance": 0.0011972405773307826
+    }]
+}, {
+    "node_id": 11,
+    "name": "East Drive",
+    "coordinates": {
+        "lat": 14.658239,
+        "lng": 121.126435
+    },
+    "vertex": [{
+        "node": 12,
+        "distance": 0.0017514179969422732
+    }, {
+        "node": 10,
+        "distance": 0.002133028363621145
+    }]
+}, {
+    "node_id": 12,
+    "name": "East Drive",
+    "coordinates": {
+        "lat": 14.658331,
+        "lng": 121.128184
+    },
+    "vertex": [{
+        "node": 11,
+        "distance": 0.0017514179969422732
+    }]
+}, {
+    "node_id": 13,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.651898,
+        "lng": 121.12289
+    },
+    "vertex": [{
+        "node": 14,
+        "distance": 0.0019189072411174356
+    }, {
+        "node": 244,
+        "distance": 0.007192062569244712
+    }]
+}, {
+    "node_id": 14,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.651839,
+        "lng": 121.124808
+    },
+    "vertex": [{
+        "node": 15,
+        "distance": 0.0019372170761152812
+    }, {
+        "node": 13,
+        "distance": 0.0019189072411174356
+    }]
+}, {
+    "node_id": 15,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.65181,
+        "lng": 121.126745
+    },
+    "vertex": [{
+        "node": 16,
+        "distance": 0.0006373797925859775
+    }, {
+        "node": 14,
+        "distance": 0.0019372170761152812
+    }]
+}, {
+    "node_id": 16,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.651832,
+        "lng": 121.127382
+    },
+    "vertex": [{
+        "node": 17,
+        "distance": 0.0005730314127543288
+    }, {
+        "node": 15,
+        "distance": 0.0006373797925859775
+    }]
+}, {
+    "node_id": 17,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.651838,
+        "lng": 121.127955
+    },
+    "vertex": [{
+        "node": 18,
+        "distance": 0.0005530009041548677
+    }, {
+        "node": 16,
+        "distance": 0.0005730314127543288
+    }]
+}, {
+    "node_id": 18,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.651839,
+        "lng": 121.128508
+    },
+    "vertex": [{
+        "node": 19,
+        "distance": 0.000817833723930985
+    }, {
+        "node": 17,
+        "distance": 0.0005530009041548677
+    }]
+}, {
+    "node_id": 19,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.651643,
+        "lng": 121.129302
+    },
+    "vertex": [{
+        "node": 20,
+        "distance": 0.0003536240942107399
+    }, {
+        "node": 18,
+        "distance": 0.000817833723930985
+    }]
+}, {
+    "node_id": 20,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.6516,
+        "lng": 121.129653
+    },
+    "vertex": [{
+        "node": 21,
+        "distance": 0.00008489994109923854
+    }, {
+        "node": 19,
+        "distance": 0.0003536240942107399
+    }]
+}, {
+    "node_id": 21,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.651622,
+        "lng": 121.129735
+    },
+    "vertex": [{
+        "node": 22,
+        "distance": 0.0006974983870951742
+    }, {
+        "node": 20,
+        "distance": 0.00008489994109923854
+    }]
+}, {
+    "node_id": 22,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.652312,
+        "lng": 121.129837
+    },
+    "vertex": [{
+        "node": 23,
+        "distance": 0.00039602525171999217
+    }, {
+        "node": 21,
+        "distance": 0.0006974983870951742
+    }]
+}, {
+    "node_id": 23,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.652706,
+        "lng": 121.129797
+    },
+    "vertex": [{
+        "node": 24,
+        "distance": 0.00025191466809072765
+    }, {
+        "node": 22,
+        "distance": 0.00039602525171999217
+    }]
+}, {
+    "node_id": 24,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.652956,
+        "lng": 121.129766
+    },
+    "vertex": [{
+        "node": 25,
+        "distance": 0.00008300602387781337
+    }, {
+        "node": 23,
+        "distance": 0.00025191466809072765
+    }]
+}, {
+    "node_id": 25,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.653039,
+        "lng": 121.129765
+    },
+    "vertex": [{
+        "node": 26,
+        "distance": 0.00035503943443034025
+    }, {
+        "node": 24,
+        "distance": 0.00008300602387781337
+    }]
+}, {
+    "node_id": 26,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.653392,
+        "lng": 121.129727
+    },
+    "vertex": [{
+        "node": 27,
+        "distance": 0.0011203253991589565
+    }, {
+        "node": 25,
+        "distance": 0.00035503943443034025
+    }]
+}, {
+    "node_id": 27,
+    "name": "Champaca St.",
+    "coordinates": {
+        "lat": 14.654512,
+        "lng": 121.129754
+    },
+    "vertex": [{
+        "node": 26,
+        "distance": 0.0011203253991589565
+    }]
+}, {
+    "node_id": 28,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.645538,
+        "lng": 121.119532
+    },
+    "vertex": [{
+        "node": 29,
+        "distance": 0.0005191396729137826
+    }, {
+        "node": 245,
+        "distance": 0.006705242277514717
+    }]
+}, {
+    "node_id": 29,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.645179,
+        "lng": 121.119907
+    },
+    "vertex": [{
+        "node": 30,
+        "distance": 0.0009604551004599688
+    }, {
+        "node": 28,
+        "distance": 0.0005191396729137826
+    }]
+}, {
+    "node_id": 30,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.644514,
+        "lng": 121.1206
+    },
+    "vertex": [{
+        "node": 31,
+        "distance": 0.00037149697172424336
+    }, {
+        "node": 29,
+        "distance": 0.0009604551004599688
+    }]
+}, {
+    "node_id": 31,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.644271,
+        "lng": 121.120881
+    },
+    "vertex": [{
+        "node": 32,
+        "distance": 0.0012362786902672112
+    }, {
+        "node": 30,
+        "distance": 0.00037149697172424336
+    }]
+}, {
+    "node_id": 32,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.643303,
+        "lng": 121.12165
+    },
+    "vertex": [{
+        "node": 33,
+        "distance": 0.0012953370217792348
+    }, {
+        "node": 31,
+        "distance": 0.0012362786902672112
+    }]
+}, {
+    "node_id": 33,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.64207,
+        "lng": 121.122047
+    },
+    "vertex": [{
+        "node": 34,
+        "distance": 0.0011370136322845263
+    }, {
+        "node": 32,
+        "distance": 0.0012953370217792348
+    }]
+}, {
+    "node_id": 34,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.640934,
+        "lng": 121.121999
+    },
+    "vertex": [{
+        "node": 35,
+        "distance": 0.00046091756312817927
+    }, {
+        "node": 33,
+        "distance": 0.0011370136322845263
+    }]
+}, {
+    "node_id": 35,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.640475,
+        "lng": 121.121957
+    },
+    "vertex": [{
+        "node": 36,
+        "distance": 0.000218330025420404
+    }, {
+        "node": 34,
+        "distance": 0.00046091756312817927
+    }]
+}, {
+    "node_id": 36,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.640257,
+        "lng": 121.121945
+    },
+    "vertex": [{
+        "node": 37,
+        "distance": 0.0007809558246138685
+    }, {
+        "node": 35,
+        "distance": 0.000218330025420404
+    }]
+}, {
+    "node_id": 37,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.639483,
+        "lng": 121.121841
+    },
+    "vertex": [{
+        "node": 38,
+        "distance": 0.0013403316753708232
+    }, {
+        "node": 36,
+        "distance": 0.0007809558246138685
+    }]
+}, {
+    "node_id": 38,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.63815,
+        "lng": 121.121701
+    },
+    "vertex": [{
+        "node": 39,
+        "distance": 0.001244806812319516
+    }, {
+        "node": 37,
+        "distance": 0.0013403316753708232
+    }]
+}, {
+    "node_id": 39,
+    "name": "Lilac St.",
+    "coordinates": {
+        "lat": 14.636912,
+        "lng": 121.121571
+    },
+    "vertex": [{
+        "node": 38,
+        "distance": 0.001244806812319516
+    }]
+}, {
+    "node_id": 40,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.642135,
+        "lng": 121.110618
+    },
+    "vertex": [{
+        "node": 41,
+        "distance": 0.010370903769679009
+    }, {
+        "node": 67,
+        "distance": 0.0008428671306920944
+    }]
+}, {
+    "node_id": 41,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.640636,
+        "lng": 121.12088
+    },
+    "vertex": [{
+        "node": 42,
+        "distance": 0.0011219278051666842
+    }, {
+        "node": 40,
+        "distance": 0.010370903769679009
+    }]
+}, {
+    "node_id": 42,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.640717,
+        "lng": 121.119761
+    },
+    "vertex": [{
+        "node": 43,
+        "distance": 0.0011181972097890627
+    }, {
+        "node": 41,
+        "distance": 0.0011219278051666842
+    }]
+}, {
+    "node_id": 43,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.640738,
+        "lng": 121.118643
+    },
+    "vertex": [{
+        "node": 44,
+        "distance": 0.0016731222310518443
+    }, {
+        "node": 42,
+        "distance": 0.0011181972097890627
+    }]
+}, {
+    "node_id": 44,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.640595,
+        "lng": 121.116976
+    },
+    "vertex": [{
+        "node": 45,
+        "distance": 0.00004220189568893066
+    }, {
+        "node": 43,
+        "distance": 0.0016731222310518443
+    }]
+}, {
+    "node_id": 45,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.640554,
+        "lng": 121.116966
+    },
+    "vertex": [{
+        "node": 46,
+        "distance": 0.0006041564366957325
+    }, {
+        "node": 44,
+        "distance": 0.00004220189568893066
+    }]
+}, {
+    "node_id": 46,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.640605,
+        "lng": 121.116364
+    },
+    "vertex": [{
+        "node": 47,
+        "distance": 0.000544213193524572
+    }, {
+        "node": 45,
+        "distance": 0.0006041564366957325
+    }]
+}, {
+    "node_id": 47,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.640687,
+        "lng": 121.115826
+    },
+    "vertex": [{
+        "node": 48,
+        "distance": 0.0005613216546643301
+    }, {
+        "node": 46,
+        "distance": 0.000544213193524572
+    }]
+}, {
+    "node_id": 48,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.640738,
+        "lng": 121.115267
+    },
+    "vertex": [{
+        "node": 49,
+        "distance": 0.0005682297070823609
+    }, {
+        "node": 47,
+        "distance": 0.0005613216546643301
+    }]
+}, {
+    "node_id": 49,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.64084,
+        "lng": 121.114708
+    },
+    "vertex": [{
+        "node": 50,
+        "distance": 0.0010242504576483057
+    }, {
+        "node": 48,
+        "distance": 0.0005682297070823609
+    }]
+}, {
+    "node_id": 50,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.641095,
+        "lng": 121.113716
+    },
+    "vertex": [{
+        "node": 51,
+        "distance": 0.000381136458493843
+    }, {
+        "node": 49,
+        "distance": 0.0010242504576483057
+    }]
+}, {
+    "node_id": 51,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.641208,
+        "lng": 121.113352
+    },
+    "vertex": [{
+        "node": 52,
+        "distance": 0.00035797206595720283
+    }, {
+        "node": 50,
+        "distance": 0.000381136458493843
+    }]
+}, {
+    "node_id": 52,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.64132,
+        "lng": 121.113012
+    },
+    "vertex": [{
+        "node": 53,
+        "distance": 0.0003341047739794718
+    }, {
+        "node": 51,
+        "distance": 0.00035797206595720283
+    }]
+}, {
+    "node_id": 53,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.641465,
+        "lng": 121.112711
+    },
+    "vertex": [{
+        "node": 54,
+        "distance": 0.0010992201781302073
+    }, {
+        "node": 52,
+        "distance": 0.0003341047739794718
+    }]
+}, {
+    "node_id": 54,
+    "name": "Rainbow St.",
+    "coordinates": {
+        "lat": 14.641787,
+        "lng": 121.11166
+    },
+    "vertex": [{
+        "node": 53,
+        "distance": 0.0010992201781302073
+    }]
+}, {
+    "node_id": 55,
+    "name": "Sapphire St.",
+    "coordinates": {
+        "lat": 14.639571,
+        "lng": 121.121228
+    },
+    "vertex": [{
+        "node": 56,
+        "distance": 0.000463318464997972
+    }]
+}, {
+    "node_id": 56,
+    "name": "Sapphire St.",
+    "coordinates": {
+        "lat": 14.639641,
+        "lng": 121.12077
+    },
+    "vertex": [{
+        "node": 57,
+        "distance": 0.0010602716632968738
+    }, {
+        "node": 55,
+        "distance": 0.000463318464997972
+    }]
+}, {
+    "node_id": 57,
+    "name": "Sapphire St.",
+    "coordinates": {
+        "lat": 14.639665,
+        "lng": 121.11971
+    },
+    "vertex": [{
+        "node": 58,
+        "distance": 0.00047149231170522907
+    }, {
+        "node": 56,
+        "distance": 0.0010602716632968738
+    }]
+}, {
+    "node_id": 58,
+    "name": "Sapphire St.",
+    "coordinates": {
+        "lat": 14.639781,
+        "lng": 121.119253
+    },
+    "vertex": [{
+        "node": 59,
+        "distance": 0.0019648638629741312
+    }, {
+        "node": 57,
+        "distance": 0.00047149231170522907
+    }]
+}, {
+    "node_id": 59,
+    "name": "Sapphire St.",
+    "coordinates": {
+        "lat": 14.640014,
+        "lng": 121.117302
+    },
+    "vertex": [{
+        "node": 60,
+        "distance": 0.0005193505559844383
+    }, {
+        "node": 58,
+        "distance": 0.0019648638629741312
+    }]
+}, {
+    "node_id": 60,
+    "name": "Sapphire St.",
+    "coordinates": {
+        "lat": 14.640131,
+        "lng": 121.116796
+    },
+    "vertex": [{
+        "node": 59,
+        "distance": 0.0005193505559844383
+    }]
+}, {
+    "node_id": 61,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.645943,
+        "lng": 121.112839
+    },
+    "vertex": [{
+        "node": 62,
+        "distance": 0.0004172792829702521
+    }, {
+        "node": 246,
+        "distance": 0.004893295106567971
+    }, {
+        "node": 246,
+        "distance": 0.004893295106567971
+    }]
+}, {
+    "node_id": 62,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.645654,
+        "lng": 121.112538
+    },
+    "vertex": [{
+        "node": 63,
+        "distance": 0.0003140700558755122
+    }, {
+        "node": 61,
+        "distance": 0.0004172792829702521
+    }]
+}, {
+    "node_id": 63,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.645426,
+        "lng": 121.112322
+    },
+    "vertex": [{
+        "node": 64,
+        "distance": 0.0004936334672620413
+    }, {
+        "node": 62,
+        "distance": 0.0003140700558755122
+    }]
+}, {
+    "node_id": 64,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.645071,
+        "lng": 121.111979
+    },
+    "vertex": [{
+        "node": 65,
+        "distance": 0.001812419929271928
+    }, {
+        "node": 63,
+        "distance": 0.0004936334672620413
+    }]
+}, {
+    "node_id": 65,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.643486,
+        "lng": 121.1111
+    },
+    "vertex": [{
+        "node": 66,
+        "distance": 0.0014344075432004635
+    }, {
+        "node": 64,
+        "distance": 0.001812419929271928
+    }]
+}, {
+    "node_id": 66,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.642135,
+        "lng": 121.110618
+    },
+    "vertex": [{
+        "node": 67,
+        "distance": 0.0008428671306920944
+    }, {
+        "node": 65,
+        "distance": 0.0014344075432004635
+    }, {
+        "node": 41,
+        "distance": 0.010370903769679009
+    }]
+}, {
+    "node_id": 67,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.641331,
+        "lng": 121.110365
+    },
+    "vertex": [{
+        "node": 68,
+        "distance": 0.000690027535684007
+    }, {
+        "node": 66,
+        "distance": 0.0008428671306920944
+    }]
+}, {
+    "node_id": 68,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.640678,
+        "lng": 121.110142
+    },
+    "vertex": [{
+        "node": 69,
+        "distance": 0.0015731296831462736
+    }, {
+        "node": 67,
+        "distance": 0.000690027535684007
+    }]
+}, {
+    "node_id": 69,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.639199,
+        "lng": 121.109606
+    },
+    "vertex": [{
+        "node": 70,
+        "distance": 0.0009750866628149478
+    }, {
+        "node": 68,
+        "distance": 0.0015731296831462736
+    }]
+}, {
+    "node_id": 70,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.638284,
+        "lng": 121.109269
+    },
+    "vertex": [{
+        "node": 71,
+        "distance": 0.0011461225937926473
+    }, {
+        "node": 69,
+        "distance": 0.0009750866628149478
+    }]
+}, {
+    "node_id": 71,
+    "name": "Katipunan St.",
+    "coordinates": {
+        "lat": 14.637218,
+        "lng": 121.108848
+    },
+    "vertex": [{
+        "node": 70,
+        "distance": 0.0011461225937926473
+    }]
+}, {
+    "node_id": 72,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650742,
+        "lng": 121.111883
+    },
+    "vertex": [{
+        "node": 73,
+        "distance": 0.0008015416395998021
+    }, {
+        "node": 247,
+        "distance": 0.004893295106567971
+    }]
+}, {
+    "node_id": 73,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650904,
+        "lng": 121.111098
+    },
+    "vertex": [{
+        "node": 74,
+        "distance": 0.00031045933711580794
+    }, {
+        "node": 72,
+        "distance": 0.0008015416395998021
+    }]
+}, {
+    "node_id": 74,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650943,
+        "lng": 121.11079
+    },
+    "vertex": [{
+        "node": 75,
+        "distance": 0.0009420132695404951
+    }, {
+        "node": 73,
+        "distance": 0.00031045933711580794
+    }]
+}, {
+    "node_id": 75,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650938,
+        "lng": 121.109848
+    },
+    "vertex": [{
+        "node": 76,
+        "distance": 0.00016760966559131014
+    }, {
+        "node": 74,
+        "distance": 0.0009420132695404951
+    }]
+}, {
+    "node_id": 76,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.651071,
+        "lng": 121.109746
+    },
+    "vertex": [{
+        "node": 77,
+        "distance": 0.0014465451946002715
+    }, {
+        "node": 75,
+        "distance": 0.00016760966559131014
+    }]
+}, {
+    "node_id": 77,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650914,
+        "lng": 121.108308
+    },
+    "vertex": [{
+        "node": 78,
+        "distance": 0.0006015729382114636
+    }, {
+        "node": 76,
+        "distance": 0.0014465451946002715
+    }]
+}, {
+    "node_id": 78,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650713,
+        "lng": 121.107741
+    },
+    "vertex": [{
+        "node": 79,
+        "distance": 0.0014876871310938393
+    }, {
+        "node": 77,
+        "distance": 0.0006015729382114636
+    }]
+}, {
+    "node_id": 79,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650595,
+        "lng": 121.106258
+    },
+    "vertex": [{
+        "node": 80,
+        "distance": 0.0015011102557684
+    }, {
+        "node": 78,
+        "distance": 0.0014876871310938393
+    }]
+}, {
+    "node_id": 80,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650821,
+        "lng": 121.104774
+    },
+    "vertex": [{
+        "node": 81,
+        "distance": 0.00020787015178066063
+    }, {
+        "node": 79,
+        "distance": 0.0015011102557684
+    }]
+}, {
+    "node_id": 81,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.65084,
+        "lng": 121.104567
+    },
+    "vertex": [{
+        "node": 82,
+        "distance": 0.00018462123388654156
+    }, {
+        "node": 80,
+        "distance": 0.00020787015178066063
+    }]
+}, {
+    "node_id": 82,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650889,
+        "lng": 121.104389
+    },
+    "vertex": [{
+        "node": 83,
+        "distance": 0.0006701790805493259
+    }, {
+        "node": 81,
+        "distance": 0.00018462123388654156
+    }]
+}, {
+    "node_id": 83,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650835,
+        "lng": 121.103721
+    },
+    "vertex": [{
+        "node": 84,
+        "distance": 0.0006158002923018915
+    }, {
+        "node": 82,
+        "distance": 0.0006701790805493259
+    }]
+}, {
+    "node_id": 84,
+    "name": "Bayan-Bayanan Ave",
+    "coordinates": {
+        "lat": 14.650684,
+        "lng": 121.103124
+    },
+    "vertex": [{
+        "node": 83,
+        "distance": 0.0006158002923018915
+    }]
+}, {
+    "node_id": 85,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.656044,
+        "lng": 121.089011
+    },
+    "vertex": [{
+        "node": 86,
+        "distance": 0.003396647906392977
+    }, {
+        "node": 97,
+        "distance": 0.011814511119801696
+    }]
+}, {
+    "node_id": 86,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.658483,
+        "lng": 121.091375
+    },
+    "vertex": [{
+        "node": 87,
+        "distance": 0.0007192343150862434
+    }, {
+        "node": 85,
+        "distance": 0.003396647906392977
+    }]
+}, {
+    "node_id": 87,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.658016,
+        "lng": 121.091922
+    },
+    "vertex": [{
+        "node": 88,
+        "distance": 0.0007009657623611419
+    }, {
+        "node": 86,
+        "distance": 0.0007192343150862434
+    }]
+}, {
+    "node_id": 88,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.657508,
+        "lng": 121.092405
+    },
+    "vertex": [{
+        "node": 89,
+        "distance": 0.0007015411605937633
+    }, {
+        "node": 87,
+        "distance": 0.0007009657623611419
+    }]
+}, {
+    "node_id": 89,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.65702,
+        "lng": 121.092909
+    },
+    "vertex": [{
+        "node": 90,
+        "distance": 0.0010469274091316934
+    }, {
+        "node": 88,
+        "distance": 0.0007015411605937633
+    }]
+}, {
+    "node_id": 90,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.656551,
+        "lng": 121.093845
+    },
+    "vertex": [{
+        "node": 91,
+        "distance": 0.0016780813448715555
+    }, {
+        "node": 89,
+        "distance": 0.0010469274091316934
+    }]
+}, {
+    "node_id": 91,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.656705,
+        "lng": 121.095516
+    },
+    "vertex": [{
+        "node": 92,
+        "distance": 0.0038075461914497716
+    }, {
+        "node": 90,
+        "distance": 0.0016780813448715555
+    }]
+}, {
+    "node_id": 92,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.655273,
+        "lng": 121.099044
+    },
+    "vertex": [{
+        "node": 93,
+        "distance": 0.0014745090708429016
+    }, {
+        "node": 91,
+        "distance": 0.0038075461914497716
+    }]
+}, {
+    "node_id": 93,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.654557,
+        "lng": 121.100333
+    },
+    "vertex": [{
+        "node": 94,
+        "distance": 0
+    }, {
+        "node": 92,
+        "distance": 0.0014745090708429016
+    }, {
+        "node": 95,
+        "distance": 0.00045395704642522386
+    }]
+}, {
+    "node_id": 94,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.654557,
+        "lng": 121.100333
+    },
+    "vertex": [{
+        "node": 95,
+        "distance": 0.00045395704642522386
+    }, {
+        "node": 93,
+        "distance": 0
+    }, {
+        "node": 94,
+        "distance": 0
+    }]
+}, {
+    "node_id": 95,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.654323,
+        "lng": 121.100722
+    },
+    "vertex": [{
+        "node": 96,
+        "distance": 0.011836780052029563
+    }, {
+        "node": 94,
+        "distance": 0.00045395704642522386
+    }]
+}, {
+    "node_id": 96,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.656044,
+        "lng": 121.089011
+    },
+    "vertex": [{
+        "node": 97,
+        "distance": 0.011814511119801696
+    }, {
+        "node": 95,
+        "distance": 0.011836780052029563
+    }, {
+        "node": 86,
+        "distance": 0.003396647906392977
+    }]
+}, {
+    "node_id": 97,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.654347,
+        "lng": 121.100703
+    },
+    "vertex": [{
+        "node": 98,
+        "distance": 0.0008044799562477513
+    }, {
+        "node": 96,
+        "distance": 0.011814511119801696
+    }]
+}, {
+    "node_id": 98,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.653965,
+        "lng": 121.101411
+    },
+    "vertex": [{
+        "node": 99,
+        "distance": 0.0005672186527222898
+    }, {
+        "node": 97,
+        "distance": 0.0008044799562477513
+    }]
+}, {
+    "node_id": 99,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.653681,
+        "lng": 121.101902
+    },
+    "vertex": [{
+        "node": 100,
+        "distance": 0.00045760463284277034
+    }, {
+        "node": 98,
+        "distance": 0.0005672186527222898
+    }]
+}, {
+    "node_id": 100,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.65344,
+        "lng": 121.102291
+    },
+    "vertex": [{
+        "node": 101,
+        "distance": 0.0002002623279689583
+    }, {
+        "node": 99,
+        "distance": 0.00045760463284277034
+    }]
+}, {
+    "node_id": 101,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.653304,
+        "lng": 121.102438
+    },
+    "vertex": [{
+        "node": 102,
+        "distance": 0.00030091194724746163
+    }, {
+        "node": 100,
+        "distance": 0.0002002623279689583
+    }]
+}, {
+    "node_id": 102,
+    "name": "Tumana",
+    "coordinates": {
+        "lat": 14.653156,
+        "lng": 121.1027
+    },
+    "vertex": [{
+        "node": 101,
+        "distance": 0.00030091194724746163
+    }]
+}, {
+    "node_id": 103,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.672813,
+        "lng": 121.109264
+    },
+    "vertex": [{
+        "node": 104,
+        "distance": 0.00024431127685644823
+    }, {
+        "node": 157,
+        "distance": 0.03973589193663416
+    }]
+}, {
+    "node_id": 104,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.672591,
+        "lng": 121.109162
+    },
+    "vertex": [{
+        "node": 105,
+        "distance": 0.0005189036519432651
+    }, {
+        "node": 103,
+        "distance": 0.00024431127685644823
+    }]
+}, {
+    "node_id": 105,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.672085,
+        "lng": 121.109047
+    },
+    "vertex": [{
+        "node": 106,
+        "distance": 0.0007178753373664624
+    }, {
+        "node": 104,
+        "distance": 0.0005189036519432651
+    }]
+}, {
+    "node_id": 106,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.671393,
+        "lng": 121.108856
+    },
+    "vertex": [{
+        "node": 107,
+        "distance": 0.0006148300578191055
+    }, {
+        "node": 105,
+        "distance": 0.0007178753373664624
+    }]
+}, {
+    "node_id": 107,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.670813,
+        "lng": 121.108652
+    },
+    "vertex": [{
+        "node": 108,
+        "distance": 0.0007785968147935366
+    }, {
+        "node": 106,
+        "distance": 0.0006148300578191055
+    }]
+}, {
+    "node_id": 108,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.67006,
+        "lng": 121.108454
+    },
+    "vertex": [{
+        "node": 109,
+        "distance": 0.0005169535762506925
+    }, {
+        "node": 107,
+        "distance": 0.0007785968147935366
+    }]
+}, {
+    "node_id": 109,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.669585,
+        "lng": 121.10825
+    },
+    "vertex": [{
+        "node": 110,
+        "distance": 0.0003250261527933356
+    }, {
+        "node": 108,
+        "distance": 0.0005169535762506925
+    }]
+}, {
+    "node_id": 110,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.669264,
+        "lng": 121.108199
+    },
+    "vertex": [{
+        "node": 111,
+        "distance": 0.0014506567478195427
+    }, {
+        "node": 109,
+        "distance": 0.0003250261527933356
+    }]
+}, {
+    "node_id": 111,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.667882,
+        "lng": 121.107758
+    },
+    "vertex": [{
+        "node": 112,
+        "distance": 0.000781312997461832
+    }, {
+        "node": 110,
+        "distance": 0.0014506567478195427
+    }]
+}, {
+    "node_id": 112,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.667135,
+        "lng": 121.107529
+    },
+    "vertex": [{
+        "node": 113,
+        "distance": 0.0012643298620215614
+    }, {
+        "node": 111,
+        "distance": 0.000781312997461832
+    }]
+}, {
+    "node_id": 113,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.665932,
+        "lng": 121.10714
+    },
+    "vertex": [{
+        "node": 114,
+        "distance": 0.0008636347607659389
+    }, {
+        "node": 112,
+        "distance": 0.0012643298620215614
+    }]
+}, {
+    "node_id": 114,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.665111,
+        "lng": 121.106872
+    },
+    "vertex": [{
+        "node": 115,
+        "distance": 0.0008283121392318068
+    }, {
+        "node": 113,
+        "distance": 0.0008636347607659389
+    }]
+}, {
+    "node_id": 115,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.664321,
+        "lng": 121.106623
+    },
+    "vertex": [{
+        "node": 116,
+        "distance": 0.0014033103719417069
+    }, {
+        "node": 114,
+        "distance": 0.0008283121392318068
+    }]
+}, {
+    "node_id": 116,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.662969,
+        "lng": 121.106247
+    },
+    "vertex": [{
+        "node": 117,
+        "distance": 0.00022005681084137434
+    }, {
+        "node": 115,
+        "distance": 0.0014033103719417069
+    }]
+}, {
+    "node_id": 117,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.66279,
+        "lng": 121.106119
+    },
+    "vertex": [{
+        "node": 118,
+        "distance": 0.00044606053401165854
+    }, {
+        "node": 116,
+        "distance": 0.00022005681084137434
+    }]
+}, {
+    "node_id": 118,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.662371,
+        "lng": 121.105966
+    },
+    "vertex": [{
+        "node": 119,
+        "distance": 0.0004763884969232187
+    }, {
+        "node": 117,
+        "distance": 0.00044606053401165854
+    }]
+}, {
+    "node_id": 119,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.661932,
+        "lng": 121.105781
+    },
+    "vertex": [{
+        "node": 120,
+        "distance": 0.0011359313359497589
+    }, {
+        "node": 118,
+        "distance": 0.0004763884969232187
+    }]
+}, {
+    "node_id": 120,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.660914,
+        "lng": 121.105277
+    },
+    "vertex": [{
+        "node": 121,
+        "distance": 0.000992416243317228
+    }, {
+        "node": 119,
+        "distance": 0.0011359313359497589
+    }]
+}, {
+    "node_id": 121,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.660001,
+        "lng": 121.104888
+    },
+    "vertex": [{
+        "node": 122,
+        "distance": 0.001670342779193455
+    }, {
+        "node": 120,
+        "distance": 0.000992416243317228
+    }]
+}, {
+    "node_id": 122,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.658507,
+        "lng": 121.104141
+    },
+    "vertex": [{
+        "node": 123,
+        "distance": 0.00044140004531129974
+    }, {
+        "node": 121,
+        "distance": 0.001670342779193455
+    }]
+}, {
+    "node_id": 123,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.658112,
+        "lng": 121.103944
+    },
+    "vertex": [{
+        "node": 124,
+        "distance": 0.0005580680962014965
+    }, {
+        "node": 122,
+        "distance": 0.00044140004531129974
+    }]
+}, {
+    "node_id": 124,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.657588,
+        "lng": 121.103752
+    },
+    "vertex": [{
+        "node": 125,
+        "distance": 0.00013384319183613064
+    }, {
+        "node": 123,
+        "distance": 0.0005580680962014965
+    }]
+}, {
+    "node_id": 125,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.657483,
+        "lng": 121.103669
+    },
+    "vertex": [{
+        "node": 126,
+        "distance": 0.001699692325096111
+    }, {
+        "node": 124,
+        "distance": 0.00013384319183613064
+    }]
+}, {
+    "node_id": 126,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.655798,
+        "lng": 121.103446
+    },
+    "vertex": [{
+        "node": 127,
+        "distance": 0.0015381563639630994
+    }, {
+        "node": 125,
+        "distance": 0.001699692325096111
+    }]
+}, {
+    "node_id": 127,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.654279,
+        "lng": 121.103204
+    },
+    "vertex": [{
+        "node": 128,
+        "distance": 0.0011934864892413403
+    }, {
+        "node": 126,
+        "distance": 0.0015381563639630994
+    }]
+}, {
+    "node_id": 128,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.653088,
+        "lng": 121.103127
+    },
+    "vertex": [{
+        "node": 129,
+        "distance": 0.00016371927192444753
+    }, {
+        "node": 127,
+        "distance": 0.0011934864892413403
+    }]
+}, {
+    "node_id": 129,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.65294,
+        "lng": 121.103197
+    },
+    "vertex": [{
+        "node": 130,
+        "distance": 0.0016735701359648825
+    }, {
+        "node": 128,
+        "distance": 0.00016371927192444753
+    }]
+}, {
+    "node_id": 130,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.651274,
+        "lng": 121.103038
+    },
+    "vertex": [{
+        "node": 131,
+        "distance": 0.0005867137291737043
+    }, {
+        "node": 129,
+        "distance": 0.0016735701359648825
+    }]
+}, {
+    "node_id": 131,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.650706,
+        "lng": 121.102891
+    },
+    "vertex": [{
+        "node": 132,
+        "distance": 0.0005169806572791543
+    }, {
+        "node": 130,
+        "distance": 0.0005867137291737043
+    }]
+}, {
+    "node_id": 132,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.650243,
+        "lng": 121.102661
+    },
+    "vertex": [{
+        "node": 133,
+        "distance": 0.00118753947302979
+    }, {
+        "node": 131,
+        "distance": 0.0005169806572791543
+    }]
+}, {
+    "node_id": 133,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.649516,
+        "lng": 121.101722
+    },
+    "vertex": [{
+        "node": 134,
+        "distance": 0.0017333695509011288
+    }, {
+        "node": 132,
+        "distance": 0.00118753947302979
+    }]
+}, {
+    "node_id": 134,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.649393,
+        "lng": 121.099993
+    },
+    "vertex": [{
+        "node": 135,
+        "distance": 0.001928892169094418
+    }, {
+        "node": 133,
+        "distance": 0.0017333695509011288
+    }]
+}, {
+    "node_id": 135,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.649208,
+        "lng": 121.098073
+    },
+    "vertex": [{
+        "node": 136,
+        "distance": 0.0003910818328688173
+    }, {
+        "node": 134,
+        "distance": 0.001928892169094418
+    }]
+}, {
+    "node_id": 136,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.648936,
+        "lng": 121.097792
+    },
+    "vertex": [{
+        "node": 137,
+        "distance": 0.00036143740813839113
+    }, {
+        "node": 135,
+        "distance": 0.0003910818328688173
+    }]
+}, {
+    "node_id": 137,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.648622,
+        "lng": 121.097613
+    },
+    "vertex": [{
+        "node": 138,
+        "distance": 0.0006034011932328272
+    }, {
+        "node": 136,
+        "distance": 0.00036143740813839113
+    }]
+}, {
+    "node_id": 138,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.64814,
+        "lng": 121.09725
+    },
+    "vertex": [{
+        "node": 139,
+        "distance": 0.0017289976865222604
+    }, {
+        "node": 137,
+        "distance": 0.0006034011932328272
+    }]
+}, {
+    "node_id": 139,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.646492,
+        "lng": 121.096727
+    },
+    "vertex": [{
+        "node": 140,
+        "distance": 0.0011302336041741543
+    }, {
+        "node": 138,
+        "distance": 0.0017289976865222604
+    }]
+}, {
+    "node_id": 140,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.645394,
+        "lng": 121.096459
+    },
+    "vertex": [{
+        "node": 141,
+        "distance": 0.0002800714194631569
+    }, {
+        "node": 139,
+        "distance": 0.0011302336041741543
+    }]
+}, {
+    "node_id": 141,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.64514,
+        "lng": 121.096341
+    },
+    "vertex": [{
+        "node": 142,
+        "distance": 0.0005685367182509264
+    }, {
+        "node": 140,
+        "distance": 0.0002800714194631569
+    }]
+}, {
+    "node_id": 142,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.644637,
+        "lng": 121.096076
+    },
+    "vertex": [{
+        "node": 143,
+        "distance": 0.0004953271646097872
+    }, {
+        "node": 141,
+        "distance": 0.0005685367182509264
+    }]
+}, {
+    "node_id": 143,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.644187,
+        "lng": 121.095869
+    },
+    "vertex": [{
+        "node": 144,
+        "distance": 0.00017140595088062816
+    }, {
+        "node": 142,
+        "distance": 0.0004953271646097872
+    }]
+}, {
+    "node_id": 144,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.644073,
+        "lng": 121.095741
+    },
+    "vertex": [{
+        "node": 145,
+        "distance": 0.00016428329190836612
+    }, {
+        "node": 143,
+        "distance": 0.00017140595088062816
+    }]
+}, {
+    "node_id": 145,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.643915,
+        "lng": 121.095696
+    },
+    "vertex": [{
+        "node": 146,
+        "distance": 0.00035055384750655325
+    }, {
+        "node": 144,
+        "distance": 0.00016428329190836612
+    }]
+}, {
+    "node_id": 146,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.643613,
+        "lng": 121.095518
+    },
+    "vertex": [{
+        "node": 147,
+        "distance": 0.0011072962566538592
+    }, {
+        "node": 145,
+        "distance": 0.00035055384750655325
+    }]
+}, {
+    "node_id": 147,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.642736,
+        "lng": 121.094842
+    },
+    "vertex": [{
+        "node": 148,
+        "distance": 0.0008860411954311065
+    }, {
+        "node": 146,
+        "distance": 0.0011072962566538592
+    }]
+}, {
+    "node_id": 148,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.642051,
+        "lng": 121.09428
+    },
+    "vertex": [{
+        "node": 149,
+        "distance": 0.000271280297846093
+    }, {
+        "node": 147,
+        "distance": 0.0008860411954311065
+    }]
+}, {
+    "node_id": 149,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.641823,
+        "lng": 121.094133
+    },
+    "vertex": [{
+        "node": 150,
+        "distance": 0.0007284641377590376
+    }, {
+        "node": 148,
+        "distance": 0.000271280297846093
+    }]
+}, {
+    "node_id": 150,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.641095,
+        "lng": 121.094159
+    },
+    "vertex": [{
+        "node": 151,
+        "distance": 0.00011636150566114202
+    }, {
+        "node": 149,
+        "distance": 0.0007284641377590376
+    }]
+}, {
+    "node_id": 151,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.641039,
+        "lng": 121.094261
+    },
+    "vertex": [{
+        "node": 152,
+        "distance": 0.0005120351550418137
+    }, {
+        "node": 150,
+        "distance": 0.00011636150566114202
+    }]
+}, {
+    "node_id": 152,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.640527,
+        "lng": 121.094267
+    },
+    "vertex": [{
+        "node": 153,
+        "distance": 0.0015061327962707612
+    }, {
+        "node": 151,
+        "distance": 0.0005120351550418137
+    }]
+}, {
+    "node_id": 153,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.639021,
+        "lng": 121.094287
+    },
+    "vertex": [{
+        "node": 154,
+        "distance": 0.001605842146662764
+    }, {
+        "node": 152,
+        "distance": 0.0015061327962707612
+    }]
+}, {
+    "node_id": 154,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.637416,
+        "lng": 121.094235
+    },
+    "vertex": [{
+        "node": 155,
+        "distance": 0.0011285433088715257
+    }, {
+        "node": 153,
+        "distance": 0.001605842146662764
+    }]
+}, {
+    "node_id": 155,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.636323,
+        "lng": 121.094516
+    },
+    "vertex": [{
+        "node": 156,
+        "distance": 0.039357637175011326
+    }, {
+        "node": 154,
+        "distance": 0.0011285433088715257
+    }]
+}, {
+    "node_id": 156,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.672813,
+        "lng": 121.109264
+    },
+    "vertex": [{
+        "node": 157,
+        "distance": 0.03973589193663416
+    }, {
+        "node": 155,
+        "distance": 0.039357637175011326
+    }, {
+        "node": 104,
+        "distance": 0.00024431127685644823
+    }]
+}, {
+    "node_id": 157,
+    "name": "JP Rizal St.",
+    "coordinates": {
+        "lat": 14.635945,
+        "lng": 121.094442
+    },
+    "vertex": [{
+        "node": 156,
+        "distance": 0.03973589193663416
+    }, {
+        "node": 170,
+        "distance": 0.0022396807808204816
+    }]
+}, {
+    "node_id": 158,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.634095,
+        "lng": 121.106344
+    },
+    "vertex": [{
+        "node": 159,
+        "distance": 0.0028317768273741777
+    }]
+}, {
+    "node_id": 159,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.634591,
+        "lng": 121.103556
+    },
+    "vertex": [{
+        "node": 160,
+        "distance": 0.0016011652007152457
+    }, {
+        "node": 158,
+        "distance": 0.0028317768273741777
+    }]
+}, {
+    "node_id": 160,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.63492,
+        "lng": 121.101989
+    },
+    "vertex": [{
+        "node": 161,
+        "distance": 0.0013930215360933302
+    }, {
+        "node": 159,
+        "distance": 0.0016011652007152457
+    }, {
+        "node": 232,
+        "distance": 0.000019235384057433897
+    }]
+}, {
+    "node_id": 161,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.635198,
+        "lng": 121.100624
+    },
+    "vertex": [{
+        "node": 162,
+        "distance": 0.001357928569552345
+    }, {
+        "node": 160,
+        "distance": 0.0013930215360933302
+    }]
+}, {
+    "node_id": 162,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.635457,
+        "lng": 121.099291
+    },
+    "vertex": [{
+        "node": 163,
+        "distance": 0.0019499871794329358
+    }, {
+        "node": 161,
+        "distance": 0.001357928569552345
+    }]
+}, {
+    "node_id": 163,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.635644,
+        "lng": 121.09735
+    },
+    "vertex": [{
+        "node": 164,
+        "distance": 0.0004857911073729137
+    }, {
+        "node": 162,
+        "distance": 0.0019499871794329358
+    }]
+}, {
+    "node_id": 164,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.635696,
+        "lng": 121.096867
+    },
+    "vertex": [{
+        "node": 165,
+        "distance": 0.0006669527719391553
+    }, {
+        "node": 163,
+        "distance": 0.0004857911073729137
+    }]
+}, {
+    "node_id": 165,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.635747,
+        "lng": 121.096202
+    },
+    "vertex": [{
+        "node": 166,
+        "distance": 0.0005297593793488531
+    }, {
+        "node": 164,
+        "distance": 0.0006669527719391553
+    }]
+}, {
+    "node_id": 166,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.63581,
+        "lng": 121.095676
+    },
+    "vertex": [{
+        "node": 167,
+        "distance": 0.0007458210241005254
+    }, {
+        "node": 165,
+        "distance": 0.0005297593793488531
+    }]
+}, {
+    "node_id": 167,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.635903,
+        "lng": 121.094936
+    },
+    "vertex": [{
+        "node": 168,
+        "distance": 0.007132450069917724
+    }, {
+        "node": 166,
+        "distance": 0.0007458210241005254
+    }]
+}, {
+    "node_id": 168,
+    "name": "Sumulong Highway",
+    "coordinates": {
+        "lat": 14.634903,
+        "lng": 121.101998
+    },
+    "vertex": [{
+        "node": 167,
+        "distance": 0.007132450069917724
+    }, {
+        "node": 233,
+        "distance": 0.000019235384057433897
+    }]
+}, {
+    "node_id": 169,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.635945,
+        "lng": 121.094442
+    },
+    "vertex": [{
+        "node": 170,
+        "distance": 0.0022396807808204816
+    }, {
+        "node": 156,
+        "distance": 0.03973589193663416
+    }]
+}, {
+    "node_id": 170,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.636142,
+        "lng": 121.092211
+    },
+    "vertex": [{
+        "node": 171,
+        "distance": 0.0002262211307668649
+    }, {
+        "node": 169,
+        "distance": 0.0022396807808204816
+    }]
+}, {
+    "node_id": 171,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.636152,
+        "lng": 121.091985
+    },
+    "vertex": [{
+        "node": 172,
+        "distance": 0.00037558753972058326
+    }, {
+        "node": 170,
+        "distance": 0.0002262211307668649
+    }]
+}, {
+    "node_id": 172,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.636173,
+        "lng": 121.09161
+    },
+    "vertex": [{
+        "node": 173,
+        "distance": 0.0006602378359437899
+    }, {
+        "node": 171,
+        "distance": 0.00037558753972058326
+    }]
+}, {
+    "node_id": 173,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.636256,
+        "lng": 121.090955
+    },
+    "vertex": [{
+        "node": 174,
+        "distance": 0.0009351967707381575
+    }, {
+        "node": 172,
+        "distance": 0.0006602378359437899
+    }]
+}, {
+    "node_id": 174,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.636049,
+        "lng": 121.090043
+    },
+    "vertex": [{
+        "node": 175,
+        "distance": 0.0012481770707701166
+    }, {
+        "node": 173,
+        "distance": 0.0009351967707381575
+    }]
+}, {
+    "node_id": 175,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.635488,
+        "lng": 121.088928
+    },
+    "vertex": [{
+        "node": 176,
+        "distance": 0.001144073424217392
+    }, {
+        "node": 174,
+        "distance": 0.0012481770707701166
+    }]
+}, {
+    "node_id": 176,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.63499,
+        "lng": 121.087898
+    },
+    "vertex": [{
+        "node": 177,
+        "distance": 0.00009794896630087533
+    }, {
+        "node": 175,
+        "distance": 0.001144073424217392
+    }]
+}, {
+    "node_id": 177,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.634927,
+        "lng": 121.087823
+    },
+    "vertex": [{
+        "node": 178,
+        "distance": 0.0011184793247973367
+    }, {
+        "node": 176,
+        "distance": 0.00009794896630087533
+    }]
+}, {
+    "node_id": 178,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.634491,
+        "lng": 121.086793
+    },
+    "vertex": [{
+        "node": 179,
+        "distance": 0.0001496829983643585
+    }, {
+        "node": 177,
+        "distance": 0.0011184793247973367
+    }]
+}, {
+    "node_id": 179,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.634377,
+        "lng": 121.086696
+    },
+    "vertex": [{
+        "node": 180,
+        "distance": 0.0005272959320978448
+    }, {
+        "node": 178,
+        "distance": 0.0001496829983643585
+    }]
+}, {
+    "node_id": 180,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.634222,
+        "lng": 121.086192
+    },
+    "vertex": [{
+        "node": 181,
+        "distance": 0.0021041998479221402
+    }, {
+        "node": 179,
+        "distance": 0.0005272959320978448
+    }]
+}, {
+    "node_id": 181,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.633386,
+        "lng": 121.084261
+    },
+    "vertex": [{
+        "node": 182,
+        "distance": 0.0001250279968643336
+    }, {
+        "node": 180,
+        "distance": 0.0021041998479221402
+    }]
+}, {
+    "node_id": 182,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.63337,
+        "lng": 121.084137
+    },
+    "vertex": [{
+        "node": 183,
+        "distance": 0.00008633075928750929
+    }, {
+        "node": 181,
+        "distance": 0.0001250279968643336
+    }]
+}, {
+    "node_id": 183,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.633292,
+        "lng": 121.0841
+    },
+    "vertex": [{
+        "node": 184,
+        "distance": 0.0003445765517404019
+    }, {
+        "node": 182,
+        "distance": 0.00008633075928750929
+    }]
+}, {
+    "node_id": 184,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.633225,
+        "lng": 121.083762
+    },
+    "vertex": [{
+        "node": 185,
+        "distance": 0.0008301114382993363
+    }, {
+        "node": 183,
+        "distance": 0.0003445765517404019
+    }]
+}, {
+    "node_id": 185,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.632967,
+        "lng": 121.082973
+    },
+    "vertex": [{
+        "node": 186,
+        "distance": 0.0005064632266925297
+    }, {
+        "node": 184,
+        "distance": 0.0008301114382993363
+    }]
+}, {
+    "node_id": 186,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.632851,
+        "lng": 121.08248
+    },
+    "vertex": [{
+        "node": 187,
+        "distance": 0.002478103306968517
+    }, {
+        "node": 185,
+        "distance": 0.0005064632266925297
+    }]
+}, {
+    "node_id": 187,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.632291,
+        "lng": 121.080066
+    },
+    "vertex": [{
+        "node": 188,
+        "distance": 0.00040518761086973576
+    }, {
+        "node": 186,
+        "distance": 0.002478103306968517
+    }]
+}, {
+    "node_id": 188,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.63214,
+        "lng": 121.07969
+    },
+    "vertex": [{
+        "node": 189,
+        "distance": 0.00029525582128511665
+    }, {
+        "node": 187,
+        "distance": 0.00040518761086973576
+    }]
+}, {
+    "node_id": 189,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.63225,
+        "lng": 121.079416
+    },
+    "vertex": [{
+        "node": 190,
+        "distance": 0.0010563318607310311
+    }, {
+        "node": 188,
+        "distance": 0.00029525582128511665
+    }]
+}, {
+    "node_id": 190,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.631871,
+        "lng": 121.07843
+    },
+    "vertex": [{
+        "node": 191,
+        "distance": 0.0011381739761539913
+    }, {
+        "node": 189,
+        "distance": 0.0010563318607310311
+    }]
+}, {
+    "node_id": 191,
+    "name": "A Bonifacio Ave.",
+    "coordinates": {
+        "lat": 14.632315,
+        "lng": 121.077382
+    },
+    "vertex": [{
+        "node": 190,
+        "distance": 0.0011381739761539913
+    }]
+}, {
+    "node_id": 192,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.635641,
+        "lng": 121.097356
+    },
+    "vertex": [{
+        "node": 193,
+        "distance": 0.0002851876575149842
+    }]
+}, {
+    "node_id": 193,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.635357,
+        "lng": 121.097382
+    },
+    "vertex": [{
+        "node": 194,
+        "distance": 0.0009246599374924251
+    }, {
+        "node": 192,
+        "distance": 0.0002851876575149842
+    }]
+}, {
+    "node_id": 194,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.634443,
+        "lng": 121.097522
+    },
+    "vertex": [{
+        "node": 195,
+        "distance": 0.0009202141055209514
+    }, {
+        "node": 193,
+        "distance": 0.0009246599374924251
+    }]
+}, {
+    "node_id": 195,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.63353,
+        "lng": 121.097637
+    },
+    "vertex": [{
+        "node": 196,
+        "distance": 0.0005255949010396363
+    }, {
+        "node": 194,
+        "distance": 0.0009202141055209514
+    }]
+}, {
+    "node_id": 196,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.633011,
+        "lng": 121.09772
+    },
+    "vertex": [{
+        "node": 197,
+        "distance": 0.00017314156057983592
+    }, {
+        "node": 195,
+        "distance": 0.0005255949010396363
+    }]
+}, {
+    "node_id": 197,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.632838,
+        "lng": 121.097713
+    },
+    "vertex": [{
+        "node": 198,
+        "distance": 0.00016456001944446458
+    }, {
+        "node": 196,
+        "distance": 0.00017314156057983592
+    }]
+}, {
+    "node_id": 198,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.632684,
+        "lng": 121.097771
+    },
+    "vertex": [{
+        "node": 199,
+        "distance": 0.00038043396273045065
+    }, {
+        "node": 197,
+        "distance": 0.00016456001944446458
+    }]
+}, {
+    "node_id": 199,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.632307,
+        "lng": 121.097822
+    },
+    "vertex": [{
+        "node": 200,
+        "distance": 0.0005467586304774568
+    }, {
+        "node": 198,
+        "distance": 0.00038043396273045065
+    }]
+}, {
+    "node_id": 200,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.631764,
+        "lng": 121.097886
+    },
+    "vertex": [{
+        "node": 201,
+        "distance": 0.0013702368408427298
+    }, {
+        "node": 199,
+        "distance": 0.0005467586304774568
+    }]
+}, {
+    "node_id": 201,
+    "name": "Shoe Ave.",
+    "coordinates": {
+        "lat": 14.630407,
+        "lng": 121.098076
+    },
+    "vertex": [{
+        "node": 200,
+        "distance": 0.0013702368408427298
+    }]
+}, {
+    "node_id": 202,
+    "name": "V Gomez St.",
+    "coordinates": {
+        "lat": 14.63028,
+        "lng": 121.097542
+    },
+    "vertex": [{
+        "node": 203,
+        "distance": 0.0002722370290791816
+    }]
+}, {
+    "node_id": 203,
+    "name": "V Gomez St.",
+    "coordinates": {
+        "lat": 14.630177,
+        "lng": 121.09729
+    },
+    "vertex": [{
+        "node": 204,
+        "distance": 0.0005728079957514481
+    }, {
+        "node": 202,
+        "distance": 0.0002722370290791816
+    }]
+}, {
+    "node_id": 204,
+    "name": "V Gomez St.",
+    "coordinates": {
+        "lat": 14.630007,
+        "lng": 121.096743
+    },
+    "vertex": [{
+        "node": 205,
+        "distance": 0.00007057619996213891
+    }, {
+        "node": 203,
+        "distance": 0.0005728079957514481
+    }]
+}, {
+    "node_id": 205,
+    "name": "V Gomez St.",
+    "coordinates": {
+        "lat": 14.630016,
+        "lng": 121.096673
+    },
+    "vertex": [{
+        "node": 206,
+        "distance": 0.000512711419796509
+    }, {
+        "node": 204,
+        "distance": 0.00007057619996213891
+    }]
+}, {
+    "node_id": 206,
+    "name": "V Gomez St.",
+    "coordinates": {
+        "lat": 14.629828,
+        "lng": 121.096196
+    },
+    "vertex": [{
+        "node": 205,
+        "distance": 0.000512711419796509
+    }]
+}, {
+    "node_id": 207,
+    "name": "J.P. Rizal St.",
+    "coordinates": {
+        "lat": 14.629356,
+        "lng": 121.096537
+    },
+    "vertex": [{
+        "node": 208,
+        "distance": 0.002118270284925784
+    }, {
+        "node": 211,
+        "distance": 0.005085400770832286
+    }]
+}, {
+    "node_id": 208,
+    "name": "J.P. Rizal St.",
+    "coordinates": {
+        "lat": 14.627294,
+        "lng": 121.097022
+    },
+    "vertex": [{
+        "node": 209,
+        "distance": 0.0028894637910840417
+    }, {
+        "node": 207,
+        "distance": 0.002118270284925784
+    }]
+}, {
+    "node_id": 209,
+    "name": "J.P. Rizal St.",
+    "coordinates": {
+        "lat": 14.624714,
+        "lng": 121.095721
+    },
+    "vertex": [{
+        "node": 210,
+        "distance": 0.004713175150574033
+    }, {
+        "node": 208,
+        "distance": 0.0028894637910840417
+    }]
+}, {
+    "node_id": 210,
+    "name": "J.P. Rizal St.",
+    "coordinates": {
+        "lat": 14.629356,
+        "lng": 121.096537
+    },
+    "vertex": [{
+        "node": 211,
+        "distance": 0.005085400770832286
+    }, {
+        "node": 209,
+        "distance": 0.004713175150574033
+    }, {
+        "node": 208,
+        "distance": 0.002118270284925784
+    }]
+}, {
+    "node_id": 211,
+    "name": "J.P. Rizal St.",
+    "coordinates": {
+        "lat": 14.624306,
+        "lng": 121.095938
+    },
+    "vertex": [{
+        "node": 212,
+        "distance": 0.0003998099548498746
+    }, {
+        "node": 210,
+        "distance": 0.005085400770832286
+    }]
+}, {
+    "node_id": 212,
+    "name": "J.P. Rizal St.",
+    "coordinates": {
+        "lat": 14.623948,
+        "lng": 121.096116
+    },
+    "vertex": [{
+        "node": 211,
+        "distance": 0.0003998099548498746
+    }]
+}, {
+    "node_id": 213,
+    "name": "Nicanor Roxas St.",
+    "coordinates": {
+        "lat": 14.623442,
+        "lng": 121.096308
+    },
+    "vertex": [{
+        "node": 214,
+        "distance": 0.00049044163771304
+    }]
+}, {
+    "node_id": 214,
+    "name": "Nicanor Roxas St.",
+    "coordinates": {
+        "lat": 14.622985,
+        "lng": 121.096486
+    },
+    "vertex": [{
+        "node": 215,
+        "distance": 0.0004235965061218271
+    }, {
+        "node": 213,
+        "distance": 0.00049044163771304
+    }]
+}, {
+    "node_id": 215,
+    "name": "Nicanor Roxas St.",
+    "coordinates": {
+        "lat": 14.62259,
+        "lng": 121.096639
+    },
+    "vertex": [{
+        "node": 216,
+        "distance": 0.0001668322510818565
+    }, {
+        "node": 214,
+        "distance": 0.0004235965061218271
+    }]
+}, {
+    "node_id": 216,
+    "name": "Nicanor Roxas St.",
+    "coordinates": {
+        "lat": 14.622442,
+        "lng": 121.096716
+    },
+    "vertex": [{
+        "node": 217,
+        "distance": 0.00027020362691975434
+    }, {
+        "node": 215,
+        "distance": 0.0001668322510818565
+    }]
+}, {
+    "node_id": 217,
+    "name": "Nicanor Roxas St.",
+    "coordinates": {
+        "lat": 14.622183,
+        "lng": 121.096793
+    },
+    "vertex": [{
+        "node": 218,
+        "distance": 0.0004504941731038383
+    }, {
+        "node": 216,
+        "distance": 0.00027020362691975434
+    }]
+}, {
+    "node_id": 218,
+    "name": "Nicanor Roxas St.",
+    "coordinates": {
+        "lat": 14.621775,
+        "lng": 121.096984
+    },
+    "vertex": [{
+        "node": 219,
+        "distance": 0.000449588700919235
+    }, {
+        "node": 217,
+        "distance": 0.0004504941731038383
+    }]
+}, {
+    "node_id": 219,
+    "name": "Nicanor Roxas St.",
+    "coordinates": {
+        "lat": 14.621368,
+        "lng": 121.097175
+    },
+    "vertex": [{
+        "node": 220,
+        "distance": 0.0013367692396260421
+    }, {
+        "node": 218,
+        "distance": 0.000449588700919235
+    }]
+}, {
+    "node_id": 220,
+    "name": "Nicanor Roxas St.",
+    "coordinates": {
+        "lat": 14.620134,
+        "lng": 121.097689
+    },
+    "vertex": [{
+        "node": 219,
+        "distance": 0.0013367692396260421
+    }]
+}, {
+    "node_id": 221,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.620835,
+        "lng": 121.101876
+    },
+    "vertex": [{
+        "node": 222,
+        "distance": 0.0007818145560172527
+    }]
+}, {
+    "node_id": 222,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.62161,
+        "lng": 121.101979
+    },
+    "vertex": [{
+        "node": 223,
+        "distance": 0.0006613811306647452
+    }, {
+        "node": 221,
+        "distance": 0.0007818145560172527
+    }]
+}, {
+    "node_id": 223,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.622267,
+        "lng": 121.102055
+    },
+    "vertex": [{
+        "node": 224,
+        "distance": 0.001559015394407523
+    }, {
+        "node": 222,
+        "distance": 0.0006613811306647452
+    }]
+}, {
+    "node_id": 224,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.623815,
+        "lng": 121.10224
+    },
+    "vertex": [{
+        "node": 225,
+        "distance": 0.0005310602602355376
+    }, {
+        "node": 223,
+        "distance": 0.001559015394407523
+    }]
+}, {
+    "node_id": 225,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.62434,
+        "lng": 121.10232
+    },
+    "vertex": [{
+        "node": 226,
+        "distance": 0.0007380108400288625
+    }, {
+        "node": 224,
+        "distance": 0.0005310602602355376
+    }]
+}, {
+    "node_id": 226,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.625078,
+        "lng": 121.102324
+    },
+    "vertex": [{
+        "node": 227,
+        "distance": 0.000547014625032223
+    }, {
+        "node": 225,
+        "distance": 0.0007380108400288625
+    }]
+}, {
+    "node_id": 227,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.625625,
+        "lng": 121.102328
+    },
+    "vertex": [{
+        "node": 228,
+        "distance": 0.0016453236763632982
+    }, {
+        "node": 226,
+        "distance": 0.000547014625032223
+    }]
+}, {
+    "node_id": 228,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.627258,
+        "lng": 121.102127
+    },
+    "vertex": [{
+        "node": 229,
+        "distance": 0.0024680488244765565
+    }, {
+        "node": 227,
+        "distance": 0.0016453236763632982
+    }]
+}, {
+    "node_id": 229,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.62971,
+        "lng": 121.101846
+    },
+    "vertex": [{
+        "node": 230,
+        "distance": 0.0030759600127431568
+    }, {
+        "node": 228,
+        "distance": 0.0024680488244765565
+    }]
+}, {
+    "node_id": 230,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.632767,
+        "lng": 121.101505
+    },
+    "vertex": [{
+        "node": 231,
+        "distance": 0.0010460831706886465
+    }, {
+        "node": 229,
+        "distance": 0.0030759600127431568
+    }]
+}, {
+    "node_id": 231,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.63378,
+        "lng": 121.101766
+    },
+    "vertex": [{
+        "node": 232,
+        "distance": 0.0011467140009601478
+    }, {
+        "node": 230,
+        "distance": 0.0010460831706886465
+    }]
+}, {
+    "node_id": 232,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.634903,
+        "lng": 121.101998
+    },
+    "vertex": [{
+        "node": 233,
+        "distance": 0.000019235384057433897
+    }, {
+        "node": 231,
+        "distance": 0.0011467140009601478
+    }, {
+        "node": 167,
+        "distance": 0.007132450069917724
+    }]
+}, {
+    "node_id": 233,
+    "name": "Gil Fernando Ave.",
+    "coordinates": {
+        "lat": 14.63492,
+        "lng": 121.101989
+    },
+    "vertex": [{
+        "node": 232,
+        "distance": 0.000019235384057433897
+    }, {
+        "node": 161,
+        "distance": 0.0013930215360933302
+    }]
+}, {
+    "node_id": 234,
+    "name": "Marikina-Infanta Hwy",
+    "coordinates": {
+        "lat": 14.62128,
+        "lng": 121.104102
+    },
+    "vertex": [{
+        "node": 235,
+        "distance": 0.0012662231240896347
+    }]
+}, {
+    "node_id": 235,
+    "name": "Marikina-Infanta Hwy",
+    "coordinates": {
+        "lat": 14.621005,
+        "lng": 121.102866
+    },
+    "vertex": [{
+        "node": 236,
+        "distance": 0.00035166034750694055
+    }, {
+        "node": 234,
+        "distance": 0.0012662231240896347
+    }]
+}, {
+    "node_id": 236,
+    "name": "Marikina-Infanta Hwy",
+    "coordinates": {
+        "lat": 14.620932,
+        "lng": 121.102522
+    },
+    "vertex": [{
+        "node": 237,
+        "distance": 0.0006413688486300328
+    }, {
+        "node": 235,
+        "distance": 0.00035166034750694055
+    }]
+}, {
+    "node_id": 237,
+    "name": "Marikina-Infanta Hwy",
+    "coordinates": {
+        "lat": 14.620797,
+        "lng": 121.101895
+    },
+    "vertex": [{
+        "node": 238,
+        "distance": 0.0006172074205601112
+    }, {
+        "node": 236,
+        "distance": 0.0006413688486300328
+    }]
+}, {
+    "node_id": 238,
+    "name": "Marikina-Infanta Hwy",
+    "coordinates": {
+        "lat": 14.62067,
+        "lng": 121.101291
+    },
+    "vertex": [{
+        "node": 239,
+        "distance": 0.0005850299137714692
+    }, {
+        "node": 237,
+        "distance": 0.0006172074205601112
+    }]
+}, {
+    "node_id": 239,
+    "name": "Marikina-Infanta Hwy",
+    "coordinates": {
+        "lat": 14.620522,
+        "lng": 121.100725
+    },
+    "vertex": [{
+        "node": 240,
+        "distance": 0.003059479694323133
+    }, {
+        "node": 238,
+        "distance": 0.0005850299137714692
+    }]
+}, {
+    "node_id": 240,
+    "name": "Marikina-Infanta Hwy",
+    "coordinates": {
+        "lat": 14.619902,
+        "lng": 121.097729
+    },
+    "vertex": [{
+        "node": 239,
+        "distance": 0.003059479694323133
+    }]
+}, {
+    "node_id": 241,
+    "name": "Gen Ordonez Ave",
+    "coordinates": {
+        "lat": 14.657165,
+        "lng": 121.118295
+    },
+    "vertex": [{
+        "node": 242,
+        "distance": 0.0042542423532271854
+    }, {
+        "node": 1,
+        "distance": 0.002024318650803349
+    }]
+}, {
+    "node_id": 242,
+    "name": "Gen Ordonez Ave",
+    "coordinates": {
+        "lat": 14.655618,
+        "lng": 121.122258
+    },
+    "vertex": [{
+        "node": 243,
+        "distance": 0.003773304122384573
+    }, {
+        "node": 241,
+        "distance": 0.0042542423532271854
+    }, {
+        "node": 7,
+        "distance": 0.0006182556105644387
+    }]
+}, {
+    "node_id": 243,
+    "name": "Gen Ordonez Ave",
+    "coordinates": {
+        "lat": 14.651898,
+        "lng": 121.12289
+    },
+    "vertex": [{
+        "node": 244,
+        "distance": 0.007192062569244712
+    }, {
+        "node": 242,
+        "distance": 0.003773304122384573
+    }, {
+        "node": 14,
+        "distance": 0.0019189072411174356
+    }]
+}, {
+    "node_id": 244,
+    "name": "Gen Ordonez Ave",
+    "coordinates": {
+        "lat": 14.645538,
+        "lng": 121.119532
+    },
+    "vertex": [{
+        "node": 245,
+        "distance": 0.006705242277514717
+    }, {
+        "node": 243,
+        "distance": 0.007192062569244712
+    }, {
+        "node": 29,
+        "distance": 0.0005191396729137826
+    }]
+}, {
+    "node_id": 245,
+    "name": "Gen Ordonez Ave",
+    "coordinates": {
+        "lat": 14.645943,
+        "lng": 121.112839
+    },
+    "vertex": [{
+        "node": 246,
+        "distance": 0.004893295106567971
+    }, {
+        "node": 244,
+        "distance": 0.006705242277514717
+    }, {
+        "node": 62,
+        "distance": 0.0004172792829702521
+    }]
+}, {
+    "node_id": 246,
+    "name": "Gen Ordonez Ave",
+    "coordinates": {
+        "lat": 14.650742,
+        "lng": 121.111883
+    },
+    "vertex": [{
+        "node": 247,
+        "distance": 0.004893295106567971
+    }, {
+        "node": 245,
+        "distance": 0.004893295106567971
+    }, {
+        "node": 73,
+        "distance": 0.0008015416395998021
+    }]
+}, {
+    "node_id": 247,
+    "name": "Gen Ordonez Ave",
+    "coordinates": {
+        "lat": 14.645943,
+        "lng": 121.112839
+    },
+    "vertex": [{
+        "node": 246,
+        "distance": 0.004893295106567971
+    }]
+}, {
+    "node_id": 248,
+    "name": "G Del Pilar St",
+    "coordinates": {
+        "lat": 14.656393,
+        "lng": 121.114733
+    },
+    "vertex": [{
+        "node": 249,
+        "distance": 0.003194491665355426
+    }]
+}, {
+    "node_id": 249,
+    "name": "G Del Pilar St",
+    "coordinates": {
+        "lat": 14.659297,
+        "lng": 121.113402
+    },
+    "vertex": [{
+        "node": 250,
+        "distance": 0.0022378903011496167
+    }, {
+        "node": 248,
+        "distance": 0.003194491665355426
+    }]
+}, {
+    "node_id": 250,
+    "name": "G Del Pilar St",
+    "coordinates": {
+        "lat": 14.661349,
+        "lng": 121.112509
+    },
+    "vertex": [{
+        "node": 251,
+        "distance": 0.0014546013199488938
+    }, {
+        "node": 249,
+        "distance": 0.0022378903011496167
+    }]
+}, {
+    "node_id": 251,
+    "name": "G Del Pilar St",
+    "coordinates": {
+        "lat": 14.662752,
+        "lng": 121.112125
+    },
+    "vertex": [{
+        "node": 252,
+        "distance": 0.0014646327184707941
+    }, {
+        "node": 250,
+        "distance": 0.0014546013199488938
+    }]
+}, {
+    "node_id": 252,
+    "name": "G Del Pilar St",
+    "coordinates": {
+        "lat": 14.664134,
+        "lng": 121.11164
+    },
+    "vertex": [{
+        "node": 251,
+        "distance": 0.0014646327184707941
+    }]
+}]
