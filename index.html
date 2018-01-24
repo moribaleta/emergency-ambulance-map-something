@@ -7,51 +7,9 @@
     </head>
 
     <body>
-        <style>
-            .button {
-  border-radius: 10px;
-  background-color: #FFFFFF;
-  border: none;
-  color: #cc5653;
-  text-align: center;
-  font-size: 28px;
-  padding: 15px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-</style>
-   
-        <img class="image-background" src="resources/images/background.png">
-
+        <img class="image-background" src="resources/images/backgroundpng.png"> 
         <button id="btnStart" class="button" onclick = "openStart()" type="button"> <span>Let's Start</span></button>
-
+        
 
         <script src="resources/js/dijkstra.js"></script>
         <script src="resources/json/road_coordinates2.json"></script>
@@ -60,7 +18,7 @@
         <script src="resources/js/xmlparser.js"></script>
         <script type="text/javascript">
             function openStart(){
-                window.open('map.html', _self)
+                window.open('map.html', '_self')
             }
         </script>
         <script>
