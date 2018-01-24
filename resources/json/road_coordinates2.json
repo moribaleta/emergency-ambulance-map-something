@@ -1,4 +1,4 @@
-var road = [
+	var road = [
 
     {
         name: 'F. Balagtas',
@@ -1141,7 +1141,7 @@ var road = [
 
         ]
     },
-    {
+            {
         name: 'Gen Ordonez Ave',
         coordinates: [
             {
@@ -1172,8 +1172,41 @@ var road = [
                 lat:14.645943, 
                 lng:121.112839
             },
+            {
+                lat:14.656393, 
+                lng:121.114733
+            }
 
 
         ]
-    }
+    },
+     {
+        name: 'G Del Pilar St',
+        coordinates: [
+            {
+                lat:14.656393, 
+                lng:121.114733
+            },
+            {
+                lat:14.659297, 
+                lng:121.113402
+            },
+            {
+                lat:14.661349, 
+                lng:121.112509
+            },
+            {
+                lat:14.662752, 
+                lng:121.112125
+            },
+            {
+                lat:14.664134, 
+                lng:121.111640
+            },
+            {
+                lat:14.664127, 
+                lng:121.111642
+            }
+        ]
+     }
 ]

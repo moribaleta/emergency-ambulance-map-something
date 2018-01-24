@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <script src="resources/json/hospitals.json"></script>
+        <script src="resources/js/jquery-3.0.0.min.js"></script>
+        <script src="resources/js/vue.js"></script>
+    </head>
+    <body>
+        <div id="hospital_list">
+            <ul id="hospital_list">
+                <li v-for="item in items">
+                    {{ item.name }}
+                    <p>{{item.available}}</p>
+                </li>
+            </ul>
+        </div>
+        <script>
+            var hospital_data_list = hospital_data;
+            var example1 = new Vue({
+                el: '#hospital_list',
+                data: {
+                    items: [
+                        
+                    ]
+                },
+                methods:{
+                    getList: function(){
+                        this.items = hospital_data_list;    
+                    },                    
+                }
+            })
+            example1.getList();
+
+        </script>
+    </body>
+</html>

@@ -17,6 +17,7 @@ function PriorityQueue () {
     this._nodes.sort(function (a, b) {
       return a.priority - b.priority;
     });
+    //console.log("update queue: %o",this._nodes);
   };
   this.isEmpty = function () {
     return !this._nodes.length;
@@ -78,7 +79,7 @@ function Graph(){
         if(alt < distances[neighbor]) {
           distances[neighbor] = alt;
           previous[neighbor] = smallest;
-
+          console.log("enque: "+neighbor);
           nodes.enqueue(alt, neighbor);
         }
       }

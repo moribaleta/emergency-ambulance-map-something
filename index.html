@@ -1,26 +1,17 @@
 <html>
 
-
     <head>
         <title>HOME</title>
         <link rel="stylesheet" href="resources/css/main.css">
     </head>
 
     <body>
-        <img class="image-background" src="resources/images/backgroundpng.png"> 
-        <button id="btnStart" class="button" onclick = "openStart()" type="button"> <span>Let's Start</span></button>
-        
-
+        <img class="image-background" src="resources/images/background.png">
         <script src="resources/js/dijkstra.js"></script>
         <script src="resources/json/road_coordinates2.json"></script>
         <script src="resources/js/jquery-3.0.0.min.js"></script>
         <script src="resources/json/coordinates.json"></script>
         <script src="resources/js/xmlparser.js"></script>
-        <script type="text/javascript">
-            function openStart(){
-                window.open('map.html', '_self')
-            }
-        </script>
         <script>
             var traffic_data;
             var url = "https://traffic.cit.api.here.com/traffic/6.2/flow.xml?app_id=f3VSAA6aVM7Sxpp70kUw&app_code=gNFIMdjE2eWp5d7RaPq0zQ&bbox=14.618014, 121.078055;14.672655, 121.121142";
@@ -61,7 +52,7 @@
 
                     for(var j=0; j<road_coord[i].coordinates.length-1; j++){
                         var vertex = [];
-                        if(j<road_coord.length-1){
+                        if(j<road_coord[i].coordinates.length-2){
                             var distance = getDistance(
                                 road_coord[i].coordinates[j].lat,road_coord[i].coordinates[j+1].lat,
                                 road_coord[i].coordinates[j].lng,road_coord[i].coordinates[j+1].lng,
@@ -93,8 +84,8 @@
                         node_id++;
                     }            
                 }
-                console.log("road structure %o",tree);
-
+                console.log(""+JSON.stringify(tree));
+                
 
                 //construction phase 2
                 var tree_temp = tree;
@@ -113,6 +104,7 @@
                         }
                     }
                 }
+                console.log(""+JSON.stringify(tree));
                 console.log("added index to be removed: %o",added);
                 /*added.forEach(function(entry) {
                 console.log("remove index: "+entry);
@@ -123,6 +115,8 @@
 
 
                 //dijkstra
+                
+                var map = {};
                 var g = new Graph();
                 for(var i = 0; i<tree.length;i++){
                     var vertex = {};
@@ -130,13 +124,19 @@
                         vertex[""+tree[i].vertex[j].node] = tree[i].vertex[j].distance;
                     }
                     console.log(tree[i].node_id+", %o",vertex);
+                    
+                    map[tree[i].node_id+''] = vertex;
+                    
                     g.addVertex(tree[i].node_id+"",vertex);
 
                 }
+                console.log("map structure: %o",map);
+                //var g = new Graph(map);
 
 
 
-                var path = g.shortestPath('5', '20').concat(['5']).reverse();
+                var path = g.shortestPath('5', '251').concat(['5']).reverse();
+                //var path = g.findShortestPath('5', '251');
                 console.log("path %o",path);
                 var path_data = [];
                 for(var i = 0; i<path.length; i++){

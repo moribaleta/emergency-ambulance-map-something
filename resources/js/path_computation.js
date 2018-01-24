@@ -27,24 +27,24 @@ function Dijkstra(map,start,finish){
     console.log("parent: %o",parent);
     dijkstra_node_list[start] = parent;
     nextStep(start,finish);
-    console.log("paths: %o",dijkstra_node_list);
-    //var curr_index = start;
+   // dijkstra_max_path = dijkstra_node_list[0];
+}
 
+function getPath(){
+    return dijkstra_path;
 }
 
 
-
-
 function nextStep(start,finish){
-    console.log("curr_node: "+start);
-    var curr_value = dijkstra_curr_value;
+   // console.log("curr_node: "+start);
+    var curr_value = dijkstra_node_list[start].distance;
     var selected;
     var node_selection = [];
     for(var i = 0; i<dijkstra_map[start].vertex.length; i++){
         var curr_vertex = dijkstra_map[start].vertex[i];
         if(!ifVisited(curr_vertex.node)){
             var compute_distance = curr_value+curr_vertex.distance;
-            console.log("selection node: "+curr_vertex.node+" compute_distance: "+compute_distance);
+           // console.log("selection node: "+curr_vertex.node+" compute_distance: "+compute_distance);
             node_selection.push({node:curr_vertex.node,distance:compute_distance});
             dijkstra_visited.push(curr_vertex.node);
         }
@@ -54,10 +54,10 @@ function nextStep(start,finish){
         new_life.path.push(node_selection[i].node);
         new_life.distance = node_selection[i].distance;
         console.log('life %o',new_life);
-        dijkstra_node_list[node_selection[i].node] = new_life;
-        
+        dijkstra_node_list[node_selection[i].node] = new_life;        
         if(node_selection[i].node==finish){
             console.log("find");
+            dijkstra_path = new_life.path;
             return;
         }else{
             nextStep(node_selection[i].node,finish);
