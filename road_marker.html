@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Map</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #map {
+                height: 100%;
+                z-index: 0;
+            }
+        </style>
+        <script type="text/javascript" src="resources/json/coordinates.json"></script>
+        <script type="text/javascript" src="resources/json/hospitals.json"></script>
+        <script src="resources/js/jquery-3.0.0.min.js"></script>
+        <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/css/main.css">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse" id="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                    <a class="navbar-brand" href="#">iAmbulansiya</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Page 1</a></li>
+                        <li><a href="#">Page 2</a></li> 
+                        <li><a href="#">Page 3</a></li> 
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <div id="warnings-panel"></div>
+                    </ul>
+                </div>
+
+
+            </div>
+        </nav>
+
+
+
+
+        <div id="map"></div>   
+        <!-- Modal -->
+
+        <button id="button_reload" onclick="initMap()">back</button>
+        <script src="resources/json/road_coordinates2.json"></script>
+
+        <script>
+            var map;
+
+            var infowindow;
+            var directionsService;
+            var emergency_marker = [];
+            var hostpital_list = hospital_data;
+            var path = {
+                name: null,
+                coordinates: [
+                ]
+            }
+
+            function initMap() {
+
+                //getLocation();
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    disableDefaultUI: true,
+                    draggableCursor:'crosshair',
+                    styles: [
+                        {
+                            featureType: 'all',
+                            stylers: [
+                                { saturation: -80 }
+                            ]
+                        },{
+                            featureType: 'road.arterial',
+                            elementType: 'geometry',
+                            stylers: [
+                                { hue: '#00ffee' },
+                                { saturation: 50 }
+                            ]
+                        },{
+                            featureType: 'poi.business',
+                            elementType: 'labels',
+                            stylers: [
+                                { visibility: 'off' }
+                            ]
+                        }
+                    ]
+                });
+
+                var trafficLayer = new google.maps.TrafficLayer();
+                trafficLayer.setMap(map);
+
+                var bounds = new google.maps.LatLngBounds();
+
+                google.maps.event.addListener(map, 'click', function(e) {
+                    if (confirm("Do you want to add a road icon here?") ) {
+                        placeMarker(e.latLng, map);
+                    }
+                });
+
+
+
+                var infoWindow = new google.maps.InfoWindow(), marker, i;
+                for( i = 0; i < hostpital_list.length; i++ ) {
+                    var position = new google.maps.LatLng( hostpital_list[i].location.lat,hostpital_list[i].location.long);
+                    bounds.extend(position);
+                    marker = new google.maps.Marker({
+                        position: position,
+                        map: map,
+                        title: hostpital_list[i].name,
+                        icon: 'resources/images/hospital_32.png'
+                    });
+
+                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                            var available = "<p class='danger'>no available emergency ambulance<p>";
+                            if(hostpital_list[i].available>0){
+                                available = "<p class='success'>available emergency ambulance: "+hostpital_list[i].available+"<p>";    
+                            }
+                            infoWindow.setContent(hostpital_list[i].name+"<br>"+available);
+                            infoWindow.open(map, marker);
+                        }
+                    })(marker, i));
+
+                    map.fitBounds(bounds);
+                }
+
+
+                var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+                    this.setZoom(14);
+                    google.maps.event.removeListener(boundsListener);
+                });
+                //initEmergencyMarkers();
+
+                var lineSymbol = {
+                    path: 'M 0,-1 0,1',
+                    strokeOpacity: 1,
+                    scale: 4
+                };
+
+                var line = new google.maps.Polyline({
+                    path: coords,
+                    strokeOpacity: 0,
+                    icons: [{
+                        icon: lineSymbol,
+                        offset: '0',
+                        repeat: '20px'
+                    }],
+                    map: map
+                });
+                //marikinaBorder.setMap(map);
+            }
+
+
+            function placeMarker(position, map) {
+                if(path.name==null){
+                    path.name = prompt("enter road name");
+                }
+                var location = {
+                    lat:position.lat(),
+                    lng:position.lng()
+                }
+                path.coordinates.push(location);
+
+                console.log(""+JSON.stringify(path));
+
+                var emergencymarker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    icon: 'resources/images/border-dot-point-25.png',
+                });
+
+
+               /* var contentMessage = '<p>marker: '+position.latitude+","+position.longitude+'</p>';
+
+                var infoEmergency = new google.maps.InfoWindow({
+                    content:
+                    contentMessage
+
+                });
+*/
+
+
+            /*    infoEmergency.open(map, emergencymarker);*/
+
+                google.maps.event.addListener(emergencymarker, 'click', function() {
+                    infoEmergency.open(map, emergencymarker);
+                });
+
+                console.log("position: "+position);
+
+                /*map.panTo(position);*/
+                emergency_marker.push(position);
+            }
+
+            function clearMarkers() {
+                setMapOnAll(null);
+                initMap();
+            }
+
+            function removeMarker(position){
+                alert('remove: '+position);
+                emergency_marker.splice(position,1);
+                initMap();
+            }
+
+
+
+
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBymq4YRMhZoMwnPUd2SfyzQQLEvUtafkM&libraries=places&callback=initMap"
+                async defer></script>
+    </body>
+</html>
