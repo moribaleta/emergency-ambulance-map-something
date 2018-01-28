@@ -12,8 +12,8 @@ hospital_data = [
     {
         'name':'Marikina Valley Medical Center',
         'location':{
-            'lat':14.6348282,
-            'long':121.1016983,
+            'lat':14.634823,
+            'long':121.103887,
             'address': '300 Shoe Ave, Sto. Nino, Marikina, 1800 Metro Manila'
         },
         'available': 3,
@@ -41,7 +41,7 @@ hospital_data = [
         'contact': '(02) 942 2022'
 
     },
-   /* {
+    /* {
         'name':'Manila Doctors Hospital',
         'location':{
             'lat':14.6355424,
@@ -55,8 +55,8 @@ hospital_data = [
     {
         'name':'SDS Medical Center',
         'location':{
-            'lat':14.639573,
-            'long':121.110031,
+            'lat':14.639420, 
+            'long':121.109721,
             'address': '61 Katipunan St, Marikina, 1800 Metro Manila'
         },
         'available': 4,
@@ -65,8 +65,8 @@ hospital_data = [
     {
         'name':'San Ramon Hospital',
         'location':{
-            'lat':14.6442231,
-            'long':121.1159294,
+            lat: 14.644179, 
+            long:121.117118,
             'address': '108 General Ordoñez Ave, Marikina, 1811 Metro Manila'
         },
         'available': 2,
@@ -75,14 +75,14 @@ hospital_data = [
     {
         'name':'Immaculate Concepcion Hospital',
         'location':{
-            'lat':14.6382493,
-            'long':121.1069677,
+            'lat':14.6382441,
+            'long':121.1091564,
             'address': '195 Katipunan St, Marikina, 1800 Metro Manila'
         },
         'available': 2,
         'contact': '(02) 941 9362'
     },
-    {
+    /*{
         'name':'St. John The Baptist Hospital',
         'location':{
             'lat':14.6246366,
@@ -91,12 +91,12 @@ hospital_data = [
         },
         'available': 2,
         'contact': '(02) 682 9093'
-    },
+    },*/
     {
         'name':'Salve Regina General Hospital, Inc',
         'location':{
-            'lat':14.6199527,
-            'long':121.0941437,
+            'lat':14.6199393,
+            'long':121.0961313,
             'address': 'Marikina-Infanta Hwy, Pasig, 1800 Metro Manila'
         },
         'available': 3,
@@ -105,8 +105,8 @@ hospital_data = [
     {
         'name':'St. Vincent General Hospital',
         'location':{
-            'lat':14.651133,
-            'long':121.1079946,
+            'lat':14.650713,
+            'long':121.107741,
             'address': '35 Bayan-Bayanan Ave, Marikina, 1800 Metro Manila'
         },
         'available': 3,
@@ -115,8 +115,8 @@ hospital_data = [
     {
         'name':'St. Anthony Medical Center',
         'location':{
-            'lat':14.6241441,
-            'long':121.0996035,
+            'lat':14.624469,
+            'long':121.102825,
             'address': '32 Santa Ana Ext., Marikina, 1801 Metro Manila'
         },
         'available': 3,

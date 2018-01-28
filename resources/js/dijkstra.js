@@ -79,7 +79,7 @@ function Graph(){
         if(alt < distances[neighbor]) {
           distances[neighbor] = alt;
           previous[neighbor] = smallest;
-          console.log("enque: "+neighbor);
+          //console.log("enque: "+neighbor);
           nodes.enqueue(alt, neighbor);
         }
       }
