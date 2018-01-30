@@ -3,174 +3,57 @@
     <head>
         <title>HOME</title>
         <link rel="stylesheet" href="resources/css/main.css">
+        <script src="resources/js/jquery-3.0.0.min.js"></script>
+        <script src="resources/json/hospitals.json"></script>
+        <script src="resources/json/experiment_paper.json"></script>
     </head>
 
     <body>
-        <img class="image-background" src="resources/images/background.png">
-        <script src="resources/js/dijkstra.js"></script>
-        <script src="resources/json/road_coordinates2.json"></script>
-        <script src="resources/js/jquery-3.0.0.min.js"></script>
-        <script src="resources/json/coordinates.json"></script>
-        <script src="resources/js/xmlparser.js"></script>
+        <div id="div-home">
+            <button id='btn_start' onclick="onStart()">let's start</button>    
+        </div>
+
+    
         <script>
-            var traffic_data;
-            var url = "https://traffic.cit.api.here.com/traffic/6.2/flow.xml?app_id=f3VSAA6aVM7Sxpp70kUw&app_code=gNFIMdjE2eWp5d7RaPq0zQ&bbox=14.618014, 121.078055;14.672655, 121.121142";
-            console.log("url: "+url)
-            jQuery.ajax({
-                url: url,
-                cache: false,
-                async: true,
-                success: function(data){
-                    console.log(data);  
-
-                    var x2js = new X2JS();
-                    var xmlText = new XMLSerializer().serializeToString(data);
-                    var jsonObj = x2js.xml_str2json( xmlText );
-                    console.log("xml to json: %o",jsonObj);
-                    traffic_data = jsonObj;
-                    initRoute();
-                }
-            });
-
-
-        </script>
-        <script>
-
-            var road_coord = road;
-
-            function getDistance(x1,x2,y1,y2){
-                return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
+            localStorage.clear();
+            $('#btn_start').hide();
+            function onStart(){
+                window.open('map.html','_self');
             }
-
-            //construction phase 1
-
-            function initRoute(){
-
-                var tree = [];
-                var node_id = 0;
-                for(var i = 0; i< road_coord.length; i++){        
-
-                    for(var j=0; j<road_coord[i].coordinates.length-1; j++){
-                        var vertex = [];
-                        if(j<road_coord[i].coordinates.length-2){
-                            var distance = getDistance(
-                                road_coord[i].coordinates[j].lat,road_coord[i].coordinates[j+1].lat,
-                                road_coord[i].coordinates[j].lng,road_coord[i].coordinates[j+1].lng,
-                            );
-                            vertex.push({
-                                node: node_id+1,
-                                distance: distance
-                            });
-                        }
-                        if(j>0){
-                            var distance = getDistance(
-                                road_coord[i].coordinates[j].lat,road_coord[i].coordinates[j-1].lat,
-                                road_coord[i].coordinates[j].lng,road_coord[i].coordinates[j-1].lng,
-                            );                        
-                            vertex.push({
-                                node: node_id-1,
-                                distance: distance
-                            });
-                        }
-
-
-                        var node = {
-                            node_id: node_id,
-                            name: road_coord[i].name,
-                            coordinates: road_coord[i].coordinates[j],
-                            vertex:vertex
-                        }   
-                        tree.push(node);
-                        node_id++;
-                    }            
-                }
-                console.log(""+JSON.stringify(tree));
-                
-
-                //construction phase 2
-                var tree_temp = tree;
-                var added = [];
-                for(var i = 0; i<tree.length;i++){
-                    for(var j = 0; j<tree_temp.length;j++){
-                        if(i!=j){      
-                            if(tree[i].coordinates.lat == tree_temp[j].coordinates.lat
-                               &&tree[i].coordinates.lng == tree_temp[j].coordinates.lng){
-                                console.log("match: "+i+" vs "+j);
-                                if(!added.includes(j)){
-                                    tree[i].vertex.push(tree_temp[j].vertex[0]);
-                                    added.push(j);
-                                }
-                            }                        
-                        }
+            
+            function setup(){
+                if(localStorage.getItem("hospital_list")==null){
+                    var hospital = hospital_data;
+                    localStorage.setItem("hospital_list",JSON.stringify(hospital));
+                    console.log("saved hospital_data");
+                }else{
+                    var hospital = hospital_data;
+                    var saved_hospital = JSON.parse(localStorage.getItem("hospital_list"));
+                    var blChange = false;
+                    for(var i=0; i<saved_hospital.length; i++){
+                        if(saved_hospital[i].name!=hospital[i].name||
+                           saved_hospital[i].location.lat!=hospital[i].location.lat||
+                           saved_hospital[i].location.long!=hospital[i].location.long||
+                           saved_hospital[i].contact!=hospital[i].contact
+                          ){
+                            blChange = true;
+                            break;
+                           }
+                    }
+                    if(blChange){
+                        localStorage.setItem("hospital_list",JSON.stringify(hospital));
                     }
                 }
-                console.log(""+JSON.stringify(tree));
-                console.log("added index to be removed: %o",added);
-                /*added.forEach(function(entry) {
-                console.log("remove index: "+entry);
-                tree.splice(entry,1);                
-            });*/
-
-                console.log("road restructure %o",tree);
-
-
-                //dijkstra
-                
-                var map = {};
-                var g = new Graph();
-                for(var i = 0; i<tree.length;i++){
-                    var vertex = {};
-                    for(var j = 0; j<tree[i].vertex.length; j++){
-                        vertex[""+tree[i].vertex[j].node] = tree[i].vertex[j].distance;
-                    }
-                    console.log(tree[i].node_id+", %o",vertex);
-                    
-                    map[tree[i].node_id+''] = vertex;
-                    
-                    g.addVertex(tree[i].node_id+"",vertex);
-
+                if(localStorage.getItem("experiment_paper")==null){
+                    var experiment_paper = experiment_paper_structure;
+                    localStorage.setItem("experiment_paper",JSON.stringify(experiment_paper));
+                    console.log("saved hospital_data");
                 }
-                console.log("map structure: %o",map);
-                //var g = new Graph(map);
-
-
-
-                var path = g.shortestPath('5', '251').concat(['5']).reverse();
-                //var path = g.findShortestPath('5', '251');
-                console.log("path %o",path);
-                var path_data = [];
-                for(var i = 0; i<path.length; i++){
-                    for(var j = 0; j<tree.length;j++){
-                        if(tree[j].node_id == Number.parseInt(path[i])){
-                            console.log(tree[j].name+": %o",tree[j].coordinates);
-                            path_data.push(tree[j]);
-                        }
-                    }
-                }
-                var path_distance = 0;
-                for(var i = 0; i<path_data.length-1;i++){
-                    path_distance += Number.parseFloat(getdistance(
-                        path_data[i].coordinates.lat,path_data[i+1].coordinates.lat,
-                        path_data[i].coordinates.lng,path_data[i+1].coordinates.lng
-                    ));
-                    console.log(path_distance);
-                }
-                console.log("total distance: "+path_distance);
-
-            }
-
-
-            function getdistance(lat1, lat2, lon1, lon2) {
-                var p = 0.017453292519943295;    // Math.PI / 180
-                var c = Math.cos;
-                var a = 0.5 - c((lat2 - lat1) * p)/2 + 
-                    c(lat1 * p) * c(lat2 * p) * 
-                    (1 - c((lon2 - lon1) * p))/2;
-
-                return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-            }
-
-        </script>
+                $('#btn_start').show();
+            }                                                            
+            setup();
+            
+        </script>        
     </body>
 
 </html>

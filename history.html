@@ -29,9 +29,6 @@
                 position: absolute;
                 right: 10px;
             }
-            .panel{
-                margin-top: 16px;
-            }
         </style>
 
 
@@ -50,9 +47,9 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="map.html">Home</a></li>
-                        <li class="active"><a href="hospital.html">Hospital</a></li>
-                        <li><a href="history.html">History</a></li>
+                        <li ><a href="map.html">Home</a></li>
+                        <li><a href="hospital.html">Hospital</a></li>
+                        <li class="active"><a href="history.html">History</a></li>
                         <li><a href="abouts.html">About</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -68,16 +65,13 @@
             </div>
         </nav>
         <div class="container" id="content">
-
-
-            <!-- Modal -->            
             <div id="history_list">
                 <ul id="history_list" class="list-group">
                     <li v-for="item,index in items" class="list-group-item">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-10">
-                                    <div class="text-item">{{ item.name }}</div>
+                                    <div class="text-item">{{ item.name }} + {{item.time}}</div>
                                 </div>
                                 <div class="col-md-1">
                                     <a v-bind:href=" '#collapse-' + index" data-toggle="collapse" class="dropdown-button">
@@ -88,22 +82,11 @@
                         </div>
                         <!--<a href="#demo" data-toggle="collapse">Collapsible</a>-->    
                         <div v-bind:id=" 'collapse-' + index" class="collapse">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    address{{item.location.address}}
-                                </div>
-                                <div class="panel-body">
-                                    coordinates: {{item.location.lat+", "+item.location.lat}}
-                                </div>
-                                <div class="panel-body">
-                                    contact#: {{item.contact}}
-                                </div>
-                                <div class="panel-body">
-                                    available: {{item.available}}
-                                    <button type="button" v-on:click='openAlert(index)'>edit</button> 
-                                </div>                                
-                            </div>
-
+                            <ul class="list-group">
+                                <li v-for='history,index_history in item.timeframe' class="list-group-item">
+                                    {{(index_history+1)+'. '+ history}}
+                                </li>
+                            </ul>                        
                         </div>
                     </li>
                 </ul>
@@ -113,7 +96,7 @@
         <script>
 
             var example1 = new Vue({
-                el: '#content',
+                el: '#history_list',
                 data: {
                     items: [
 
@@ -121,7 +104,7 @@
                 },
                 methods:{
                     getList: function(){
-                        var history =localStorage.getItem("hospital_list");
+                        var history =localStorage.getItem("experiment_paper");
                         console.log(history);
                         this.items = JSON.parse(history);    
                         for(var i = 0; i<this.items.length;i++){
@@ -132,19 +115,6 @@
                     viewlist: function(index){
                         this.items[index].view = !this.items[index].view ;
                         console.log("item: "+index+" view: "+this.items[index].view );
-                    },openAlert: function(index){
-                        var available = prompt("enter no of available response unit of "+this.items[index].name);
-                        if(available!=null&&available.length>0){
-                            if(!isNaN(available)){
-                                var r = confirm("save input?");
-                                if (r == true) {
-                                    this.items[index].available = available;
-                                    localStorage.setItem("hospital_list",JSON.stringify(this.items));
-                                } 
-                            }else{
-                                alert("should be a number");
-                            }
-                        }
                     }
                 }
             })

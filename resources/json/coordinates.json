@@ -52,7 +52,7 @@ coords = [
     {lat:14.622073, lng:121.076687},
     {lat:14.624033, lng:121.075229},
     {lat:14.628423, lng:121.074175},
-    {lat:14.629677, lng:121.076768}
+    
 ]
 
 /* var marikinaBorder = new google.maps.Polygon({

@@ -41,10 +41,10 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li> 
-                        <li><a href="#">Page 3</a></li> 
+                        <li class="active"><a href="map.html">Home</a></li>
+                        <li><a href="hospital.html">Hospital</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="abouts.html">About</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <div id="warnings-panel"></div>
@@ -67,8 +67,7 @@ please wait...
         <!-- Modal -->
 
         <!--<button id="button_reload" onclick="initMap()">back</button>-->
-        <script src="resources/json/road_coordinates3.json"></script>
-        <script src="resources/json/road_coordinates_preparse.json"></script>
+        <script src="resources/json/road_coordinates.json"></script>
 
 
         <script>
@@ -82,8 +81,6 @@ please wait...
             function getDistance(x1,x2,y1,y2){
                 return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
             }
-
-            //construction phase 1
 
             function initRoute(){
 
@@ -146,8 +143,6 @@ please wait...
                         }
                     }
                 }
-
-                //tree = road_map;
 
                 console.log(""+JSON.stringify(tree));
 
@@ -274,8 +269,8 @@ please wait...
                     ]
                 });
 
-                var trafficLayer = new google.maps.TrafficLayer();
-                trafficLayer.setMap(map);
+                /*var trafficLayer = new google.maps.TrafficLayer();
+                trafficLayer.setMap(map);*/
 
                 var bounds = new google.maps.LatLngBounds();
 
@@ -285,7 +280,7 @@ please wait...
 
                 var infoWindow = new google.maps.InfoWindow(), marker, i;
 
-                for( i = 0; i < tree.length; i++ ) {
+                /*for( i = 0; i < tree.length; i++ ) {
                     var position = new google.maps.LatLng( tree[i].coordinates.lat,tree[i].coordinates.lng);
                     bounds.extend(position);
                     marker = new google.maps.Marker({
@@ -295,7 +290,7 @@ please wait...
                         icon: 'resources/images/border-dot-point-25.png'
                     });
                     map.fitBounds(bounds);
-                }
+                }*/
 
 
 
@@ -306,7 +301,7 @@ please wait...
                         position: position,
                         map: map,
                         title: (i+1)+". "+" node_id: "+path_data[i].node_id+" "+path_data[i].name+" position " + path_data[i].coordinates.lat +" , "+path_data[i].coordinates.lng,
-                        icon: 'resources/images/ambulance_32.png'
+                        icon: 'resources/images/ambulance_24.png'
                     });
                     map.fitBounds(bounds);
                 }
@@ -332,9 +327,9 @@ please wait...
                 map.fitBounds(bounds);
 
 
-                var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-                    this.setZoom(14);
-                    google.maps.event.removeListener(boundsListener);
+                var listener = google.maps.event.addListener(map, "idle", function () {
+                    map.setZoom(16);
+                    google.maps.event.removeListener(listener);
                 });
                 //initEmergencyMarkers();
 

@@ -32,15 +32,36 @@
 
 body{
     margin: 0;
-    text-align: center;
-    background: black;
+    overflow-y: hidden;
 }
 
-.image-background{
-    width: auto;
-    height: 100%;
-    border: none;
+#div-home{
+    padding-top: 30%;
+    text-align: center;
+    background: #CC5653;
+    background-image: url(../images/background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    height: 100%;    
 }
+
+#btn_start{    
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;     
+    background: white;
+    border:none;
+    transition: all .3s ease-in-out;    
+}
+
+#btn_start:hover{
+    font-size: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
 
 .danger{
     color: red;
