@@ -120,7 +120,7 @@ please wait...
                         node_id++;
                     }            
                 }
-                console.log("road structure %o",tree);
+                //console.log("road structure %o",tree);
 
 
                 var tree_temp = tree;
@@ -130,7 +130,7 @@ please wait...
                         if(i!=j){      
                             if(tree[i].coordinates.lat == tree_temp[j].coordinates.lat
                                &&tree[i].coordinates.lng == tree_temp[j].coordinates.lng){
-                                console.log("match: "+i+" vs "+j);
+                                //console.log("match: "+i+" vs "+j);
                                 if(!added.includes(j)){
                                     for(var k = 0;k<tree_temp[j].vertex.length;k++){
                                         if(!tree[i].vertex.includes(tree_temp[j].vertex[k])){
@@ -144,7 +144,7 @@ please wait...
                     }
                 }
 
-                console.log(""+JSON.stringify(tree));
+                //console.log(""+JSON.stringify(tree));
 
 
                 //dijkstra
@@ -154,12 +154,26 @@ please wait...
                     for(var j = 0; j<tree[i].vertex.length; j++){
                         vertex[""+tree[i].vertex[j].node] = tree[i].vertex[j].distance;
                     }
-                    console.log(tree[i].node_id+", %o",vertex);
+                    //console.log(tree[i].node_id+", %o",vertex);
                     g.addVertex(tree[i].node_id+"",vertex);
 
                 }
-                var hospital = JSON.parse(localStorage.getItem("Hospital"));
-                var emergency = JSON.parse(localStorage.getItem("Emergency"));
+                
+                var url_data = window.location.href.split('route.html?').pop();
+                url_data = url_data.split("%20").join('');
+                url_data = url_data.split("%22").join('"');
+                var hospital = url_data.split("**")[0];
+                var emergency = url_data.split("**")[1];
+                
+                /*hospital = hospital.split("%20").join('');
+                hospital = hospital.split("%22").join('"');*/
+                console.log("hospital: "+hospital);
+                console.log("emergency: "+emergency);
+                hospital = JSON.parse(hospital);
+                emergency = JSON.parse(emergency);
+                
+                //var hospital = JSON.parse(localStorage.getItem("Hospital"));
+                //var emergency = JSON.parse(localStorage.getItem("Emergency"));
                 hospital = {
                     lat:hospital.location.lat,
                     lng:hospital.location.long
@@ -176,13 +190,13 @@ please wait...
                 var finish = tree[emergency_loc].node_id;
 
                 var path = g.shortestPath(start+'', finish+'').concat([start+'']).reverse();
-                console.log("path %o",path);
+                //console.log("path %o",path);
                 path_data = [];
 
                 for(var i = 0; i<path.length; i++){
                     for(var j = 0; j<tree.length;j++){
                         if(tree[j].node_id == Number.parseInt(path[i])){
-                            console.log("index: %o",tree[j]);
+                            //console.log("index: %o",tree[j]);
                             path_data.push(tree[j]);
                         }
                     }

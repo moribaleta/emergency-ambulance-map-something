@@ -21,6 +21,7 @@
         <script type="text/javascript" src="resources/json/coordinates.json"></script>
         <!--<script type="text/javascript" src="resources/json/hospitals.json"></script>-->
         <script src="resources/js/jquery-3.0.0.min.js"></script>
+        <script src="resources/js/vue.js"></script>
         <script src="resources/bootstrap/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="resources/css/main.css">
@@ -49,6 +50,7 @@
                         <div id="warnings-panel"></div>
                     </ul>
                 </div>
+                <button id="button_modal" type="button" class="btn btn-info btn-lg hidden" data-toggle="modal" data-target="#myModal"></button>
                 <div class="progress" id="progressDirection">
                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                         please wait...
@@ -60,15 +62,97 @@
 
 
 
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content" id="modal-body">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Hospital Route Directions</h4>
+                    </div>
+                    <div class="modal-body" >
+                        <!--<div class="container">-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-sm-6">Hospital</div>
+                                    <div class="col-sm-2">Response Time</div>
+                                    <div class="col-sm-2">Distance</div>
+                                    <div class="col-sm-1">Traffic Condition</div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row" v-for='hospital,index in items'>
+                                    <div class="col-sm-6">{{(index+1)+". "+hospital.hospital_detail.name}}</div>
+                                    <div class="col-sm-2">{{hospital.response_time+" min"}}</div>
+                                    <div class="col-sm-2">{{hospital.distance+" km"}}</div>
+                                    <div class="col-sm-1">{{hospital.condition}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">The Best Route:</div>
+                            <div class="panel-body">
+                                <div class="col-sm-7">{{winner.hospital_detail.name}}</div>
+                                <div class="col-sm-3">{{winner.response_time+" min"}}</div>
+                                <div class="col-sm-2">{{winner.distance+" km"}}</div>
+                            </div>
+                        </div>
+                        <!--</div>-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" v-on:click="proceed()" >Proceed</button>
+                        <button type="button" id='button-modal-close' class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <div id="map"></div>
         <!-- Modal -->
 
         <button id="button_reload" onclick="initMap()">back</button>
         <script src="resources/json/road_coordinates.json"></script>
+        <script src="resources/json/hospitals.json"></script>
+        <script src="resources/json/experiment_paper.json"></script>
         <script src="resources/js/dijkstra.js"></script>
         <script src="resources/js/xmlparser.js"></script>
-
+        <script>
+            function setup() {
+                if (localStorage.getItem("hospital_list") == null) {
+                    var hospital = hospital_data;
+                    localStorage.setItem("hospital_list", JSON.stringify(hospital));
+                    console.log("saved hospital_data");
+                } else {
+                    var hospital = hospital_data;
+                    var saved_hospital = JSON.parse(localStorage.getItem("hospital_list"));
+                    var blChange = false;
+                    for (var i = 0; i < saved_hospital.length; i++) {
+                        if (saved_hospital[i].name != hospital[i].name ||
+                            saved_hospital[i].location.lat != hospital[i].location.lat ||
+                            saved_hospital[i].location.long != hospital[i].location.long ||
+                            saved_hospital[i].contact != hospital[i].contact
+                           ) {
+                            blChange = true;
+                            break;
+                        }
+                    }
+                    if (blChange) {
+                        localStorage.setItem("hospital_list", JSON.stringify(hospital));
+                    }
+                }
+                if (localStorage.getItem("experiment_paper") == null) {
+                    var experiment_paper = experiment_paper_structure;
+                    localStorage.setItem("experiment_paper", JSON.stringify(experiment_paper));
+                    console.log("saved hospital_data");
+                }
+                $('#btn_start').show();
+            }
+            setup();
+        </script>
         <script>
             var tree;
             var g;
@@ -97,17 +181,13 @@
                 });
             }
 
-
-
-
-
             var map;
             var min = null;
             var infowindow;
             var directionsService;
             var emergency_marker = [];
             var hostpital_list = JSON.parse(localStorage.getItem("hospital_list"));
-            
+
             //initRoute();
             function getAveSpeed(i) {
                 var road = tree[i];
@@ -129,28 +209,39 @@
                 }
             }
 
-           /* function saveHospital_data() {
-                localStorage.setItem("hospital_list", JSON.stringify(hostpital_list));
-            }*/
+            function getAveSpeedDetails(i) {
+                var road = tree[i];
+                var traffic = traffic_data.TRAFFICML_REALTIME.RWS.RW;
+                var count = 0;
+                for (var i = 0; i < traffic.length; i++) {
+                    if (traffic[i]._DE == road.name) {
+                        var ave_speed = 0;
+                        var traffic_road_data = traffic[i].FIS.FI;
+                        for (var j = 0; j < traffic_road_data.length; j++) {
+                            ave_speed += Number(traffic_road_data[j].CF._SP);
+                            count++;
+                        }
+                    }
+                }
+                if (ave_speed > 0) {
+                    ave_speed = ave_speed / count;
+                    var condition = 1;
+                    if (ave_speed < 20 && ave_speed > 15) {
+                        condition = 2;
+                    } else if (ave_speed <= 15 && ave_speed > 0) {
+                        condition = 3;
+                    }
+                    var detail = {
+                        speed: ave_speed,
+                        condition: condition
+                    }
+                    return detail;
+                }
+            }
 
             function getHospital_data() {
                 return JSON.parse(localStorage.getItem("hospital_list"));
             }
-
-           /* function getEmergencyMarker(){
-                var data = localStorage.getItem("emergency_marker");
-                console.log(data);
-                if(data==null){
-                    return [];
-                }else{
-                    return JSON.parse(data);
-                }
-
-            }*/
-            /*function saveEmergencyMarker(){
-                console.log("emergency_marker %o",emergency_marker);
-                localStorage.setItem("emergency_marker", JSON.stringify(emergency_marker));                
-            }*/
 
             function initMap() {
                 $('#button_reload').hide();
@@ -226,7 +317,7 @@
                     this.setZoom(14);
                     google.maps.event.removeListener(boundsListener);
                 });
-                
+
 
                 var lineSymbol = {
                     path: 'M 0,-1 0,1',
@@ -289,7 +380,7 @@
             }
 
             function initEmergencyMarkers() {
-                console.log("emergency_marker %o",emergency_marker); 
+                console.log("emergency_marker %o", emergency_marker);
                 for (var i = 0; i < emergency_marker.length; i++) {
                     console.log("init emergency marker %o", emergency_marker[i]);
                     //var position = new google.maps.LatLng( emergency_marker[i].position);
@@ -319,7 +410,7 @@
                         }
                     })(marker, i));
                 }
-                console.log("emergency_marker %o",emergency_marker); 
+                console.log("emergency_marker %o", emergency_marker);
             }
 
             function placeMarker(position, map) {
@@ -367,7 +458,7 @@
             }
 
             function setDestination(position) {
-                console.log("emergency marker: %o",emergency_marker[position]);
+                console.log("emergency marker: %o", emergency_marker[position]);
                 getCreateRoute(emergency_marker[position], position);
             }
 
@@ -384,39 +475,109 @@
 
             function getCreateRoute(emergency_location, position) {
                 var hospital_available = getAvailableHospital();
-                console.log("emergency marker: %o",emergency_location);
-                var optimal_hospital = getNearestHospital(hospital_available, emergency_location);
+                console.log("emergency marker: %o", emergency_location);
+                var path_detail = getNearestHospital(hospital_available, emergency_location);
+                emergency_location['position'] = position;
+                $("#button_modal").click();
+                showDetail(path_detail,emergency_location);
+                /*
+            if (confirm("best place " + hospital_available[optimal_hospital.hospital_index].name + " total distance: " + optimal_hospital.distance + ", response time: " + optimal_hospital.response_time.toFixed(3) + "minutes, do you want to proceed?")) {
+                //console.log("winner %o", optimal_hospital);
+                hospital_available[optimal_hospital.hospital_index].available--;
+                var hospital = hospital_available[optimal_hospital.hospital_index];
+                var hospital_pos = setHospitalAvailable(hospital, position);
+                emergency_marker[position].onGoing = true;
+                emergency_marker[position].hospital_pos = hospital_pos;
 
-                if (confirm("best place " + hospital_available[optimal_hospital.hospital_index].name + " total distance: " + optimal_hospital.distance + ", response time: " + optimal_hospital.response_time.toFixed(3) + "minutes, do you want to proceed?")) {
-                    //console.log("winner %o", optimal_hospital);
-                    hospital_available[optimal_hospital.hospital_index].available--;
-                    var hospital = hospital_available[optimal_hospital.hospital_index];
-                    var hospital_pos = setHospitalAvailable(hospital, position);
-                    emergency_marker[position].onGoing = true;
-                    emergency_marker[position].hospital_pos = hospital_pos;
-                    saveResponseTime(optimal_hospital.response_time.toFixed(3));
-                    //saveEmergencyMarker();
-                    localStorage.setItem("Hospital", JSON.stringify(hospital_available[optimal_hospital.hospital_index]));
-                    localStorage.setItem("Emergency", JSON.stringify(emergency_location));
-                    window.open('route.html');
-                    initMap();
-                }
+
+                var emergency_elem;
+                try{
+                    emergency_elem= {
+                        lat: emergency_location.lat(),
+                        lng: emergency_location.lng()
+                    }}catch(e){
+
+                        emergency_elem= {
+                            lat: emergency_location.lat,
+                            lng: emergency_location.lng
+                        }
+                    }
+                var emergency_loc = getNearest(emergency_elem, tree);
+                saveResponseTime(optimal_hospital,emergency_loc);
+                //saveEmergencyMarker();
+                //localStorage.setItem("Hospital", JSON.stringify(hospital_available[optimal_hospital.hospital_index]));
+
+
+                //localStorage.setItem("Emergency", JSON.stringify(emergency_location));
+                window.open('route.html?'+JSON.stringify(hospital_available[optimal_hospital.hospital_index])+"**"+JSON.stringify(emergency_location));
+                initMap();
+            }*/
 
             }
 
-            function saveResponseTime(responseTime) {
+            function showDetail(path_detail,emergency_location) {
+                var winner_index = path_detail.winner;
+                var winner = path_detail.detail[winner_index];
+                modal_vue.setList(path_detail, winner,emergency_location);                
+            }
+            
+            function openRoute(winner,emergency_location){
+                hostpital_list[winner.position].available--;
+                var hospital = winner.hospital_detail;
+                var hospital_pos = setHospitalAvailable(winner);
+                
+                $('#button-modal-close').click();
+                emergency_marker[emergency_location.position].onGoing = true;
+                emergency_marker[emergency_location.position].hospital_pos = hospital_pos;
+
+
+                var emergency_elem;
+                try{
+                    emergency_elem= {
+                        lat: emergency_location.lat(),
+                        lng: emergency_location.lng()
+                    }}catch(e){
+
+                        emergency_elem= {
+                            lat: emergency_location.lat,
+                            lng: emergency_location.lng
+                        }
+                    }
+                var emergency_loc = getNearest(emergency_elem, tree);
+                saveResponseTime(winner,emergency_loc);
+                //saveEmergencyMarker();
+                //localStorage.setItem("Hospital", JSON.stringify(hospital_available[optimal_hospital.hospital_index]));
+
+
+                //localStorage.setItem("Emergency", JSON.stringify(emergency_location));
+                window.open('route.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location));
+                initMap();
+            }
+
+
+
+
+
+            function saveResponseTime(hospital, emergency_loc) {
+                
+                //var responseTime = hospital.response_time.toFixed(3);
+                hospital.response_time = hospital.response_time + " min";
+                //hospital['name'] = hospital.hospital_detail.name;
+                hospital['emergency_location'] = tree[emergency_loc].coordinates;
+
+                console.log('saveResponseTime: hospital %o',hospital);
                 var history_list = JSON.parse(localStorage.getItem("experiment_paper"));
                 var today = new Date().getHours();
                 if (today > 5 && today <= 10) {
-                    history_list[0].timeframe.push(responseTime+" min");
-                } else if (today > 10 && today <= 16 ) {
-                    history_list[1].timeframe.push(responseTime+" min");
+                    history_list[0].timeframe.push(hospital);
+                } else if (today > 10 && today <= 16) {
+                    history_list[1].timeframe.push(hospital);
                 } else if (today > 16 && today <= 22) {
-                    history_list[2].timeframe.push(responseTime+" min");
+                    history_list[2].timeframe.push(hospital);
                 } else {
-                    history_list[3].timeframe.push(responseTime+" min");
+                    history_list[3].timeframe.push(hospital);
                 }
-                localStorage.setItem("experiment_paper",JSON.stringify(history_list));
+                localStorage.setItem("experiment_paper", JSON.stringify(history_list));
             }
 
             function setHospitalAvailable(hospital_available) {
@@ -446,21 +607,22 @@
                 var winner;
                 var min;
                 var emergency_elem;
-                try{
-                emergency_elem= {
-                    lat: emergency.lat(),
-                    lng: emergency.lng()
-                }}catch(e){
-                    
-                emergency_elem= {
-                    lat: emergency.lat,
-                    lng: emergency.lng
-                }
+                try {
+                    emergency_elem = {
+                        lat: emergency.lat(),
+                        lng: emergency.lng()
+                    }
+                } catch (e) {
+
+                    emergency_elem = {
+                        lat: emergency.lat,
+                        lng: emergency.lng
+                    }
                 }
                 //console.log("emergency: %o", emergency_elem);
                 var emergency_loc = getNearest(emergency_elem, tree);
                 //console.log("nearest emergency: %o", tree[emergency_loc]);
-
+                var hospital_detail = [];
                 for (var x = 0; x < hospital.length; x++) {
 
                     var hospital_elem = {
@@ -499,25 +661,52 @@
                                                  path_data[path_data.length - 1].coordinates.lng, emergency_elem.lng);
 
                     //console.log("distance: ", path_distance);
-                    if (path_distance < min || min == null) {
-                        min = path_distance;
+                    var time = getResponseTime(path_data);
+                     console.log(time);
+                    if (time.time < min || min == null) {
+                       
+                        min = time.time;
                         winner = x;
                     }
+                    //var time = getResponseTime(path_data);
+
+                    path_distance = path_distance.toFixed(2);
+                    time.time = time.time.toFixed(2);
+                    var condition;
+
+                    if (time.condition == 1) {
+                        condition = 'good';
+                    } else if (time.condition == 2) {
+                        condition = 'moderate';
+                    } else {
+                        condition = 'bad';
+                    }
+                    console.log("condition: " + time.condition + " - " + condition);
+                    var detail = {
+                        position: x,
+                        hospital_detail: hospital[x],
+                        distance: path_distance,
+                        response_time: time.time,
+                        condition: condition
+                    }
+                    hospital_detail.push(detail);
                 }
 
                 //console.log("hospital winner %o", hospital[winner]);
                 //console.log("hospital distance: " + min);
                 //var time = min / .3;
-                var time = getResponseTime(path_data);
-                //console.log("response time: " + time);
 
-                var winner_data = {
-                    hospital_index: winner,
-                    distance: min,
-                    response_time: time
+                console.log("hospital data: %o", hospital_detail);
+
+                var return_data = {
+                    detail: hospital_detail,
+                    winner: winner
+                    /*hospital_index: winner,
+                distance: min,
+                response_time: time*/
                 }
 
-                return winner_data;
+                return return_data;
 
             }
 
@@ -526,25 +715,35 @@
                 var total_speed = 0;
                 //var curr_road_name = path_data[0].name;
                 var distance = 0;
+                var condition;
+                var condition_total = 0;
                 for (var i = 0; i < path_data.length - 1; i++) {
-                    var speed = getAveSpeed(path_data[i].node_id);
-                    //console.log("distance: "+distance+" speed: "+speed);
+                    var speed = getAveSpeedDetails(path_data[i].node_id);
+                    //console.log("speed detail %o",speed);
                     if (speed != undefined) {
-                        total_speed += Number(speed);
+                        total_speed += Number(speed.speed);
+                        condition_total += Number(speed.condition);
                     } else {
                         total_speed += 20;
+                        condition_total += 2;
                     }
                     distance += getdistance(path_data[i].coordinates.lat, path_data[i + 1].coordinates.lat,
                                             path_data[i].coordinates.lng, path_data[i + 1].coordinates.lng, );
 
                 }
-
                 //console.log("total_speed: "+total_speed);
                 //distance = distance/path_data.length;
+                condition = condition_total / path_data.length;
+                condition = Math.floor(condition);
+                //console.log("condition: "+condition);
                 total_speed = (total_speed / path_data.length) / 60; //convert kph to kpm
                 //console.log("average_speed: "+total_speed);
                 var time = distance / total_speed;
-                return time;
+                var detail = {
+                    time: time,
+                    condition: condition
+                }
+                return detail;
             }
 
             function getNearest(unit) {
@@ -652,10 +851,35 @@
                 }
 
             }
-
-            
         </script>
-
+        <!--vue modal script-->
+        <script>
+            var modal_vue = new Vue({
+                el: '#modal-body',
+                data: {
+                    items: null,
+                    winner: null,
+                    emergency: null
+                },
+                methods: {
+                    setList: function(path_detail, winner,emergency) {
+                        console.log('winner: %o', winner);
+                        this.items = path_detail.detail;
+                        this.winner = winner;
+                        this.emergency = emergency;
+                        //$('#progressDirection').hide();
+                    },
+                    proceed: function(){
+                        openRoute(this.winner,this.emergency);
+                    }
+                    /*viewlist: function(index){
+                    this.items[index].view = !this.items[index].view ;
+                    console.log("item: "+index+" view: "+this.items[index].view );
+                }*/
+                }
+            })
+            //example1.getList();
+        </script>
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBymq4YRMhZoMwnPUd2SfyzQQLEvUtafkM&libraries=places&callback=initTrafficData" async defer></script>
     </body>

@@ -82,11 +82,45 @@
                         </div>
                         <!--<a href="#demo" data-toggle="collapse">Collapsible</a>-->    
                         <div v-bind:id=" 'collapse-' + index" class="collapse">
-                            <ul class="list-group">
-                                <li v-for='history,index_history in item.timeframe' class="list-group-item">
-                                    {{(index_history+1)+'. '+ history}}
-                                </li>
-                            </ul>                        
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-sm-5">Hospital</div>
+                                        <div class="col-sm-2">Response Time</div>
+                                        <div class="col-sm-2">Distance</div>
+                                        <div class="col-sm-1">Traffic Condition</div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="container">
+                                        <div class="row" v-for='history,index_history in item.timeframe'>
+                                            <div class="col-sm-4">{{(index_history+1)+". "+history.hospital_detail.name}}</div>
+                                            <div class="col-sm-2">{{history.response_time}}</div>
+                                            <div class="col-sm-2">{{history.distance+" km"}}</div>
+                                            <div class="col-sm-1">{{history.condition}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">Ave response time: {{item.ave_responce_time}}</div>
+                                            <div class="col-sm-6">Ave distance: {{item.ave_distance}}</div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <!--<ul class="list-group">
+<li v-for='history,index_history in item.timeframe' class="list-group-item">
+
+<div class="container">
+
+<div class="row" >
+<div class="col-sm-4">{{(index_history+1)+". "+history.hospital_detail.name}}</div>
+<div class="col-sm-2">{{history.response_time}}</div>
+<div class="col-sm-2">{{history.distance+" km"}}</div>
+<div class="col-sm-1">{{history.condition}}</div>
+</div>
+
+</div>
+</li>
+</ul>   -->                     
                         </div>
                     </li>
                 </ul>
@@ -105,7 +139,7 @@
                 methods:{
                     getList: function(){
                         var history =localStorage.getItem("experiment_paper");
-                        console.log(history);
+                        console.log('history: %o',JSON.parse(history));
                         this.items = JSON.parse(history);    
                         for(var i = 0; i<this.items.length;i++){
                             this.items[i]['view'] = false;
@@ -114,6 +148,18 @@
                     },
                     viewlist: function(index){
                         this.items[index].view = !this.items[index].view ;
+                        this.items[index]['ave_responce_time'] = 0;
+                        this.items[index]['ave_distance'] = 0;
+                        var ave_response;
+                        var ave_distance;
+                        for(var i = 0; i<this.items.timeframe.length;i++){
+                            ave_response += Number(this.items.timeframe[i].response_time.split(' ')[0]);
+                            ave_distance += Number(this.items.timeframe[i].distance);
+                        }
+                        ave_distance = ave_distance/this.items.timeframe.length;
+                        ave_response = ave_response/this.items.timeframe.length;
+                        this.items[index]['ave_responce_time'] = ave_response;
+                        this.items[index]['ave_distance'] = ave_distance
                         console.log("item: "+index+" view: "+this.items[index].view );
                     }
                 }
