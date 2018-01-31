@@ -98,12 +98,14 @@
                                             <div class="col-sm-2">{{history.response_time}}</div>
                                             <div class="col-sm-2">{{history.distance+" km"}}</div>
                                             <div class="col-sm-1">{{history.condition}}</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">Ave response time: {{item.ave_responce_time}}</div>
-                                            <div class="col-sm-6">Ave distance: {{item.ave_distance}}</div>
-                                        </div>
+                                        </div>                                        
                                     </div>                                    
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-sm-6">Ave response time: {{item.ave_responce_time+" min"}} </div>
+                                        <div class="col-sm-6">Ave distance: {{item.ave_distance+" km"}}</div>
+                                    </div>
                                 </div>
                             </div>
                             <!--<ul class="list-group">
@@ -141,8 +143,17 @@
                         var history =localStorage.getItem("experiment_paper");
                         console.log('history: %o',JSON.parse(history));
                         this.items = JSON.parse(history);    
-                        for(var i = 0; i<this.items.length;i++){
-                            this.items[i]['view'] = false;
+                        for(var index = 0; index<this.items.length;index++){
+                            var ave_response = 0;
+                            var ave_distance = 0;
+                            for(var i = 0; i<this.items[index].timeframe.length;i++){
+                                ave_response += Number(this.items[index].timeframe[i].response_time.split(' ')[0]);
+                                ave_distance += Number(this.items[index].timeframe[i].distance);
+                            }
+                            ave_distance = ave_distance/this.items[index].timeframe.length;
+                            ave_response = ave_response/this.items[index].timeframe.length;
+                            this.items[index]['ave_responce_time'] = ave_response;
+                            this.items[index]['ave_distance'] = ave_distance
                         }
                         $('#progressDirection').hide();
                     },
@@ -160,7 +171,8 @@
                         ave_response = ave_response/this.items.timeframe.length;
                         this.items[index]['ave_responce_time'] = ave_response;
                         this.items[index]['ave_distance'] = ave_distance
-                        console.log("item: "+index+" view: "+this.items[index].view );
+                        console.log("item %o",this.items);
+                        //console.log("item: "+index+" view: "+this.items[index].view );
                     }
                 }
             })
