@@ -152,8 +152,8 @@
                             }
                             ave_distance = ave_distance/this.items[index].timeframe.length;
                             ave_response = ave_response/this.items[index].timeframe.length;
-                            this.items[index]['ave_responce_time'] = ave_response;
-                            this.items[index]['ave_distance'] = ave_distance
+                            this.items[index]['ave_responce_time'] = ave_response.toFixed(3);
+                            this.items[index]['ave_distance'] = ave_distance.toFixed(3);
                         }
                         $('#progressDirection').hide();
                     },
@@ -169,8 +169,8 @@
                         }
                         ave_distance = ave_distance/this.items.timeframe.length;
                         ave_response = ave_response/this.items.timeframe.length;
-                        this.items[index]['ave_responce_time'] = ave_response;
-                        this.items[index]['ave_distance'] = ave_distance
+                        this.items[index]['ave_responce_time'] = ave_response.toFixed(3);
+                        this.items[index]['ave_distance'] = ave_distance.toFixed(3);
                         console.log("item %o",this.items);
                         //console.log("item: "+index+" view: "+this.items[index].view );
                     }
