@@ -7,7 +7,8 @@ hospital_data = [
             'address': '49 Bayan-bayanan Ave. cor. T. Bugallon St. Marikina Heights, 1800, Marikina, Metro Manila, Philippines'
         },
         'available': 3,
-        'contact':'(02) 941 5511'
+        'contact':'(02) 941 5511',
+        'onGoing':false
     },
     {
         'name':'Marikina Valley Medical Center',
@@ -17,7 +18,8 @@ hospital_data = [
             'address': '300 Shoe Ave, Sto. Nino, Marikina, 1800 Metro Manila'
         },
         'available': 3,
-        'contact':'(02) 682 2222'
+        'contact':'(02) 682 2222',
+        'onGoing':false
     },
     {
         'name':'Amang Rodriguez Memorial Medical Center',
@@ -27,7 +29,8 @@ hospital_data = [
             'address': 'Sumulong Highway Sto. Nino, Marikina, 1800 Metro Manila'
         },
         'available': 3,
-        'contact': '(02) 941 5854'
+        'contact': '(02) 941 5854',
+        'onGoing':false
 
     },
     {
@@ -38,7 +41,8 @@ hospital_data = [
             'address': '444 JP Rizal, Sto Nino, Marikina, 1800 Metro Manila'
         },
         'available': 3,
-        'contact': '(02) 942 2022'
+        'contact': '(02) 942 2022',
+        'onGoing':false
 
     },
     /* {
@@ -60,7 +64,8 @@ hospital_data = [
             'address': '61 Katipunan St, Marikina, 1800 Metro Manila'
         },
         'available': 4,
-        'contact': '(02) 933 1405'
+        'contact': '(02) 933 1405',
+        'onGoing':false
     },
     {
         'name':'San Ramon Hospital',
@@ -70,7 +75,8 @@ hospital_data = [
             'address': '108 General Ordoñez Ave, Marikina, 1811 Metro Manila'
         },
         'available': 2,
-        'contact': '(02) 941 8632'
+        'contact': '(02) 941 8632',
+        'onGoing':false
     },
     {
         'name':'Immaculate Concepcion Hospital',
@@ -80,7 +86,8 @@ hospital_data = [
             'address': '195 Katipunan St, Marikina, 1800 Metro Manila'
         },
         'available': 2,
-        'contact': '(02) 941 9362'
+        'contact': '(02) 941 9362',
+        'onGoing':false
     },
     /*{
         'name':'St. John The Baptist Hospital',
@@ -100,7 +107,8 @@ hospital_data = [
             'address': 'Marikina-Infanta Hwy, Pasig, 1800 Metro Manila'
         },
         'available': 3,
-        'contact': '(02) 477 4832'
+        'contact': '(02) 477 4832',
+        'onGoing':false
     },
     {
         'name':'St. Vincent General Hospital',
@@ -110,7 +118,8 @@ hospital_data = [
             'address': '35 Bayan-Bayanan Ave, Marikina, 1800 Metro Manila'
         },
         'available': 3,
-        'contact': '(02) 369 7231'
+        'contact': '(02) 369 7231',
+        'onGoing':false
     },
     {
         'name':'St. Anthony Medical Center',
@@ -120,7 +129,8 @@ hospital_data = [
             'address': '32 Santa Ana Ext., Marikina, 1801 Metro Manila'
         },
         'available': 3,
-        'contact': '(02) 369 7231'
+        'contact': '(02) 369 7231',
+        'onGoing':false
     },
 
 ]

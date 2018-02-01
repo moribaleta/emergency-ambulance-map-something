@@ -186,8 +186,8 @@
             var infowindow;
             var directionsService;
             var emergency_marker = [];
-            var hostpital_list = JSON.parse(localStorage.getItem("hospital_list"));
-
+            var hospital_list = JSON.parse(localStorage.getItem("hospital_list"));
+            var hospital_list_og = JSON.parse(localStorage.getItem("hospital_list"));
             //initRoute();
             function getAveSpeed(i) {
                 var road = tree[i];
@@ -287,23 +287,35 @@
 
                 var infoWindow = new google.maps.InfoWindow(),
                     marker, i;
-                for (i = 0; i < hostpital_list.length; i++) {
-                    var position = new google.maps.LatLng(hostpital_list[i].location.lat, hostpital_list[i].location.long);
+                for (i = 0; i < hospital_list.length; i++) {
+                    var position = new google.maps.LatLng(hospital_list[i].location.lat, hospital_list[i].location.long);
                     bounds.extend(position);
+                    var icon = '';
+                    if(hospital_list[i].available>0){
+                       icon= 'resources/images/hospital_32.png';
+                    }
+                    if(hospital_list[i].available<hospital_list_og[i].available){
+                        icon = 'resources/images/on_going.png';
+                    }
+                    if(hospital_list[i].available<=0){
+                        icon = 'resources/images/no_available.png';
+                    }
+                    console.log("hospital: "+hospital_list[i].name+" : "+hospital_list[i].available+" vs "+"hospital: "+hospital_list_og[i].name+" : "+hospital_list_og[i].available);
+                    
                     marker = new google.maps.Marker({
                         position: position,
                         map: map,
-                        title: hostpital_list[i].name,
-                        icon: 'resources/images/hospital_32.png'
+                        title: hospital_list[i].name,
+                        icon: icon
                     });
 
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
                             var available = "<p class='danger'>no available emergency ambulance<p>";
-                            if (hostpital_list[i].available > 0) {
-                                available = "<p class='success'>available emergency ambulance: " + hostpital_list[i].available + "<p>";
+                            if (hospital_list[i].available > 0) {
+                                available = "<p class='success'>available emergency ambulance: " + hospital_list[i].available + "<p>";
                             }
-                            infoWindow.setContent(hostpital_list[i].name + "<br>" + available);
+                            infoWindow.setContent(hospital_list[i].name + "<br>" + available);
                             infoWindow.open(map, marker);
                         }
                     })(marker, i));
@@ -464,7 +476,7 @@
 
             function endResponse(position) {
                 var index = emergency_marker[position].hospital_pos;
-                hostpital_list[index].available++;
+                hospital_list[index].available++;
                 //saveHospital_data();
                 //console.log(index + "position");
                 emergency_marker[position].onGoing = false;
@@ -522,13 +534,13 @@
             }
             
             function openRoute(winner,emergency_location){
-                hostpital_list[winner.position].available--;
+                hospital_list[winner.position].available--;
                 var hospital = winner.hospital_detail;
                 var hospital_pos = setHospitalAvailable(winner);
                 
                 $('#button-modal-close').click();
                 emergency_marker[emergency_location.position].onGoing = true;
-                emergency_marker[emergency_location.position].hospital_pos = hospital_pos;
+                emergency_marker[emergency_location.position].hospital_pos = winner.position;
 
 
                 var emergency_elem;
@@ -581,10 +593,10 @@
             }
 
             function setHospitalAvailable(hospital_available) {
-                for (var i = 0; i < hostpital_list.length; i++) {
-                    //console.log(hospital_available.name+" vs "+hostpital_list[i].name)
-                    if (hospital_available.name == hostpital_list[i].name) {
-                        hostpital_list[i] = hospital_available;
+                for (var i = 0; i < hospital_list.length; i++) {
+                    //console.log(hospital_available.name+" vs "+hospital_list[i].name)
+                    if (hospital_available.name == hospital_list[i].name) {
+                        hospital_list[i] = hospital_available;
                         //console.log("hospital_pos "+i);
                         //saveHospital_data();
                         return i;
@@ -594,9 +606,9 @@
 
             function getAvailableHospital() {
                 var hospital_available = [];
-                for (var i = 0; i < hostpital_list.length; i++) {
-                    if (hostpital_list[i].available > 0) {
-                        hospital_available.push(hostpital_list[i]);
+                for (var i = 0; i < hospital_list.length; i++) {
+                    if (hospital_list[i].available > 0) {
+                        hospital_available.push(hospital_list[i]);
                     }
                 }
                 return hospital_available;
