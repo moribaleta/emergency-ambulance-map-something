@@ -56,7 +56,7 @@
         <div id="map"></div>   
         <!-- Modal -->
 
-        <button id="button_reload" onclick="initMap()">back</button>
+        <button id="button_reload" onclick="resetMarker()">back</button>
         <script src="resources/json/road_coordinates2.json"></script>
 
         <script>
@@ -70,6 +70,14 @@
                 name: null,
                 coordinates: [
                 ]
+            }
+
+            function resetMarker(){
+                path.name = null;
+                
+                path.coordinates = [];
+                initMap();
+                //map.clearOverlays();
             }
 
             function initMap() {
@@ -93,18 +101,11 @@
                                 { hue: '#00ffee' },
                                 { saturation: 50 }
                             ]
-                        },{
-                            featureType: 'poi.business',
-                            elementType: 'labels',
-                            stylers: [
-                                { visibility: 'off' }
-                            ]
                         }
                     ]
                 });
 
-                var trafficLayer = new google.maps.TrafficLayer();
-                trafficLayer.setMap(map);
+               
 
                 var bounds = new google.maps.LatLngBounds();
 
@@ -187,7 +188,7 @@
                 });
 
 
-               /* var contentMessage = '<p>marker: '+position.latitude+","+position.longitude+'</p>';
+                /* var contentMessage = '<p>marker: '+position.latitude+","+position.longitude+'</p>';
 
                 var infoEmergency = new google.maps.InfoWindow({
                     content:
@@ -197,7 +198,7 @@
 */
 
 
-            /*    infoEmergency.open(map, emergencymarker);*/
+                /*    infoEmergency.open(map, emergencymarker);*/
 
                 google.maps.event.addListener(emergencymarker, 'click', function() {
                     infoEmergency.open(map, emergencymarker);
