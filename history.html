@@ -1,126 +1,130 @@
 <html>
     <head>
-    <title>History</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="resources/css/main.css">
-    <script type="text/javascript" src="resources/json/coordinates.json"></script>
-    <script src="resources/js/jquery-3.0.0.min.js"></script>
-    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
-    <style>
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-y: unset;
-        }
+        <title>History</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="resources/css/main.css">
+        <script type="text/javascript" src="resources/json/coordinates.json"></script>
+        <script src="resources/js/jquery-3.0.0.min.js"></script>
+        <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+        <style>
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                overflow-y: unset;
+            }
 
-        #content {
-            padding-top: 50px;
-        }
+            #content {
+                padding-top: 50px;
+            }
 
-        #map {
-            height: 100%;
-            z-index: 0;
-        }
+            #map {
+                height: 100%;
+                z-index: 0;
+            }
 
-        .glyphicon-chevron-down {
-            color: dimgray;
-        }
+            .glyphicon-chevron-down {
+                color: dimgray;
+            }
 
-        .dropdown-button {
-            position: absolute;
-            right: 10px;
-        }
+            .dropdown-button {
+                position: absolute;
+                right: 10px;
+            }
 
-        /*#myChart{
+            /*#myChart{
             height: auto!important;
             width: 100%!important;
             }*/
-    </style>
+        </style>
 
 
-    <script src="resources/js/vue.js"></script>
-    <script src="resources/js/Chart.min.js"></script>
-</head>
+        <script src="resources/js/vue.js"></script>
+        <script src="resources/js/Chart.min.js"></script>
+    </head>
 
-<body>
-    <nav class="navbar navbar-inverse" id="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <body>
+        <nav class="navbar navbar-inverse" id="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span> 
                     </button>
-                <a class="navbar-brand" href="#">iAmbulansiya</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="map.html">Home</a></li>
-                    <li><a href="hospital.html">Hospital</a></li>
-                    <li class="active"><a href="history.html">History</a></li>
-                    <li><a href="abouts.html">About</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <div id="warnings-panel"></div>
-                </ul>
-            </div>
-            <div class="progress" id="progressDirection">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                    please wait...
+                    <a class="navbar-brand" href="#">iAmbulansiya</a>
                 </div>
-            </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="map.html">Home</a></li>
+                        <li><a href="hospital.html">Hospital</a></li>
+                        <li class="active"><a href="history.html">History</a></li>
+                        <li><a href="abouts.html">About</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <div id="warnings-panel"></div>
+                    </ul>
+                </div>
+                <div class="progress" id="progressDirection">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        please wait...
+                    </div>
+                </div>
 
-        </div>
-    </nav>
-    <div class="container" id="content">
-        <div id="history_list">
-            <ul id="history_list" class="list-group">
-                <li v-for="item,index in items" class="list-group-item">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="text-item">{{ item.name }} + {{item.time}}</div>
-                            </div>
-                            <div class="col-md-1">
-                                <a v-bind:href=" '#collapse-' + index" data-toggle="collapse" class="dropdown-button">
+            </div>
+        </nav>
+        <div class="container" id="content">
+            <div id="history_list">
+                <ul id="history_list" class="list-group">
+                    <li v-for="item,index in items" class="list-group-item">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="text-item">{{ item.name }} + {{item.time}}</div>
+                                </div>
+                                <div class="col-md-1">
+                                    <a v-bind:href=" '#collapse-' + index" data-toggle="collapse" class="dropdown-button">
                                         <span class="glyphicon glyphicon-chevron-down"></span>
                                     </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--<a href="#demo" data-toggle="collapse">Collapsible</a>-->
-                    <div v-bind:id=" 'collapse-' + index" class="collapse">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-sm-5">Hospital</div>
-                                    <div class="col-sm-2">Response Time</div>
-                                    <div class="col-sm-2">Distance</div>
-                                    <div class="col-sm-1">Traffic Condition</div>
                                 </div>
                             </div>
-                            <div class="panel-body">
-                                <div class="container">
-                                    <div class="row" v-for='history,index_history in item.timeframe'>
-                                        <div class="col-sm-4">{{(index_history+1)+". "+history.hospital_detail.name}}</div>
-                                        <div class="col-sm-2">{{history.response_time}}</div>
-                                        <div class="col-sm-2">{{history.distance+" km"}}</div>
-                                        <div class="col-sm-1">{{history.condition}}</div>
+                        </div>
+                        <!--<a href="#demo" data-toggle="collapse">Collapsible</a>-->
+                        <div v-bind:id=" 'collapse-' + index" class="collapse">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-4">Hospital</div>
+                                            <div class="col-sm-2">Response Time</div>
+                                            <div class="col-sm-2">Distance</div>
+                                            <div class="col-sm-2">Traffic Condition</div>
+                                            <div class="col-sm-1">Date<br>(dd,mm,yy)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="container">
+                                        <div class="row" v-for='history,index_history in item.timeframe'>
+                                            <div class="col-sm-4">{{(index_history+1)+". "+history.hospital_detail.name}}</div>
+                                            <div class="col-sm-2">{{history.response_time}}</div>
+                                            <div class="col-sm-2">{{history.distance+" km"}}</div>
+                                            <div class="col-sm-2">{{history.condition}}</div>
+                                            <div class="col-sm-1">{{history.date}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-sm-6">Ave response time: {{item.ave_responce_time+" min"}} </div>
+                                        <div class="col-sm-6">Ave distance: {{item.ave_distance+" km"}}</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col-sm-6">Ave response time: {{item.ave_responce_time+" min"}} </div>
-                                    <div class="col-sm-6">Ave distance: {{item.ave_distance+" km"}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--<ul class="list-group">
+                            <!--<ul class="list-group">
 <li v-for='history,index_history in item.timeframe' class="list-group-item">
 
 <div class="container">
@@ -135,44 +139,45 @@
 </div>
 </li>
 </ul>   -->
-                    </div>
-                </li>
-            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="graph">
+                <canvas id="response_time"></canvas>
+                <canvas id="distance"></canvas>
+                <canvas id="weekdays"></canvas>
+            </div>
         </div>
-        <div id="graph">
-            <canvas id="response_time"></canvas>
-            <canvas id="distance"></canvas>
-        </div>
-    </div>
 
-    <script>
-        var example1 = new Vue({
-            el: '#history_list',
-            data: {
-                items: [
+        <script>
+            var example1 = new Vue({
+                el: '#history_list',
+                data: {
+                    items: [
 
-                ]
-            },
-            methods: {
-                getList: function() {
-                    var history = localStorage.getItem("experiment_paper");
-                    console.log('history: %o', JSON.parse(history));
-                    this.items = JSON.parse(history);
-                    for (var index = 0; index < this.items.length; index++) {
-                        var ave_response = 0;
-                        var ave_distance = 0;
-                        for (var i = 0; i < this.items[index].timeframe.length; i++) {
-                            ave_response += Number(this.items[index].timeframe[i].response_time.split(' ')[0]);
-                            ave_distance += Number(this.items[index].timeframe[i].distance);
-                        }
-                        ave_distance = ave_distance / this.items[index].timeframe.length;
-                        ave_response = ave_response / this.items[index].timeframe.length;
-                        this.items[index]['ave_responce_time'] = ave_response.toFixed(3);
-                        this.items[index]['ave_distance'] = ave_distance.toFixed(3);
-                    }
-                    $('#progressDirection').hide();
+                    ]
                 },
-                viewlist: function(index) {
+                methods: {
+                    getList: function() {
+                        var history = localStorage.getItem("experiment_paper");
+                        console.log('history: %o', JSON.parse(history));
+                        this.items = JSON.parse(history);
+                        for (var index = 0; index < this.items.length; index++) {
+                            var ave_response = 0;
+                            var ave_distance = 0;
+                            for (var i = 0; i < this.items[index].timeframe.length; i++) {
+                                ave_response += Number(this.items[index].timeframe[i].response_time.split(' ')[0]);
+                                ave_distance += Number(this.items[index].timeframe[i].distance);
+                            }
+                            ave_distance = ave_distance / this.items[index].timeframe.length;
+                            ave_response = ave_response / this.items[index].timeframe.length;
+                            this.items[index]['ave_responce_time'] = ave_response.toFixed(3);
+                            this.items[index]['ave_distance'] = ave_distance.toFixed(3);
+                        }
+                        $('#progressDirection').hide();
+                    },
+                    /*viewlist: function(index) {
                     this.items[index].view = !this.items[index].view;
                     this.items[index]['ave_responce_time'] = 0;
                     this.items[index]['ave_distance'] = 0;
@@ -188,42 +193,79 @@
                     this.items[index]['ave_distance'] = ave_distance.toFixed(3);
                     console.log("item %o", this.items);
                     //console.log("item: "+index+" view: "+this.items[index].view );
+                }*/
+                }
+            })
+            example1.getList();
+
+
+            function init() {
+                var history_list = JSON.parse(localStorage.getItem("experiment_paper"));
+                history_list.forEach(function(item) {
+                    generateItem(item);
+                })
+
+            }
+
+            function generateItem() {
+
+            }
+        </script>
+
+        <script>
+            var response_time_element = document.getElementById("response_time");
+            var distance_element = document.getElementById("distance");
+            var weekday_element = document.getElementById("weekdays");
+
+            var items = example1.items;
+            var data_response_time = [];
+            var data_distance = [];
+            var data_weekdays = [];
+            var data_weekdays_count = [];
+            data_weekdays[0] = 0;
+            data_weekdays[1] = 0;
+            data_weekdays[2] = 0;
+            data_weekdays[3] = 0;
+            data_weekdays[4] = 0;
+            data_weekdays[5] = 0;
+            data_weekdays[6] = 0;
+            data_weekdays_count[0] = 0;
+            data_weekdays_count[1] = 0;
+            data_weekdays_count[2] = 0;
+            data_weekdays_count[3] = 0;
+            data_weekdays_count[4] = 0;
+            data_weekdays_count[5] = 0;
+            data_weekdays_count[6] = 0;
+            for (var i = 0; i < items.length; i++) {
+                data_response_time.push(items[i].ave_responce_time);
+                data_distance.push(items[i].ave_distance);
+                for(var j = 0; j<items[i].timeframe.length; j++){
+                    var date = new Date();
+                    //date.setDate(items[i].timeframe[j].date);
+                    var item_date = items[i].timeframe[j].date.split("/");
+                    date.setFullYear(item_date[2], item_date[0]-1, item_date[1]);
+                    day = date.getDay();
+                    data_weekdays[day+1] += items[i].timeframe[j].response_time.split(' ')[0];
+                    data_weekdays_count[day+1]++;
+                }            
+
+            }
+
+            for(var i = 0; i<data_weekdays.length; i++){
+                if(data_weekdays[i]>0){
+                    data_weekdays[i] = data_weekdays[i]/data_weekdays_count[i];
                 }
             }
-        })
-        example1.getList();
 
 
-        function init() {
-            var history_list = JSON.parse(localStorage.getItem("experiment_paper"));
-            history_list.forEach(function(item) {
-                generateItem(item);
-            })
 
-        }
 
-        function generateItem() {
 
-        }
-    </script>
-
-    <script>
-        var response_time_element = document.getElementById("response_time");
-        var distance_element = document.getElementById("distance");
-
-        var items = example1.items;
-        var data_response_time = [];
-        var data_distance = [];
-        for (var i = 0; i < items.length; i++) {
-            data_response_time.push(items[i].ave_responce_time);
-            data_distance.push(items[i].ave_distance);
-        }
-
-        var response_time_chart = new Chart(response_time_element, {
-            type: 'horizontalBar',
-            data: {
-                labels: ["Rush Hour AM", "Off Pick Noon", "Rush Hour PM", "Off Pick MN"],
-                datasets: [{
+            var response_time_chart = new Chart(response_time_element, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ["Rush Hour AM", "Off Pick Noon", "Rush Hour PM", "Off Pick MN"],
+                    datasets: [{
                         label: 'ave response time in min',
                         data: data_response_time,
                         backgroundColor: [
@@ -244,25 +286,25 @@
                         ],
                         borderWidth: 1
                     },
-                   
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+
+                              ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
-            }
-        });
-        
-          var distance_chart = new Chart(distance_element, {
-            type: 'bar',
-            data: {
-                labels: ["Rush Hour AM", "Off Pick Noon", "Rush Hour PM", "Off Pick MN"],
-                datasets: [{
+            });
+
+            var distance_chart = new Chart(distance_element, {
+                type: 'bar',
+                data: {
+                    labels: ["Rush Hour AM", "Off Pick Noon", "Rush Hour PM", "Off Pick MN"],
+                    datasets: [{
                         label: 'ave distance in km',
                         data: data_distance,
                         backgroundColor: [
@@ -283,24 +325,55 @@
                         ],
                         borderWidth: 1
                     },
-                   
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-        
-        
-       
-        
-    </script>
 
-</body>
+                              ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            console.log("weekdays %o",data_weekdays);
+
+            var weekday_chart = new Chart(weekday_element, {
+                type: 'line',
+                data: {
+                    labels: ["Mon", "Tues", "Wed", "Thur","Fri","Sat","Sun"],
+                    datasets: [{
+                        label: 'ave response time per weekdays',
+                        data: data_weekdays,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                        ],
+                        borderWidth: 1
+                    },
+
+                              ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+
+
+        </script>
+
+    </body>
 </html>

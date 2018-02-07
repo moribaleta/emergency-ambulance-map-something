@@ -83,7 +83,7 @@
                                     <div class="col-sm-1">Traffic Condition</div>
                                 </div>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" v-if='items!=null'>
                                 <div class="row" v-for='hospital,index in items'>
                                     <div class="col-sm-6">{{(index+1)+". "+hospital.hospital_detail.name}}</div>
                                     <div class="col-sm-2">{{hospital.response_time+" min"}}</div>
@@ -94,7 +94,7 @@
                         </div>
 
 
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" v-if='winner!=null'>
                             <div class="panel-heading">The Best Route:</div>
                             <div class="panel-body">
                                 <div class="col-sm-7">{{winner.hospital_detail.name}}</div>
@@ -293,7 +293,7 @@
                     bounds.extend(position);
                     var icon = '';
                     if(hospital_list[i].available>0){
-                       icon= 'resources/images/hospital_32.png';
+                        icon= 'resources/images/hospital_32.png';
                     }
                     if(hospital_list[i].available<hospital_list_og[i].available){
                         icon = 'resources/images/on_going.png';
@@ -302,7 +302,7 @@
                         icon = 'resources/images/no_available.png';
                     }
                     console.log("hospital: "+hospital_list[i].name+" : "+hospital_list[i].available+" vs "+"hospital: "+hospital_list_og[i].name+" : "+hospital_list_og[i].available);
-                    
+
                     marker = new google.maps.Marker({
                         position: position,
                         map: map,
@@ -533,12 +533,12 @@
                 var winner = path_detail.detail[winner_index];
                 modal_vue.setList(path_detail, winner,emergency_location);                
             }
-            
+
             function openRoute(winner,emergency_location){
                 hospital_list[winner.position].available--;
                 var hospital = winner.hospital_detail;
                 var hospital_pos = setHospitalAvailable(winner);
-                
+
                 $('#button-modal-close').click();
                 emergency_marker[emergency_location.position].onGoing = true;
                 emergency_marker[emergency_location.position].hospital_pos = winner.position;
@@ -569,15 +569,18 @@
 
 
 
-
-
             function saveResponseTime(hospital, emergency_loc) {
-                
+
                 //var responseTime = hospital.response_time.toFixed(3);
                 hospital.response_time = hospital.response_time + " min";
                 //hospital['name'] = hospital.hospital_detail.name;
                 hospital['emergency_location'] = tree[emergency_loc].coordinates;
-
+                var currentDate = new Date()
+                var day = currentDate.getDate()
+                var month = currentDate.getMonth() + 1
+                var year = currentDate.getFullYear()                
+                //document.write(today);
+                hospital['date'] = "" + day + "/" + month + "/" + year + "";
                 console.log('saveResponseTime: hospital %o',hospital);
                 var history_list = JSON.parse(localStorage.getItem("experiment_paper"));
                 var today = new Date().getHours();
@@ -675,9 +678,9 @@
 
                     //console.log("distance: ", path_distance);
                     var time = getResponseTime(path_data);
-                     console.log(time);
+                    console.log(time);
                     if (time.time < min || min == null) {
-                       
+
                         min = time.time;
                         winner = x;
                     }
