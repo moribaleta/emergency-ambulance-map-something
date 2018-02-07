@@ -236,6 +236,22 @@
             data_weekdays_count[4] = 0;
             data_weekdays_count[5] = 0;
             data_weekdays_count[6] = 0;
+            var data_distance_weekdays = [];
+            var data_distance_weekdays_count = [];
+            data_distance_weekdays[0] = 0;
+            data_distance_weekdays[1] = 0;
+            data_distance_weekdays[2] = 0;
+            data_distance_weekdays[3] = 0;
+            data_distance_weekdays[4] = 0;
+            data_distance_weekdays[5] = 0;
+            data_distance_weekdays[6] = 0;
+            data_distance_weekdays_count[0] = 0;
+            data_distance_weekdays_count[1] = 0;
+            data_distance_weekdays_count[2] = 0;
+            data_distance_weekdays_count[3] = 0;
+            data_distance_weekdays_count[4] = 0;
+            data_distance_weekdays_count[5] = 0;
+            data_distance_weekdays_count[6] = 0;
             for (var i = 0; i < items.length; i++) {
                 data_response_time.push(items[i].ave_responce_time);
                 data_distance.push(items[i].ave_distance);
@@ -245,8 +261,10 @@
                     var item_date = items[i].timeframe[j].date.split("/");
                     date.setFullYear(item_date[2], item_date[0]-1, item_date[1]);
                     day = date.getDay();
-                    data_weekdays[day+1] += items[i].timeframe[j].response_time.split(' ')[0];
+                    data_weekdays[day+1] += Number(items[i].timeframe[j].response_time.split(' ')[0]);
                     data_weekdays_count[day+1]++;
+                    data_distance_weekdays[day+1] += Number(items[i].timeframe[j].distance);
+                    data_distance_weekdays_count[day+1]++;
                 }            
 
             }
@@ -254,6 +272,9 @@
             for(var i = 0; i<data_weekdays.length; i++){
                 if(data_weekdays[i]>0){
                     data_weekdays[i] = data_weekdays[i]/data_weekdays_count[i];
+                }
+                if(data_distance_weekdays[i]>0){
+                    data_distance_weekdays[i] = (data_distance_weekdays[i]/data_distance_weekdays_count[i]).toFixed(2);
                 }
             }
 
@@ -340,24 +361,25 @@
             });
 
             console.log("weekdays %o",data_weekdays);
+            console.log("weekdays %o",data_distance_weekdays);
 
-            var weekday_chart = new Chart(weekday_element, {
+
+            var mixedChart = new Chart(weekday_element, {
                 type: 'line',
                 data: {
-                    labels: ["Mon", "Tues", "Wed", "Thur","Fri","Sat","Sun"],
                     datasets: [{
-                        label: 'ave response time per weekdays',
+                        label: 'ave response time per day',
                         data: data_weekdays,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                        ],
-                        borderWidth: 1
-                    },
-
-                              ]
+                        borderColor: 'rgba(255,99,132,1)',
+                        backgroundColor: 'rgba(0,0,0,0)'
+                    }, {
+                        label: 'ave distance per day in km',
+                        data: data_distance_weekdays,
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        backgroundColor: 'rgba(0,0,0,0)'
+                        // Changes this dataset to become a line
+                    }],
+                    labels:["Mon", "Tues", "Wed", "Thur","Fri","Sat","Sun"],
                 },
                 options: {
                     scales: {
@@ -369,6 +391,33 @@
                     }
                 }
             });
+
+            /*  var weekday_chart = new Chart(weekday_element, {
+                type: 'line',
+                data: [{
+                labels: ["Mon", "Tues", "Wed", "Thur","Fri","Sat","Sun"],
+                datasets: [
+                    {
+                        label: 'ave response time per day',
+                        data: data_weekdays,
+
+                    },{
+                        label: 'ave distance per day',
+                        data: data_distance_weekdays,
+
+                    } 
+
+                ]
+                options: {
+                scales: {
+                yAxes: [{
+                ticks: {
+                beginAtZero: true
+            }
+                                          }]
+                                          }
+                                          }
+                                          });*/
 
 
 
