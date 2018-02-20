@@ -151,9 +151,12 @@
 
                 }
                 
-                var url_data = window.location.href.split('route.html?').pop();
+                var url_data = window.location.href.split('route_email.html?').pop();
+                url_data = url_data.split("%7B").join('{');
+                url_data = url_data.split("%7D").join('}');
                 url_data = url_data.split("%20").join('');
                 url_data = url_data.split("%22").join('"');
+                url_data = url_data.split("$").join('"');
                 var hospital = url_data.split("**")[0];
                 var emergency = url_data.split("**")[1];
                 
