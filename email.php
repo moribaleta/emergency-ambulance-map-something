@@ -2,7 +2,7 @@
 $link = $_GET['link'];
 $address = $_GET['address'];
 //$to      = 'viann.montalba019@gmail.com';
-$to      = 'amangrodriguezhospital@mailinator.com';
+$to      = $_GET['email'];
 
 $subject = 'Emergency response';
 
@@ -25,6 +25,8 @@ $message = /*'<h2>iAmbulansya Emergency Message</h2>
 
 
 $headers = 'From: iambulansya@iambulansya.000webhostapp.com' . "\r\n" .
+    'Cc: viann.montalba019@gmail.com\r\n'.
+    'Bcc: moribaleta@gmail.com\r\n'.
     'Reply-To: webmaster@example.com' . "\r\n" . "Content-Type: text/html; charset=ISO-8859-1\r\n".
     'X-Mailer: PHP/' . phpversion();
 //$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";

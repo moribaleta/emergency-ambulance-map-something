@@ -389,7 +389,7 @@ header('Access-Control-Allow-Origin: *');
                     });
 
 
-                  /*  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    /*  google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
                             var contentMessage = '<p>' + tree[i].name + " location: " + tree[i].coordinates.lat + "," + tree[i].coordinates.lng + '</p>';
                             infoWindow.setContent(contentMessage);
@@ -580,11 +580,16 @@ header('Access-Control-Allow-Origin: *');
                         console.log(data);
                         $.get( "email.php", { 
                             link: 'route_email.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location),
-                            address: data.results[0].formatted_address
-                                            } );
+                            address: data.results[0].formatted_address,
+                            email: hospital_list[winner.position].email
+                        } );
+                        
+                        console.log('address: '+data.results[0].formatted_address,
+                            email: hospital_list[winner.position].email);
+                        console.log('email: '+hospital_list[winner.position].email);
                     }
                 });
-                
+
 
                 window.open('route.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location));
                 initMap();
