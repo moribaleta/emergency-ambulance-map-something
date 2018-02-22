@@ -584,8 +584,7 @@ header('Access-Control-Allow-Origin: *');
                             email: hospital_list[winner.position].email
                         } );
                         
-                        console.log('address: '+data.results[0].formatted_address,
-                            email: hospital_list[winner.position].email);
+                        console.log('address: '+data.results[0].formatted_address);
                         console.log('email: '+hospital_list[winner.position].email);
                     }
                 });
