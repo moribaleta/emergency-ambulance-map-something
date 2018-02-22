@@ -468,9 +468,7 @@
             }
 
             function removeMarker(position) {
-                //alert('remove: ' + position);
-                emergency_marker.splice(position, 1);
-                //saveEmergencyMarker();                
+                emergency_marker.splice(position, 1);           
                 initMap();
             }
 
@@ -482,11 +480,8 @@
             function endResponse(position) {
                 var index = emergency_marker[position].hospital_pos;
                 hospital_list[index].available++;
-                //saveHospital_data();
-                //console.log(index + "position");
                 emergency_marker[position].onGoing = false;
-                emergency_marker.splice(position, 1);
-                //saveEmergencyMarker();       
+                emergency_marker.splice(position, 1);                 
                 initMap();
             }
 
@@ -496,40 +491,7 @@
                 var path_detail = getNearestHospital(hospital_available, emergency_location);
                 emergency_location['position'] = position;
                 $("#button_modal").click();
-                showDetail(path_detail,emergency_location);
-                /*
-            if (confirm("best place " + hospital_available[optimal_hospital.hospital_index].name + " total distance: " + optimal_hospital.distance + ", response time: " + optimal_hospital.response_time.toFixed(3) + "minutes, do you want to proceed?")) {
-                //console.log("winner %o", optimal_hospital);
-                hospital_available[optimal_hospital.hospital_index].available--;
-                var hospital = hospital_available[optimal_hospital.hospital_index];
-                var hospital_pos = setHospitalAvailable(hospital, position);
-                emergency_marker[position].onGoing = true;
-                emergency_marker[position].hospital_pos = hospital_pos;
-
-
-                var emergency_elem;
-                try{
-                    emergency_elem= {
-                        lat: emergency_location.lat(),
-                        lng: emergency_location.lng()
-                    }}catch(e){
-
-                        emergency_elem= {
-                            lat: emergency_location.lat,
-                            lng: emergency_location.lng
-                        }
-                    }
-                var emergency_loc = getNearest(emergency_elem, tree);
-                saveResponseTime(optimal_hospital,emergency_loc);
-                //saveEmergencyMarker();
-                //localStorage.setItem("Hospital", JSON.stringify(hospital_available[optimal_hospital.hospital_index]));
-
-
-                //localStorage.setItem("Emergency", JSON.stringify(emergency_location));
-                window.open('route.html?'+JSON.stringify(hospital_available[optimal_hospital.hospital_index])+"**"+JSON.stringify(emergency_location));
-                initMap();
-            }*/
-
+                showDetail(path_detail,emergency_location);              
             }
 
             function showDetail(path_detail,emergency_location) {
@@ -562,14 +524,16 @@
                     }
                 var emergency_loc = getNearest(emergency_elem, tree);
                 saveResponseTime(winner,emergency_loc);
-                //saveEmergencyMarker();
-                //localStorage.setItem("Hospital", JSON.stringify(hospital_available[optimal_hospital.hospital_index]));
-
-
-                //localStorage.setItem("Emergency", JSON.stringify(emergency_location));
-
-                /*$.get('email.php?link='+'route.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location));*/
-
+                //$.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=44.4647452,7.3553838&sensor=true')
+                 jQuery.ajax({
+                    url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+emergency_elem.lat+','+emergency_elem.lng+'&sensor=true/false',
+                    cache: false,
+                    async: true,
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+                
                 $.get( "email.php", { link: 'route_email.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location)} );
 
                 window.open('route.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location));

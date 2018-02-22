@@ -389,13 +389,13 @@ header('Access-Control-Allow-Origin: *');
                     });
 
 
-                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                  /*  google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
                             var contentMessage = '<p>' + tree[i].name + " location: " + tree[i].coordinates.lat + "," + tree[i].coordinates.lng + '</p>';
                             infoWindow.setContent(contentMessage);
                             infoWindow.open(map, marker);
                         }
-                    })(marker, i));
+                    })(marker, i));*/
                 }
             }
 
@@ -572,8 +572,19 @@ header('Access-Control-Allow-Origin: *');
                 //localStorage.setItem("Emergency", JSON.stringify(emergency_location));
 
                 /*$.get('email.php?link='+'route.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location));*/
-
-                $.get( "email.php", { link: 'route_email.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location)} );
+                $.ajax({
+                    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+emergency_elem.lat+','+emergency_elem.lng+'&sensor=true/false',
+                    cache: false,
+                    async: true,
+                    success: function(data) {
+                        console.log(data);
+                        $.get( "email.php", { 
+                            link: 'route_email.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location),
+                            address: data.results[0].formatted_address
+                                            } );
+                    }
+                });
+                
 
                 window.open('route.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location));
                 initMap();
