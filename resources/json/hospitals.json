@@ -8,7 +8,8 @@ hospital_data = [
         },
         'available': 3,
         'contact':'(02) 941 5511',
-        'onGoing':false
+        'onGoing':false,
+        'email':'garciahospital@mailinator.com'
     },
     {
         'name':'Marikina Valley Medical Center',
@@ -19,7 +20,8 @@ hospital_data = [
         },
         'available': 3,
         'contact':'(02) 682 2222',
-        'onGoing':false
+        'onGoing':false,
+        'email':'marikinavalleyhospital@mailinator.com'
     },
     {
         'name':'Amang Rodriguez Memorial Medical Center',
@@ -30,7 +32,8 @@ hospital_data = [
         },
         'available': 3,
         'contact': '(02) 941 5854',
-        'onGoing':false
+        'onGoing':false,
+        'email':'amangrodriguezhospital@mailinator.com'
 
     },
     {
@@ -42,7 +45,8 @@ hospital_data = [
         },
         'available': 3,
         'contact': '(02) 942 2022',
-        'onGoing':false
+        'onGoing':false,
+        'email':'stvictoriahospital@mailinator.com'
 
     },
     /* {
@@ -65,7 +69,8 @@ hospital_data = [
         },
         'available': 4,
         'contact': '(02) 933 1405',
-        'onGoing':false
+        'onGoing':false,
+        'email':'sdshospital@mailinator.com'
     },
     {
         'name':'San Ramon Hospital',
@@ -76,7 +81,8 @@ hospital_data = [
         },
         'available': 2,
         'contact': '(02) 941 8632',
-        'onGoing':false
+        'onGoing':false,
+        'email':'sanramonhospital@mailinator.com'
     },
     {
         'name':'Immaculate Concepcion Hospital',
@@ -87,7 +93,8 @@ hospital_data = [
         },
         'available': 2,
         'contact': '(02) 941 9362',
-        'onGoing':false
+        'onGoing':false,
+        'email':'immaculateconcepcionhospital@mailinator.com'
     },
     /*{
         'name':'St. John The Baptist Hospital',
@@ -108,7 +115,8 @@ hospital_data = [
         },
         'available': 3,
         'contact': '(02) 477 4832',
-        'onGoing':false
+        'onGoing':false,
+        'email':'salvereginahospital@mailinator.com'
     },
     {
         'name':'St. Vincent General Hospital',
@@ -119,7 +127,8 @@ hospital_data = [
         },
         'available': 3,
         'contact': '(02) 369 7231',
-        'onGoing':false
+        'onGoing':false,
+        'email':'stvincenthospital@mailinator.com'
     },
     {
         'name':'St. Anthony Medical Center',
@@ -130,7 +139,8 @@ hospital_data = [
         },
         'available': 3,
         'contact': '(02) 369 7231',
-        'onGoing':false
+        'onGoing':false,
+        'email':'stanthonyhospital@mailinator.com'
     },
 
 ]
