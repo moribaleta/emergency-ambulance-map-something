@@ -25,8 +25,7 @@ $message = /*'<h2>iAmbulansya Emergency Message</h2>
 
 
 $headers = 'From: iambulansya@iambulansya.000webhostapp.com' . "\r\n" .
-    'Cc: viann.montalba019@gmail.com\r\n'.
-    'Bcc: moribaleta@gmail.com\r\n'.
+    'Cc: viann.montalba019@gmail.com\r\n'.    
     'Reply-To: webmaster@example.com' . "\r\n" . "Content-Type: text/html; charset=ISO-8859-1\r\n".
     'X-Mailer: PHP/' . phpversion();
 //$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
@@ -37,7 +36,7 @@ $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";*/
 
 mail($to, $subject, $message, $headers);
-
+echo print_r(error_get_last());
 /*$fromTitle = "Emergency response";
 $emailFrom = 'iambulansya@iambulansya.000webhostapp.com';
 $emailTo   = 'moribaleta@gmail.com';

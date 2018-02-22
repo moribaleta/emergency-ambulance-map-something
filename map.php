@@ -100,10 +100,12 @@ header('Access-Control-Allow-Origin: *');
 
                         <div class="panel panel-default" v-if='winner!=null'>
                             <div class="panel-heading">The Best Route:</div>
-                            <div class="panel-body">
+                            <div class="panel-body">                                
                                 <div class="col-sm-7">{{winner.hospital_detail.name}}</div>
                                 <div class="col-sm-3">{{winner.response_time+" min"}}</div>
                                 <div class="col-sm-2">{{winner.distance+" km"}}</div>
+                                <br>
+                                <div class="col-sm-12"><p>an email will be sent to {{winner.hospital_detail.email}}</p></div>
                             </div>
                         </div>
                         <!--</div>-->
@@ -572,20 +574,29 @@ header('Access-Control-Allow-Origin: *');
                 //localStorage.setItem("Emergency", JSON.stringify(emergency_location));
 
                 /*$.get('email.php?link='+'route.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location));*/
+
                 $.ajax({
                     url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+emergency_elem.lat+','+emergency_elem.lng+'&sensor=true/false',
                     cache: false,
                     async: true,
                     success: function(data) {
                         console.log(data);
-                        $.get( "email.php", { 
-                            link: 'route_email.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location),
-                            address: data.results[0].formatted_address,
-                            email: hospital_list[winner.position].email
-                        } );
-                        
-                        console.log('address: '+data.results[0].formatted_address);
-                        console.log('email: '+hospital_list[winner.position].email);
+                        try{
+                            $.get( "email.php", { 
+                                link: 'route_email.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location),
+                                address: data.results[0].formatted_address,
+                                email: hospital_list[winner.position].email
+                            } );
+                            console.log('address: '+data.results[0].formatted_address);
+                            console.log('email: '+hospital_list[winner.position].email);
+                        }catch(err){
+                            $.get( "email.php", { 
+                                link: 'route_email.html?'+JSON.stringify(hospital)+"**"+JSON.stringify(emergency_location),
+                                address:'not available',
+                                email: hospital_list[winner.position].email
+                            } );
+                            console.log('email: '+hospital_list[winner.position].email);
+                        }
                     }
                 });
 
