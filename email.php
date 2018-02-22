@@ -2,26 +2,26 @@
 $link = $_GET['link'];
 $address = $_GET['address'];
 //$to      = 'viann.montalba019@gmail.com';
-$to      = 'moribaleta@gmail.com';
+$to      = 'amangrodriguezhospital@mailinator.com';
 
 $subject = 'Emergency response';
 
 $link = str_replace('"', "$",$link);
-
+$address = str_replace(", ",",",$address);
 $message = /*'<h2>iAmbulansya Emergency Message</h2>
             <p>please send immediate response to this location</p>
             <p>address: '.$address.'</p>
             <a href="https://iambulansya.000webhostapp.com/'.$link.'">click to view route</a>';*/
         '<img src="iambulansya.000webhostapp.com/resources/images/background_email.png">
         <h2>iAmbulansya Emergency Alert:</h2>
-        <p>Our system detected a vehicular accident at ('.$address.'). Please
+        <p>Our system detected a vehicular accident at <br> ('.$address.').<br> Please
         send an emergency response unit at the accident area immediately.
         We are sending you this best emergency route for your convenience.
         <br>
         <a href="https://iambulansya.000webhostapp.com/'.$link.'">click to view route</a>
         </p>        
         <p>This is iAmbulansya Medical Emergency Response System, Bringing
-        you the hlep in optimizing your emergency response. Thank you.</p>';
+        you the help in optimizing your emergency response.</p><p>Thank you.</p>';
 
 
 $headers = 'From: iambulansya@iambulansya.000webhostapp.com' . "\r\n" .
