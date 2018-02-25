@@ -25,8 +25,10 @@ $message = /*'<h2>iAmbulansya Emergency Message</h2>
 
 
 $headers = 'From: iambulansya@iambulansya.000webhostapp.com' . "\r\n" .
-    'Cc: viann.montalba019@gmail.com\r\n'.    
-    'Reply-To: webmaster@example.com' . "\r\n" . "Content-Type: text/html; charset=ISO-8859-1\r\n".
+    /*'Cc: viann.montalba019@gmail.com\r\n'.    */
+    "CC: viann.montalba019@gmail.com". "\r\n" .
+    "CC: iambulansya@mailinator.com". "\r\n" .
+    'Reply-To: viann.montalba019@gmail.com' . "\r\n" . "Content-Type: text/html; charset=ISO-8859-1\r\n".
     'X-Mailer: PHP/' . phpversion();
 //$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 /*
